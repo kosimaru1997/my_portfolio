@@ -1,15 +1,20 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-4 ml-5 mt-5">
-        <h3>-本日のおすすめ動画-</h3>
-        <iframe class="youtube" data-src="https://www.youtube.com/embed/ApkW0t65ahs"
-        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <div>
-          <button type="button" class="btn btn-outline-secondary">Secondary</button>
-        </div>
+      <h3>-本日のおすすめ動画-</h3>
+      <iframe class="youtube" data-src="https://www.youtube.com/embed/ApkW0t65ahs"
+      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div>
+        <button type="button" class="btn btn-outline-secondary">Secondary</button>
+      </div>
     </div>
+
     <div class="col-lg7 offset-1 mt-4">
-      <div>ようこそ</div>
+      <div class="mb-2">ようこそ</div>
+        <%= render "devise/sessions/new" %>
+        <%= render "devise/registrations/new" %>
     </div>
+    
   </div>
 </div>
+
