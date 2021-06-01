@@ -24,6 +24,12 @@
   text-decoration: none;
 }
 
+ol, ul, dl, li {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
 .top-page {
   background-image: image-url('paint.jpg');
   background-size: cover;
@@ -81,6 +87,7 @@
 }
 // ーーーーーーーーーーーー
 
+// 新規登録
 div#sign-up {
   margin-top: 260px;
   margin-left: 180px;
