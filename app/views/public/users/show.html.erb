@@ -1,0 +1,8 @@
+
+<h1><%= @user.name %></h1>
+<%= attachment_image_tag @user, :image %>
+
+
+<%= link_to "編集", edit_user_path(current_user) %>
+
+<%= link_to "退会", user_path, method: :DELETE, data: {confirm: "本当に退会してもよろしいですか？"} %>

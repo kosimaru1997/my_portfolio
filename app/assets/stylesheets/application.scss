@@ -19,56 +19,69 @@
 @import 'font-awesome';
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
 }
 
-// .menu-bar {
-//     background-image: linear-gradient(-90deg, #d38312, #a83729);
-// }
-
-.container-login {
-    min-height: 0;
-    width: 480px;
-    color: #333333;
-    padding: 0;
+.top-page {
+  background-image: image-url('paint.jpg');
+  background-size: cover;
+  height: 600px;
 }
 
-#top-bar {
-    display: inherit;
-}
-.nav-tabs.nav-justified > li {
-    display: table-cell;
-    width: 1%;
-    float: none;
+//ーーーー ログインーーーー
+.top-form {
+  width: 300px;
+  height: 210px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2),
+                0 1px 1px rgba(0, 0, 0, .2),
+                0 3px 0 #fff,
+                0 4px 0 rgba(0, 0, 0, .2),
+                0 6px 0 #fff,
+                0 7px 0 rgba(0, 0, 0, .2);
+  position: absolute;
+  z-index: 0;
 }
 
-.tabs-login {
-    background: #ffffff;
-    border: medium none;
-    margin-top: -1px;
+.top-form:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  border: 1px dashed #ccc;
+  top: 5px;
+  bottom: 5px;
+  left: 5px;
+  right: 5px;
+  box-shadow: 0 0 0 1px #fff;
 }
-.container-login h2 {
-    color: #ea533f;
+
+.top-form h4 {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
+  text-transform: uppercase;
+  text-align: center;
+  color: #666;
+  margin: 10px 0;
+  letter-spacing: 4px;
+  font: normal 26px/1 Verdana, Helvetica;
+  position: relative;
 }
+
+.top-form input {
+  margin: 0 auto;
+}
+
 .form-control {
-    background-color: #ffffff;
-    background-image: none;
-    border: 1px solid #999999;
-    border-radius: 0;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-    color: #333333;
-    display: block;
-    font-size: 14px;
-    height: 34px;
-    line-height: 1.42857;
-    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
-    width: 240px;
+  width: 75%;
+  height: 30px;
 }
 
-.container-login button:hover,
-.container-login button:focus {
-    background: #de2f18;
-    border-color: #be2815;
+.btn-outline-secondary {
+  padding: 1px 12px;
+}
+// ーーーーーーーーーーーー
+
+div#sign-up {
+  margin-top: 260px;
+  margin-left: 180px;
 }
