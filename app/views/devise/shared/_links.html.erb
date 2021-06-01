@@ -1,0 +1,80 @@
+<%- if controller_name != 'sessions' %>
+  <%= link_to "Log in", new_session_path(resource_name) %><br />
+<% end %>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+<% end %>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+<% end %>
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+<% end %>
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
+<% end %>
+
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post %><br />
+  <% end %>
+<% end %>
+
+<div class="login-body">
+  <article class="container-login center-block">
+		<section>
+			<ul id="top-bar" class="nav nav-tabs nav-justified text-center">
+				<li class="active"><a href="#" data-target="#login-access" data-toggle="tab">ログイン</a></li>
+				<li><a href="#" data-target="#password-access" data-toggle="tab">新規登録</a></li>
+			</ul>
+			<div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+			  <div id="login-access" class="tab-pane fade active in">
+					<h2><i class="glyphicon glyphicon-log-in"></i> おすすめYoutube</h2>						
+				<form method="post" accept-charset="utf-8" autocomplete="on" role="form" class="form-horizontal">
+					  
+		<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal" }) do |f| %>
+  <!--<div class="form-group">-->
+    <!--</%= f.label :email, class:"sr-only" %><br />-->
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class:"form-control mb-2" %>
+  <!--</div>-->
+	<!--<div class="form-group ">-->
+    <!--</%= f.label :email, class:"sr-only" %><br />-->
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class:"form-control" %>
+	<!--</div>-->
+	  <% if devise_mapping.rememberable? %>
+    <div class="checkbox">
+      <%= f.check_box :remember_me, class: "control-label" %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+  
+<div class="form-group ">				
+  <div class="actions">
+    <%= f.submit "Log in", class: "btn btn-outline-secondary" %>
+  </div>
+</div>
+<%= link_to "Forgot your password?", new_password_path(resource_name) %>
+					</form>			
+				</div>
+                <div id="password-access" name="password-access" class="tab-pane fade">
+                    <h2><i class="glyphicon glyphicon-lock"></i> Password Dimenticata</h2>
+                    <form method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
+                        <div class="form-group">
+                            <label type="text" class="sr-only" for="password-reset">Email Address</label>
+                            <input name="password-reset" id="password-reset" class="form-control" placeholder="Email Address" value="" tabindex="6">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" name="password-reset-button" id="submit" tabindex="7" class="btn btn-lg btn-success">Reset Password</button>
+                        </div>
+                      
+                    </form>
+                </div>
+                <%end%>
+            </div>
+		</section>
+	</article>
+</div>
