@@ -1,0 +1,8 @@
+<li id="post-<%= post.id %>">
+  <%= attachment_image_tag post.user, :image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpeg", size:'40x40' %>
+  <span class="user"><%= link_to post.user.name, user_path(post.user) %></span>
+  <span class="content"><%= link_to post.content, post_path(post) %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(post.created_at) %> ago.
+  </span>
+</li>

@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 ml-5 mt-5">
+      <section class="user_info">
+        <h4>
+        <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpeg", size:'100x100', class: "rounded-circle"%>
+        <%= @user.name %>
+        </h4>
+      </section>
+    </div>
+    
+    <div class="col-lg-7 mt-5">
+      <div class="post-show border-bottom border-secondary">
+        <li><span class="content"><%= @post.content %><span></li>
+        <li><span class="timestamp">Posted <%= time_ago_in_words(@post.created_at) %> ago.</span></li>
+      </div>
+      <div class="comment mt-3">
+        <p>コメント</p>
+      </div>
+    </div>
+  </div>
+</div>
