@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_with(model: current_user, local: true) do |f| %>
+        <!--</%= render 'shared/error_messages', object: f.object %>-->
+        <%= f.label :image %>
+        <%= f.attachment_field :image, class: "mb-3" %> </br>
+        
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+
+      <% end %>
+    </div>
+
+  </div>
+</div>
