@@ -41,7 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       clean_up_passwords resource
       # validatable有効時に、パスワードの最小値を設定する
       set_minimum_password_length
-      render "home/top"
+      redirect_to  root_path
       # respond_with resource
     end
   end
