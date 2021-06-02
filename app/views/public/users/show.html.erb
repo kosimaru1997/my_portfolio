@@ -1,8 +1,25 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-mg-4 offset-1">
+      <div class="user_info d-flex align-items-center">
+        <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpeg", size:'100x100' %>
+        <span class="ml-3"><h4><%= @user.name %></h4></span>
+      </div>
+      <% if current_user == @user %>
+        <div class="edit mt-3">
+          <%= link_to edit_user_path(current_user) do %>
+            <buttun class="btn btn-outline-info mr-3">編集する</buttun>
+          <% end %>
+          <%= link_to user_path, method: :DELETE, data: {confirm: "本当に退会してもよろしいですか？"} do %>
+            <buttun class="btn btn-outline-danger">退会する</buttun>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
-<h1><%= @user.name %></h1>
-<%= attachment_image_tag @user, :image %>
 
+    <div class="col-mg-4 offset-1">
 
-<%= link_to "編集", edit_user_path(current_user) %>
-
-<%= link_to "退会", user_path, method: :DELETE, data: {confirm: "本当に退会してもよろしいですか？"} %>
+    </div>
+  </div>
+</div>
