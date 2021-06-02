@@ -1,28 +1,29 @@
 <div class="container top-page">
   <div class="row">
-      <% if user_signed_in? %>
-        <%= form_with(model: @post, local: true) do |f| %>
+    <% if user_signed_in? %>
+      <div class="col-lg-4 mt-3">
+        <div crass="user_info", style="margin-bottom: 20px;" >
+          <%= link_to user_path(current_user) do %>
+            <%= attachment_image_tag current_user, :image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpeg", size:'60x60' %>
+            <%= current_user.name %>
+          <% end %>
+        </div>
+        <div crass="post mt-4">
+          <%= form_with(model: @post, local: true) do |f| %>
           <!--</%= render 'shared/error_messages', object: f.object %>-->
           <div class="field">
-            <%= f.text_area :content, placeholder: "コメントを投稿" %>
+            <%= f.text_area :content, :size=>"30x4", placeholder: "ポストを投稿" %>
           </div>
-          <%= f.submit "Post", class: "btn btn-primary" %>
-        <% end %>
-      <% else %>
-    <div class="col-lg-4 ml-5 mt-5">
-      <h3>-エンジニアになるまで-</h3>
-      <div>
-      </div>
-    </div>
-
-    <div class="col-lg7 offset-1 mt-4">
-      <div crass="row" id="login">
-        <%= render "devise/sessions/new" %>
-      </div>
-      <div crass="row" id="sign-up">
-        <%= render "devise/registrations/new" %>
-      </div>
+          <%= f.submit "Post", class: "btn btn-outline-secondary" %>
+        </div>
       <% end %>
-    </div>
+      </div>
+      <div class="col-lg-7 offset-1">
+
+      </div>
+
+    <% else %>
+      <%= render "not_loged_in_top" %>
+    <% end %>
   </div>
 </div>

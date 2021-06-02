@@ -1,24 +1,26 @@
-<li id="post-<%= post.id %>">
-  <%= attachment_image_tag post.user, :image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpeg", size:'40x40' %>
-  <span class="user"><%= link_to post.user.name, user_path(post.user) %></span>
-  <span class="content"><%= link_to post.content, post_path(post) %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(post.created_at) %> ago.
-  </span>
-  <span><%= link_to "#{post.post_comments.count}コメント", post_path(post) %></span>
-  <span>
-  <% if post.favorited_by?(current_user) %>
-    <p>
+<li id="post-<%= post.id %>" class="border-bottom border-secondary">
+  <div class="user-image">
+    <%= attachment_image_tag post.user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpeg", size:'50x50' %>
+    <span class="user-name mr-3"><%= link_to post.user.name, user_path(post.user) %></span>
+    <span class="timestamp text-secondary">
+      Posted <%= time_ago_in_words(post.created_at) %> ago.
+    </span>
+  </div>
+  <div class="post pt-2 pb-3">
+    <span class="content"><%= link_to post.content, post_path(post) %></span>
+  </div>
+  <div class="about mr-auto">
+    <span class="mr-2"><%= link_to "#{post.post_comments.count}コメント", post_path(post) %></span>
+    <span>
+    <% if post.favorited_by?(current_user) %>
       <%= link_to post_favorites_path(post), method: :delete do %>
         ♥<%= post.favorites.count %> いいね
       <% end %>
-    </p>
     <% else %>
-    <p>
       <%= link_to post_favorites_path(post), method: :post do %>
         ♡<%= post.favorites.count %> いいね
       <% end %>
-    </p>
-  <% end %>
-  </span>
+    <% end %>
+    </span>
+  </div>
 </li>

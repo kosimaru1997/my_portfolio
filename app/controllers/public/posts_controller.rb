@@ -18,6 +18,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = @post.user
     @post_comment = PostComment.new
+    @post_comments = @post.post_comments
   end
   
   private
