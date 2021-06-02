@@ -6,4 +6,19 @@
     Posted <%= time_ago_in_words(post.created_at) %> ago.
   </span>
   <span><%= link_to "#{post.post_comments.count}コメント", post_path(post) %></span>
+  <span>
+  <% if post.favorited_by?(current_user) %>
+    <p>
+      <%= link_to post_favorites_path(post), method: :delete do %>
+        ♥<%= post.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_favorites_path(post), method: :post do %>
+        ♡<%= post.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+  </span>
 </li>
