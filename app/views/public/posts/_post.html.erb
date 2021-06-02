@@ -5,4 +5,5 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(post.created_at) %> ago.
   </span>
+  <span><%= link_to "#{post.post_comments.count}コメント", post_path(post) %></span>
 </li>
