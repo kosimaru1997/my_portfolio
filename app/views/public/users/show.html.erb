@@ -5,9 +5,10 @@
         <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpeg", size:'100x100' %>
         <span class="ml-3"><h4><%= @user.name %></h4></span>
       </div>
-      <div class="follow mt-2">
-        <%= @user.following.count %> <%= link_to "フォロー中", "#", class: "mr-3" %>
-        <%= @user.followers.count %> <%= link_to "フォロワー", "#" %>
+      <div class="my-2 border-bottom border-secondary">
+        <%= @user.following.count %> <%= link_to "フォロー中", following_user_path(@user), class: "mr-3" %>
+        <%= @user.followers.count %> <%= link_to "フォロワー", followers_user_path(@user), class: "mr-3" %>
+        <%= link_to "いいね", favorites_user_path(@user) %>
       </div>
       <% unless current_user == @user %>
         <% if current_user.following?(@user) %>

@@ -96,12 +96,22 @@ div#login {
 }
 // ーーーーーーーーーーーー
 
-// 新規登録
+// ーーーー新規登録ーーーー
 div#sign-up {
   margin-left: 180px;
 }
 
 #sign-up form#new_user {
-    width: 320px;
-    height: 240px;
+  width: 320px;
+  height: 240px;
+}
+// ーーーーーーーーーーーー
+
+// フォローフォロワーの切り替え
+.follow {
+  color: blue;
+  
+}
+.follower {
+  color: blue;
 }

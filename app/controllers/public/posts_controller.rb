@@ -26,6 +26,12 @@ class Public::PostsController < ApplicationController
     @post_comment = PostComment.new
     @post_comments = @post.post_comments
   end
+  
+  def favorited
+    @post = Post.find(params[:id])
+    @users = @post.favorited_users
+    render "public/users/index"
+  end
 
   private
 
