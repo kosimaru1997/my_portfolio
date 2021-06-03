@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-8 offset-2">
+      <h5 class="text-center"><%= @user.name %></h5>
+      <div class="follow_user text-center d-flex">
+        <%= link_to following_user_path do %>
+          <h5 class="mr-3  <%= @follow %>">フォロー中</h5>
+        <% end %> |
+        <%= link_to followers_user_path do %>
+          <h5 class="ml-3 <%= @follower %>">フォロワー</h5>
+        <% end %>
+      </div>
+      <%= render @users %>
+    </div>
+  </div>
+</div>

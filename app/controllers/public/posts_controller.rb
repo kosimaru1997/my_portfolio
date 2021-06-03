@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  
+
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
@@ -10,6 +10,12 @@ class Public::PostsController < ApplicationController
     end
   end
   
+  def destroy
+    post = Post.find_by(id: params[:id])
+    post.destroy if post
+    redirect_back(fallback_location: root_path)
+  end
+
   def index
     @posts = Post.all
   end
@@ -21,10 +27,16 @@ class Public::PostsController < ApplicationController
     @post_comments = @post.post_comments
   end
   
+  def favorited
+    @post = Post.find(params[:id])
+    @users = @post.favorited_users
+    render "public/users/index"
+  end
+
   private
-  
+
     def post_params
       params.require(:post).permit(:content)
     end
-  
+
 end
