@@ -30,7 +30,7 @@ class Public::PostsController < ApplicationController
   def favorited
     @post = Post.find(params[:id])
     @users = @post.favorited_users
-    render "public/users/index"
+    # render "public/users/index"
   end
 
   private

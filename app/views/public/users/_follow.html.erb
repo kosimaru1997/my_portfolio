@@ -1,0 +1,9 @@
+<div class="follow_user text-center d-flex mt-3">
+  <%= link_to following_user_path, remote: true do %>
+    <h5 class="mr-3  <%= @follow %>">フォロー中</h5>
+  <% end %> |
+  <%= link_to followers_user_path, remote: true do %>
+    <h5 class="ml-3 <%= @follower %>">フォロワー</h5>
+  <% end %>
+</div>
+<%= render @users %>

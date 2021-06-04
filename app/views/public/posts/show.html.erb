@@ -9,23 +9,16 @@
   </div>
 
   <div class="col-lg-7 mt-5">
+    <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     <div class="post-show border-bottom border-secondary">
       <li><h5 class="content"><%= @post.content %></></li>
       <li><p class="timestamp text-secondary text-right">Posted <%= time_ago_in_words(@post.created_at) %> ago.</p></li>
     </div>
     <div class="about border-bottom border-secondary pb-2 mb-2 mt-2">
       <span id="comments-count"><%= @post.post_comments.count %>件のコメント</span>
-      <%= link_to "#{@post.favorites.count}件のいいね", favorited_post_path(@post), class: "mx-2" %>
-      <span>
-      <% if @post.favorited_by?(current_user) %>
-          <%= link_to post_favorites_path(@post), method: :delete do %>
-            ♥<%= @post.favorites.count %>
-          <% end %>
-        <% else %>
-          <%= link_to post_favorites_path(@post), method: :post do %>
-            ♡<%= @post.favorites.count %>
-          <% end %>
-     <% end %>
+      <%= link_to "#{@post.favorites.count}件のいいね", favorited_post_path(@post), remote: true, class: "mx-2" %>
+      <span id="favorites_<%= @post.id %>">
+       <%= render partial: "public/favorites/favorite", locals:{ post: @post} %>
       </span>
      </div>
     <p class="text-center">コメント一覧</p>
