@@ -4,7 +4,7 @@
       <div class="col-lg-4">
         <div crass="user_info", style="margin-bottom: 20px;" >
           <%= link_to user_path(current_user) do %>
-            <%= attachment_image_tag current_user, :image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpeg", size:'60x60' %>
+            <%= attachment_image_tag current_user, :image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpeg", size:'60x60', class: "rounded-circle" %>
             <%= current_user.name %>
           <% end %>
         </div>
