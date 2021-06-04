@@ -24,6 +24,7 @@
     <p class="text-center">コメント一覧</p>
      <div id="post-comments">
       <%= render @post_comments %>
+      <%= paginate @post_comments %>
     </div>
     <div class="new-comments mt-3">
       <%= form_with(model:[@post, @post_comment]) do |f| %>

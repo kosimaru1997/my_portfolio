@@ -1,12 +1,12 @@
 class Public::UsersController < ApplicationController
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).reverse_order
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page]).reverse_order
   end
 
   def edit
@@ -26,20 +26,20 @@ class Public::UsersController < ApplicationController
   def following
     @follow = "follow"
     @user = User.find(params[:id])
-    @users = @user.following
+    @users = @user.following.page(params[:page]).reverse_order
     render "follow"
   end
 
   def followers
     @follower = "follower"
     @user = User.find(params[:id])
-    @users = @user.followers
+    @users = @user.followers.page(params[:page]).reverse_order
     render "follow"
   end
 
   def favorites
     @user = User.find(params[:id])
-    @posts = @user.favorites_posts
+    @posts = @user.favorites_posts.page(params[:page]).reverse_order
     render "show"
   end
 
