@@ -9,10 +9,10 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorites_posts, through: :favorites, source: :post
   has_many :active_relationships, class_name:  "Relationship",
-                                foreign_key: "follower_id",
+                                foreign_key: "follower_id", #followerがフォローする側
                                 dependent:   :destroy
   has_many :passive_relationships, class_name:  "Relationship",
-                                   foreign_key: "followed_id",
+                                   foreign_key: "followed_id", #followedがフォローされる側
                                    dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower

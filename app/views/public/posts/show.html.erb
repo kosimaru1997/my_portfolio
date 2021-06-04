@@ -1,46 +1,42 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-4 ml-5 mt-5">
-      <section class="user_info">
-        <h4>
-        <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpeg", size:'100x100', class: "rounded-circle"%>
-        <%= @user.name %>
-        </h4>
-      </section>
-    </div>
+<div class="row">
+  <div class="col-lg-4 ml-5 mt-5">
+    <section class="user_info">
+      <h4>
+      <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpeg", size:'100x100', class: "rounded-circle"%>
+      <%= @user.name %>
+      </h4>
+    </section>
+  </div>
 
-    <div class="col-lg-7 mt-5">
-      <div class="post-show border-bottom border-secondary">
-        <li><h5 class="content"><%= @post.content %></></li>
-        <li><p class="timestamp text-secondary text-right">Posted <%= time_ago_in_words(@post.created_at) %> ago.</p></li>
-      </div>
-      <div class="about border-bottom border-secondary pb-2 mb-2 mt-2">
-        <span>コメント件数:<%= @post.post_comments.count %></span>
-        <%= link_to "#{@post.favorites.count}件のいいね", favorited_post_path(@post) %>
-        <% if @post.favorited_by?(current_user) %>
-          <span>
-            <%= link_to post_favorites_path(@post), method: :delete do %>
-              ♥<%= @post.favorites.count %> いいね
-            <% end %>
-          </span>
-          <% else %>
-          <span>
-            <%= link_to post_favorites_path(@post), method: :post do %>
-              ♡<%= @post.favorites.count %> いいね
-            <% end %>
-          </span>
-       <% end %>
-       </div>
-       <div class="comments">
-         <p class="text-center">コメント一覧</p>
-        <%= render @post_comments %>
-      </div>
-      <div class="new-comments mt-3">
-        <%= form_with(model:[@post, @post_comment], local: true) do |f| %>
-          <%= f.text_area :comment, :size=>"40x5", placeholder: "コメントする" %>
-          <%= f.submit "送信する", class: "btn btn-outline-secondary" %>
-        <% end %>
-      </div>
+  <div class="col-lg-7 mt-5">
+    <div class="post-show border-bottom border-secondary">
+      <li><h5 class="content"><%= @post.content %></></li>
+      <li><p class="timestamp text-secondary text-right">Posted <%= time_ago_in_words(@post.created_at) %> ago.</p></li>
+    </div>
+    <div class="about border-bottom border-secondary pb-2 mb-2 mt-2">
+      <span id="comments-count"><%= @post.post_comments.count %>件のコメント</span>
+      <%= link_to "#{@post.favorites.count}件のいいね", favorited_post_path(@post), class: "mx-2" %>
+      <span>
+      <% if @post.favorited_by?(current_user) %>
+          <%= link_to post_favorites_path(@post), method: :delete do %>
+            ♥<%= @post.favorites.count %>
+          <% end %>
+        <% else %>
+          <%= link_to post_favorites_path(@post), method: :post do %>
+            ♡<%= @post.favorites.count %>
+          <% end %>
+     <% end %>
+      </span>
+     </div>
+    <p class="text-center">コメント一覧</p>
+     <div id="post-comments">
+      <%= render @post_comments %>
+    </div>
+    <div class="new-comments mt-3">
+      <%= form_with(model:[@post, @post_comment]) do |f| %>
+        <%= f.text_area :comment, :size=>"40x5", placeholder: "コメントする" %>
+        <%= f.submit "送信する", class: "btn btn-outline-secondary" %>
+      <% end %>
     </div>
   </div>
 </div>
