@@ -17,20 +17,19 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).reverse_order
   end
 
   def show
     @post = Post.find(params[:id])
     @user = @post.user
     @post_comment = PostComment.new
-    @post_comments = @post.post_comments
+    @post_comments = @post.post_comments.page(params[:page]).reverse_order
   end
   
   def favorited
     @post = Post.find(params[:id])
-    @users = @post.favorited_users
-    # render "public/users/index"
+    @users = @post.favorited_users.page(params[:page]).reverse_order
   end
 
   private

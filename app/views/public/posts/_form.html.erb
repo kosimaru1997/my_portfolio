@@ -3,6 +3,7 @@
     <h5 class="text-center mt-2">いいねしたユーザー</h5>
     <div class="mt-3 ml-3 mr-4">
       <ol><%= render @users %></ol>
+      <%= paginate @users %>
     </div>
   </div>
 </div>
