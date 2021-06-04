@@ -18,17 +18,6 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   attachment :image
 
-  #フォローする
-  def follow(other_user)
-    #following << other_user
-    relationships.create(followed_id: user_id)
-  end
-
-  #フォロー解除
-  def unfollow(user)
-    active_relationships.find_by(followed_id: user.id).destroy
-  end
-
   #フォロー済みか確認
   def following?(other_user)
     following.include?(other_user)
