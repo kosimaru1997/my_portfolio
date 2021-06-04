@@ -1,41 +1,39 @@
-<div class="container mt-3">
-  <div class="row">
-    <div class="col-lg-5 ml-3">
-      <div class="userーimage d-flex align-items-center">
-        <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpeg", size:'100x100' %>
-        <span class="ml-3"><h4><%= @user.name %></h4></span>
-      </div>
-      <div class="my-2 border-bottom border-secondary">
-        <%= link_to "ツイート", user_path(@user), class: "mr-1" %>
-        <%= @user.following.count %> <%= link_to "フォロー中", following_user_path(@user), class: "mr-3" %>
-        <%= @user.followers.count %> <%= link_to "フォロワー", followers_user_path(@user), class: "mr-1" %>
-        <%= link_to "いいね", favorites_user_path(@user) %>
-      </div>
-      <% unless current_user == @user %>
-        <% if current_user.following?(@user) %>
-          <th class="content">
-            <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete %>
-          </th>
-        <% else %>
-          <th class="content">
-            <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
-          </th>
-        <% end %>
+<div class="row mt-3">
+  <div class="col-lg-5 ml-3">
+    <div class="userーimage d-flex align-items-center">
+      <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpeg", size:'100x100' %>
+      <span class="ml-3"><h4><%= @user.name %></h4></span>
+    </div>
+    <div class="my-2 border-bottom border-secondary">
+      <%= link_to "ポスト", user_path(@user), class: "mr-1" %>
+      <%= link_to "いいね", favorites_user_path(@user), class: "mr-2" %>
+      <%= @user.following.count %> <%= link_to "フォロー中", following_user_path(@user), class: "mr-3" %>
+      <%= @user.followers.count %> <%= link_to "フォロワー", followers_user_path(@user) %>
+    </div>
+    <% unless current_user == @user %>
+      <% if current_user.following?(@user) %>
+        <th class="content">
+          <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete %>
+        </th>
       <% else %>
-        <div class="edit mt-3">
-          <%= link_to edit_user_path(current_user) do %>
-            <buttun class="btn btn-outline-info mr-3">編集する</buttun>
-          <% end %>
-          <%= link_to user_path, method: :DELETE, data: {confirm: "本当に退会してもよろしいですか？"} do %>
-            <buttun class="btn btn-outline-danger">退会する</buttun>
-          <% end %>
-        </div>
+        <th class="content">
+          <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
+        </th>
       <% end %>
-    </div>
+    <% else %>
+      <div class="edit mt-3">
+        <%= link_to edit_user_path(current_user) do %>
+          <buttun class="btn btn-outline-info mr-3">編集する</buttun>
+        <% end %>
+        <%= link_to user_path, method: :DELETE, data: {confirm: "本当に退会してもよろしいですか？"} do %>
+          <buttun class="btn btn-outline-danger">退会する</buttun>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
 
-    <div class="col-lg-6">
-     <%= render @posts %>
-    </div>
+  <div class="col-lg-6" id="user-detail">
+   <%= render @posts %>
   </div>
 </div>
