@@ -2,9 +2,9 @@
   <div class="col-lg-4 ml-5 mt-5">
     <section class="user_info">
       <%= link_to user_path(@post.user) do %>
-        <h4>
-        <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpeg", size:'100x100', class: "rounded-circle"%>
-        <%= @user.name %>
+      <h4>
+      <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpeg", size:'100x100', class: "rounded-circle"%>
+      <%= @user.name %>
       <% end %>
       </h4>
     </section>
@@ -24,11 +24,11 @@
       </span>
      </div>
     <p class="text-center">コメント一覧</p>
-     <div id="post-comments">
+     <div class="scroll-list jscroll" id="post-comments">
       <%= render @post_comments %>
       <%= paginate @post_comments %>
     </div>
-    <div class="new-comments mt-3">
+    <div class="new-comments my-3">
       <%= form_with(model:[@post, @post_comment]) do |f| %>
         <%= f.text_area :comment, :size=>"40x5", placeholder: "コメントする" %>
         <%= f.submit "送信する", class: "btn btn-outline-secondary" %>
