@@ -97,6 +97,10 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.8.1)
     faker (2.18.0)
@@ -152,6 +156,7 @@ GEM
     msgpack (1.4.2)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
+    mysql2 (0.5.3)
     net-ftp (0.1.2)
       net-protocol
       time
@@ -291,12 +296,14 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  dotenv-rails
   faker
   font-awesome-sass (~> 5.13)
   jbuilder (~> 2.5)
   jquery-rails
   kaminari (~> 1.2.1)
   listen (>= 3.0.5, < 3.2)
+  mysql2
   puma (~> 3.11)
   rails (~> 5.2.5)
   refile!
