@@ -1,6 +1,8 @@
 <div class="row mt-3">
   <div class="col-lg-8 offset-2">
-    <ol><%= render @users %></ol>
+    <ol class="scroll-list jscroll">
+      <%= render @users %>
     <%= paginate @users %>
+    </ol>
   </div>
 </div>

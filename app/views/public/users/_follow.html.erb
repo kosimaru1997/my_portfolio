@@ -6,5 +6,7 @@
     <h5 class="ml-3 <%= @follower %>">フォロワー</h5>
   <% end %>
 </div>
-<%= render @users %>
-<%= paginate @users %>
+<div class="scroll-list jscroll">
+  <%= render @users %>
+  <%= paginate @users %>
+</div>
