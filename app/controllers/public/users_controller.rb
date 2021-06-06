@@ -1,7 +1,8 @@
 class Public::UsersController < ApplicationController
 
   def index
-    @users = User.page(params[:page]).reverse_order
+    @users = User.all.page(params[:page]).reverse_order
+    # @login_user = User.includes(:following).find(current_user.id)
   end
 
   def show
@@ -39,7 +40,7 @@ class Public::UsersController < ApplicationController
 
   def favorites
     @user = User.find(params[:id])
-    @posts = @user.favorites_posts.page(params[:page]).reverse_order
+    @posts = @user.favorites_posts.includes(:user).page(params[:page]).reverse_order
     render "show"
   end
 
