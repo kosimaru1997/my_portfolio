@@ -15,7 +15,7 @@
     </div>
   </div>
   <div class="about text-right mr-5">
-    <span class="mr-2"><%= link_to "#{post.post_comments.count}コメント", post_path(post) %></span>
+    <span class="mr-2"><%= link_to "#{post.post_comments.size}コメント", post_path(post) %></span>
       <span id="favorites_<%= post.id %>">
         <%= render partial: "public/favorites/favorite", locals:{ post: post} %>
       </span>
