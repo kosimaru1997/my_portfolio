@@ -1,6 +1,6 @@
 <li id="post-<%= post.id %>" class="border-bottom border-secondary">
   <div class="post-section d-flex mt-4">
-    <%= attachment_image_tag post.user, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpeg", size:'50x50', class: "rounded-circle" %>
+    <%= attachment_image_tag post.user, :image, :fill, 50, 50, format: 'jpg', fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" %>
     <div class="content ml-2">
       <span class="user-name mr-3"><%= link_to post.user.name, user_path(post.user) %></span>
       <span class="timestamp text-secondary">

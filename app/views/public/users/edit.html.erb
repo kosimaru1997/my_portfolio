@@ -3,7 +3,7 @@
   <div class="col-md-8 offset-2">
     <%= form_with(model: current_user, local: true) do |f| %>
       <!--</%= render 'shared/error_messages', object: f.object %>-->
-      <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpeg", size:'100x100' %>
+      <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %>
       <%= f.attachment_field :image, class: "mb-3" %> </br>
 
       <%= f.label :name %>

@@ -3,7 +3,7 @@
     <section class="user_info">
       <%= link_to user_path(@post.user) do %>
       <h4>
-      <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpeg", size:'100x100', class: "rounded-circle"%>
+      <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100', class: "rounded-circle"%>
       <%= @user.name %>
       <% end %>
       </h4>

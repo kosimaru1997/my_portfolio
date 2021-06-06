@@ -1,7 +1,7 @@
 <div class="row mt-3">
   <div class="col-lg-5 ml-3">
     <div class="userーimage d-flex align-items-center">
-      <%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpeg', fallback: "no_image.jpeg", size:'80x80', class: "rounded-circle" %>
+      <%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpg', fallback: "no_image.jpg", size:'80x80', class: "rounded-circle" %>
       <span class="ml-3"><h5><%= @user.name %></h5></span>
       <div id="follow_<%= @user.id %>">
         <%= render partial: "public/relationships/relationship", locals:{ user: @user} %>
