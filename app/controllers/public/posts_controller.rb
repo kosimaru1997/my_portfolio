@@ -30,6 +30,8 @@ class Public::PostsController < ApplicationController
   def favorited
     @post = Post.find(params[:id])
     @users = @post.favorited_users.page(params[:page]).reverse_order
+    @login_user = User.includes(:following).find(current_user.id)
+    # byebug
   end
 
   private
