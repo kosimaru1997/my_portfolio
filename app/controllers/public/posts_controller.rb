@@ -17,7 +17,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.includes(:user).page(params[:page]).reverse_order
+    @posts = Post.all.includes(:user, :favorites, :favorited_users, :post_comments).page(params[:page]).reverse_order
   end
 
   def show
@@ -30,6 +30,7 @@ class Public::PostsController < ApplicationController
   def favorited
     @post = Post.find(params[:id])
     @users = @post.favorited_users.page(params[:page]).reverse_order
+    @login_user = User.includes(:following).find(current_user.id)
   end
 
   private

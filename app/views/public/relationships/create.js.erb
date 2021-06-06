@@ -1,1 +1,2 @@
 $('#follow_<%= @user.id %>').html("<%= j(render partial: 'public/relationships/relationship', locals:{ user: @user}) %>");
+$("#following-count").html("<%= @login_user.following.count %>");
