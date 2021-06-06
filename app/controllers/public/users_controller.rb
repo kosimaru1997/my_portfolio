@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @login_user = User.includes(:following).find(current_user.id) unless @user == current_user
-    @posts = @user.posts.page(params[:page]).reverse_order
+    @posts = @user.posts.includes(:user, :favorites, :favorited_users, :post_comments).page(params[:page]).reverse_order
   end
 
   def edit
@@ -43,7 +43,7 @@ class Public::UsersController < ApplicationController
 
   def favorites
     @user = User.find(params[:id])
-    @posts = @user.favorites_posts.includes(:user).page(params[:page]).reverse_order
+    @posts = @user.favorites_posts.includes(:user, :favorites, :favorited_users, :post_comments).page(params[:page]).reverse_order
     @login_user = User.includes(:following).find(current_user.id) unless @user == current_user
     render "show"
   end
