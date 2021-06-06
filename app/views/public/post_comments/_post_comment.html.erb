@@ -1,6 +1,6 @@
 <li class="border-bottom border-secondary">
   <div class="comment">
-    <%= attachment_image_tag post_comment.user, :image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpeg", size:'40x40', class: "rounded-circle"%>
+    <%= attachment_image_tag post_comment.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle"%>
     <span class="user-name mr-3"><%= link_to post_comment.user.name, user_path(post_comment.user) %></span>
     <span><%= post_comment.comment %></span>
   </div>
