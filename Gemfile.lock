@@ -303,7 +303,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   faker
-  font-awesome-sass (~> 5.13)
+  font-awesome-sass
   jbuilder (~> 2.5)
   jquery-rails
   kaminari (~> 1.2.1)

@@ -9,5 +9,11 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
+  
+  #検索機能お
+  def self.search(search)
+    return Post.all unless search
+    Post.where(['content LIKE ?', "%#{search}%"])
+  end
 
 end
