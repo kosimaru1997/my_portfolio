@@ -2,7 +2,7 @@
   <div class="user_info d-flex align-items-center">
     <%= link_to user_path(user) do %>
       <div class="user_info d-flex align-items-center">
-        <%= attachment_image_tag user, :image, :fill, 70, 70, format: 'jpeg', fallback: "no_image.jpeg", size:'70x70', class: "rounded-circle" %>
+        <%= attachment_image_tag user, :image, :fill, 70, 70, format: 'jpeg', fallback: "no_image.jpg", size:'70x70', class: "rounded-circle" %>
         <div class="ml-3"><h5 class="text-dark"><%= user.name %></h5></div>
       </div>
     <% end %>
