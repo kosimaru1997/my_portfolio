@@ -38,6 +38,15 @@ ol, ul, dl, li {
     border-color: #ccd5dc !important;
 }
 
+.notice {
+  position: relative;
+}
+
+.n-circle {
+  position: absolute;
+  top: 30px;
+  left: 24px;
+}
 // .top-page {
 //   background-image: image-url('paint.jpg');
 //   background-size: cover;

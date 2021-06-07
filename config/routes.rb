@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
       get :favorited, on: :member
     end
+    resources :notifications, only: :index
   end
 
 end
