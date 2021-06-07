@@ -24,6 +24,8 @@
           <buttun class="btn btn-outline-danger">退会する</buttun>
         <% end %>
       </div>
+    <% else %>
+      <%= link_to 'chatを始める', user_chats_path(@user.id)%>
     <% end %>
   </div>
 
