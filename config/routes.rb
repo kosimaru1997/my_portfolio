@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about'
     resources :users, except: [:new] do
       resource :relationships, only: [:create, :destroy]
+      resource :chats, only: [:show, :create]
       get :following, on: :member
       get :followers, on: :member
       get :favorites, on: :member
