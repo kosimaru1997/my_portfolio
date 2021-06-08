@@ -1,6 +1,6 @@
 <div class="row my-5">
   <% if @notifications.exists? %>
-    <div class="users-index">
+    <div class="users-index w-100">
       <%= render @notifications %>
       <%= paginate @notifications %>
     </div>

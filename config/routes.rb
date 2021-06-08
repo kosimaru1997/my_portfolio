@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get '/about' => 'homes#about'
+    get 'chats/index' => 'chats#index', as: 'chats'
     resources :users, except: [:new] do
       resource :relationships, only: [:create, :destroy]
       resource :chats, only: [:show, :create]

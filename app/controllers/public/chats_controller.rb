@@ -1,4 +1,9 @@
 class Public::ChatsController < ApplicationController
+  
+  def index
+    current_rooms = UserRoom.select(:room_id).where(user_id: current_user.id)
+    @rooms = UserRoom.includes(:user).where(room_id: current_rooms).where.not(user_id: current_user.id)
+  end
 
   def show
     @user = User.find(params[:user_id])
