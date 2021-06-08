@@ -2,7 +2,7 @@ class Public::ChatsController < ApplicationController
 
   def index
     my_rooms = UserRoom.select(:room_id).where(user_id: current_user.id)
-    @rooms = UserRoom.includes(:chats, :user).where(room_id: my_rooms).where.not(user_id: current_user.id)
+    @rooms = UserRoom.includes(:chats, :user).where(room_id: my_rooms).where.not(user_id: current_user.id).reverse_order
   end
 
   def show
@@ -11,8 +11,8 @@ class Public::ChatsController < ApplicationController
     user_rooms = UserRoom.find_by(user_id: @user.id, room_id: rooms)
     unless user_rooms.nil?
       @room = user_rooms.room
-      #通知を削除するためのメソッド
-      chats = @room.chats.where(checked: false).where.not(user_id: current_user.id)
+      #通知を既読にするためのメソッド
+      chats = @room.chats.includes(:user).where(checked: false).where.not(user_id: current_user.id)
       chats.each {|check| check.update_attributes(checked: true)}
     else
       @room = Room.new

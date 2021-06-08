@@ -24,6 +24,10 @@
   text-decoration: none;
 }
 
+.container-fluid {
+  padding: 0;
+}
+
 ol, ul, dl, li {
   margin-top: 0;
   margin-bottom: 1rem;
@@ -36,6 +40,10 @@ ol, ul, dl, li {
 
 .border-secondary {
     border-color: #ccd5dc !important;
+}
+
+.navbar {
+  height: 55px;
 }
 // ーーーーー通知マークーーーーーー
 .notice {

@@ -9,8 +9,9 @@
       <% if current_user == post.user %>
         <span><%= link_to "削除", post_path(post), method: :delete %></span>
       <% end %>
-      <%= link_to post_path(post) do %>
-          <p class="post pt-2 ml-2 mb-0 text-dark"><%= post.content %></p>
+      <%= link_to post_path(post), class: "text-dark" do %>
+          <% text = safe_join(post.content.split("\n"),tag(:br)) %>
+          <div><p class="post pt-2 ml-2 mb-0 text-dark"><%= convert_url_into_a_tag(text).html_safe %></p></div>
       <% end %>
     </div>
   </div>

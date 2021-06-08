@@ -56,7 +56,7 @@ class User < ApplicationRecord
   def unchecked_chats?
     my_rooms = UserRoom.select(:room_id).where(user_id: id)
     other_user_ids = UserRoom.select(:user_id).where(room_id: my_rooms).where.not(user_id: id)
-    Chat.where(user_id: other_user_ids).where.not(checked: true).any?
+    Chat.where(user_id: other_user_ids, room_id: my_rooms).where.not(checked: true).any?
   end
 
 end
