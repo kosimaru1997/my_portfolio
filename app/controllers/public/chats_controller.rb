@@ -1,17 +1,19 @@
 class Public::ChatsController < ApplicationController
-  
+
   def index
-    current_rooms = UserRoom.select(:room_id).where(user_id: current_user.id)
-    @rooms = UserRoom.includes(:chats, :user).where(room_id: current_rooms).where.not(user_id: current_user.id)
+    my_rooms = UserRoom.select(:room_id).where(user_id: current_user.id)
+    @rooms = UserRoom.includes(:chats, :user).where(room_id: my_rooms).where.not(user_id: current_user.id)
   end
 
   def show
     @user = User.find(params[:user_id])
     rooms = current_user.user_rooms.pluck(:room_id)
     user_rooms = UserRoom.find_by(user_id: @user.id, room_id: rooms)
-
     unless user_rooms.nil?
       @room = user_rooms.room
+      #通知を削除するためのメソッド
+      chats = @room.chats.where(checked: false).where.not(user_id: current_user.id)
+      chats.each {|check| check.update_attributes(checked: true)}
     else
       @room = Room.new
       @room.save

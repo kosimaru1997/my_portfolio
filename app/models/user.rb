@@ -47,9 +47,16 @@ class User < ApplicationRecord
     end
   end
 
-  #未読の通知が存在するか確認
+  #未読の通知が存在するか確認(いいね、フォロー、コメント)
   def unchecked_notifications?
     passive_notifications.where(checked: false).any?
+  end
+  
+  #未読の通知が存在するか確認(いいね、フォロー、コメント)
+  def unchecked_chats?
+    my_rooms = UserRoom.select(:room_id).where(user_id: id)
+    other_user_ids = UserRoom.select(:user_id).where(room_id: my_rooms).where.not(user_id: id)
+    Chat.where(user_id: other_user_ids).where.not(checked: true).any?
   end
 
 end

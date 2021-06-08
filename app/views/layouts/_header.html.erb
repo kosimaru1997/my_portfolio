@@ -23,9 +23,12 @@
                   <% end %>
                 <% end %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item chat-notice">
                 <%= link_to chats_path, class: 'nav-link text-dark' do %>
                   <i class="far fa-envelope fa-lg.fa-stack-2x" style="font-size: 1.5em;"></i>
+                  <% if current_user.unchecked_chats? %>
+                    <i class="fa fa-circle fa-xs n-circle-chat" style="color: blue;"></i>
+                  <% end %>
                 <% end %>
               </li>
               <li class="nav-item">

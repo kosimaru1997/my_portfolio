@@ -37,7 +37,7 @@ ol, ul, dl, li {
 .border-secondary {
     border-color: #ccd5dc !important;
 }
-
+// ーーーーー通知マークーーーーーー
 .notice {
   position: relative;
 }
@@ -47,6 +47,17 @@ ol, ul, dl, li {
   top: 30px;
   left: 24px;
 }
+
+.chat-notice {
+  position: relative;
+}
+
+.n-circle-chat {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+// ーーーーーーーーーーーーーーーー
 // .top-page {
 //   background-image: image-url('paint.jpg');
 //   background-size: cover;

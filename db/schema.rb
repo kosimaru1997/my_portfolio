@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2021_06_07_105941) do
     t.integer "user_id"
     t.integer "room_id"
     t.string "message"
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,12 +36,10 @@ ActiveRecord::Schema.define(version: 2021_06_07_105941) do
     t.integer "visited_id", null: false
     t.integer "post_id"
     t.integer "post_comment_id"
-    t.integer "chat_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chat_id"], name: "index_notifications_on_chat_id"
     t.index ["post_comment_id"], name: "index_notifications_on_post_comment_id"
     t.index ["post_id"], name: "index_notifications_on_post_id"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
