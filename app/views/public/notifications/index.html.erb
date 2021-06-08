@@ -1,0 +1,10 @@
+<div class="row my-5">
+  <% if @notifications.exists? %>
+    <div class="users-index w-100">
+      <%= render @notifications %>
+      <%= paginate @notifications %>
+    </div>
+  <% else %>
+    <p>通知はありません</p>
+  <% end %>
+</div>

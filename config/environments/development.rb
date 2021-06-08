@@ -68,5 +68,7 @@ Rails.application.configure do
     Bullet.add_whitelist :type => :unused_eager_loading, :class_name => "User", :association => :active_relationships
     Bullet.add_whitelist :type => :unused_eager_loading, :class_name => "Post", :association => :favorites
     Bullet.add_whitelist :type => :unused_eager_loading, :class_name => "Post", :association => :post_comments
+    Bullet.add_whitelist :type => :unused_eager_loading, :class_name => "Notification", :association => :post
+    Bullet.add_whitelist :type => :unused_eager_loading, :class_name => "Notification", :association => :post_comment
   end
 end

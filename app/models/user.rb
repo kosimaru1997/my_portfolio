@@ -18,6 +18,8 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   attachment :image
 
   #フォロー済みか確認
@@ -31,6 +33,30 @@ class User < ApplicationRecord
                      WHERE follower_id = :user_id"
     Post.where("user_id IN (#{following_ids})
                      OR user_id = :user_id", user_id: id)
+  end
+
+  #フォロー時の通知を作成
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
+  end
+
+  #未読の通知が存在するか確認(いいね、フォロー、コメント)
+  def unchecked_notifications?
+    passive_notifications.where(checked: false).any?
+  end
+  
+  #未読の通知が存在するか確認(いいね、フォロー、コメント)
+  def unchecked_chats?
+    my_rooms = UserRoom.select(:room_id).where(user_id: id)
+    other_user_ids = UserRoom.select(:user_id).where(room_id: my_rooms).where.not(user_id: id)
+    Chat.where(user_id: other_user_ids).where.not(checked: true).any?
   end
 
 end
