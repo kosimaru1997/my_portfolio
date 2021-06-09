@@ -29,10 +29,9 @@ class User < ApplicationRecord
 
   #フォロー済みユーザーのポストを取得
   def feed
-    following_ids = "SELECT followed_id FROM relationships
-                     WHERE follower_id = :user_id"
-    Post.where("user_id IN (#{following_ids})
-                     OR user_id = :user_id", user_id: id)
+    following_ids = self.following.select(:id)
+    Post.where("user_id IN (:following_ids)
+                 OR user_id = :user_id", following_ids: following_ids, user_id: id)
   end
 
   #フォロー時の通知を作成
@@ -51,12 +50,15 @@ class User < ApplicationRecord
   def unchecked_notifications?
     passive_notifications.where(checked: false).any?
   end
-  
-  #未読の通知が存在するか確認(いいね、フォロー、コメント)
+
+  #未読の通知が存在するか確認(チャット)
   def unchecked_chats?
     my_rooms = UserRoom.select(:room_id).where(user_id: id)
     other_user_ids = UserRoom.select(:user_id).where(room_id: my_rooms).where.not(user_id: id)
-    Chat.where(user_id: other_user_ids).where.not(checked: true).any?
+    Chat.where(user_id: other_user_ids, room_id: my_rooms).where.not(checked: true).any?
   end
+  
+  # Chat.where("user_id IN (:other_user_ids) AND room_id IN (:my_rooms_ids) AND checked NOT :true",
+              # other_user_ids: other_user_ids, my_rooms_ids: my_rooms_ids, true: true)
 
 end
