@@ -9,7 +9,7 @@ class Public::PostsController < ApplicationController
       render 'homes/top.html.erb'
     end
   end
-  
+
   def destroy
     post = Post.find_by(id: params[:id])
     post.destroy if post
@@ -28,9 +28,10 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = @post.user
     @post_comment = PostComment.new
-    @post_comments = @post.post_comments.includes(:user).page(params[:page]).reverse_order
+    @comment_reply = @post.post_comments.build
+    @post_comments = @post.post_comments.where(parent_id: nil).includes(:user).page(params[:page]).reverse_order
   end
-  
+
   def favorited
     @post = Post.find(params[:id])
     @users = @post.favorited_users.page(params[:page]).reverse_order

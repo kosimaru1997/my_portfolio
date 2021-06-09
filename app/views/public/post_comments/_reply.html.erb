@@ -1,0 +1,13 @@
+<li class="border-bottom border-secondary">
+  <div class="reply">
+    <%= attachment_image_tag reply.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle"%>
+    <span class="user-name mr-3"><%= link_to reply.user.name, user_path(reply.user) %></span>
+    <span><%= reply.comment %></span>
+  </div>
+  <div class="text-right mr-4">
+    <span class="mr-2"><%= reply.created_at.strftime('%Y/%m/%d') %></span>
+    <% if current_user == reply.user %>
+      <%= link_to "削除", post_post_comment_path(reply.post, reply), method: :delete, remote: true %>
+    <% end %>
+  </div>
+</li>
