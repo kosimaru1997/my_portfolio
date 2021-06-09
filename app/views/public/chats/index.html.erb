@@ -12,7 +12,7 @@
           <p class="pt-3 ml-3 mb-0 text-dark"><%= room.chats.last.message %></p>
           <div class="small text-muted text-right">
             <span>
-              <% if room.caht_for_notice.last.checked == false %>
+              <% if room.massage_checked %>
                 <i class="fa fa-circle fa-x" style="color: blue;"></i>
               <% end %>
             </span>

@@ -1,7 +1,7 @@
 class Public::ChatsController < ApplicationController
 
   def index
-    my_rooms = UserRoom.select(:room_id).where(user_id: current_user.id)
+    my_rooms = current_user.user_rooms.select(:room_id)
     @rooms = UserRoom.includes(:chats, :user).where(room_id: my_rooms).where.not(user_id: current_user.id).reverse_order
   end
 

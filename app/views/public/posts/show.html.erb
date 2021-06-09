@@ -13,7 +13,8 @@
   <div class="col-lg-7 mt-5">
     <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     <div class="post-show border-bottom border-secondary">
-      <li><h5 class="content"><%= @post.content %></></li>
+      <% text = safe_join(@post.content.split("\n"),tag(:br)) %>
+      <li><h5 class="content"><%= convert_url_into_a_tag(text).html_safe %></li>
       <li><p class="timestamp text-secondary text-right">Posted <%= time_ago_in_words(@post.created_at) %> ago.</p></li>
     </div>
     <div class="about border-bottom border-secondary pb-2 mb-2 mt-2">
