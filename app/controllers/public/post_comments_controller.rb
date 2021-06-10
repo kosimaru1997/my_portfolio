@@ -8,7 +8,8 @@ class Public::PostCommentsController < ApplicationController
     @comment.post_id = @post.id
     @comment.save
     @post.create_notification_comment!(current_user, @comment.id)
-    render "create_reply" if @comment.parent_id != []
+    # byebug
+    render "create_reply" unless @comment.parent_id.nil?
   end
 
   def destroy
@@ -17,7 +18,7 @@ class Public::PostCommentsController < ApplicationController
     @post_comments = @post.post_comments.where(parent_id: nil).includes(:user).page(params[:page]).reverse_order
     @comment = PostComment.find_by(id: params[:id])
     @comment.destroy
-    render "destroy_reply" if @comment.parent_id != []
+    render "destroy_reply" unless @comment.parent_id.nil?
   end
 
   private

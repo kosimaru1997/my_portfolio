@@ -20,7 +20,7 @@
 <div class="collapse mt-3" id="collapseReplay_<%= post_comment.id %>">
   <div class="new-replies w-75 my-3" id="post_comment<%= post_comment.id %>">
     <% post_comment.replies.page(params[:page]).each do |reply| %>
-    <li class="border-bottom border-secondary">
+    <li class="border-bottom border-secondary", id="reply_<%= reply.id %>">
       <div class="reply">
         <%= attachment_image_tag reply.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle"%>
         <span class="user-name mr-3"><%= link_to reply.user.name, user_path(reply.user) %></span>
@@ -37,7 +37,7 @@
   </div>
   <div class="new-reply">
     <%= form_with(model:[@post, @comment_reply]) do |f| %>
-    <%= f.text_area :comment, :size=>"50x3", placeholder: "リプライする" %>
+    <%= f.text_area :comment, :size=>"50x3", placeholder: "リプライする", id: "new_reply_#{post_comment.id}" %>
     <%= f.hidden_field :parent_id, value: post_comment.id%>
     <%= f.submit "送信する", class: "btn btn-outline-secondary" %>
   <% end %>
