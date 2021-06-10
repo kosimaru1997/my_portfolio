@@ -1,2 +1,2 @@
-$("#comments-count").html("<%= @post.post_comments.count %>件のコメント");
+$("#comments-count").html("<%= @post_comments.size %>件のコメント");
 $("#post-comments").html("<%= j(render @post_comments) %>");

@@ -5,9 +5,42 @@
     <span><%= post_comment.comment %></span>
   </div>
   <div class="text-right mr-4">
+
+    <i type="button" class="far fa-comment mr-3" data-toggle="collapse" data-target="#collapseReplay_<%= post_comment.id %>"
+    aria-controls="ccollapseReplay_<%= post_comment.id %>">
+      <span class="ml-1" id="post_comment_count<%= post_comment.id %>"><%= post_comment.replies.size %></span></i>
+
     <span class="mr-2"><%= post_comment.created_at.strftime('%Y/%m/%d') %></span>
     <% if current_user == post_comment.user %>
       <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true %>
     <% end %>
   </div>
 </li>
+
+<div class="collapse mt-3" id="collapseReplay_<%= post_comment.id %>">
+  <div class="new-replies w-75 my-3" id="post_comment<%= post_comment.id %>">
+    <% post_comment.replies.page(params[:page]).each do |reply| %>
+    <li class="border-bottom border-secondary", id="reply_<%= reply.id %>">
+      <div class="reply">
+        <%= attachment_image_tag reply.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle"%>
+        <span class="user-name mr-3"><%= link_to reply.user.name, user_path(reply.user) %></span>
+        <span><%= reply.comment %></span>
+      </div>
+      <div class="text-right mr-4">
+        <span class="mr-2"><%= reply.created_at.strftime('%Y/%m/%d') %></span>
+        <% if current_user == reply.user %>
+          <%= link_to "削除", post_post_comment_path(reply.post, reply), method: :delete, remote: true %>
+        <% end %>
+      </div>
+    </li>
+    <% end %>
+  </div>
+  <div class="new-reply">
+    <%= form_with(model:[@post, @comment_reply]) do |f| %>
+    <%= f.text_area :comment, :size=>"50x3", placeholder: "リプライする", id: "new_reply_#{post_comment.id}" %>
+    <%= f.hidden_field :parent_id, value: post_comment.id%>
+    <%= f.submit "送信する", class: "btn btn-outline-secondary" %>
+  <% end %>
+  </div>
+</div>
+

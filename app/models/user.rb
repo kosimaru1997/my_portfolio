@@ -53,9 +53,9 @@ class User < ApplicationRecord
 
   #未読の通知が存在するか確認(チャット)
   def unchecked_chats?
-    my_rooms = UserRoom.select(:room_id).where(user_id: id)
-    other_user_ids = UserRoom.select(:user_id).where(room_id: my_rooms).where.not(user_id: id)
-    Chat.where(user_id: other_user_ids, room_id: my_rooms).where.not(checked: true).any?
+    my_rooms_ids = UserRoom.select(:room_id).where(user_id: id)
+    other_user_ids = UserRoom.select(:user_id).where(room_id: my_rooms_ids).where.not(user_id: id)
+    Chat.where(user_id: other_user_ids, room_id: my_rooms_ids).where.not(checked: true).any?
   end
   
   # Chat.where("user_id IN (:other_user_ids) AND room_id IN (:my_rooms_ids) AND checked NOT :true",

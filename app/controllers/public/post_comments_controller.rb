@@ -1,24 +1,30 @@
 class Public::PostCommentsController < ApplicationController
-  
+
   def create
     @post = Post.find(params[:post_id])
-    @post_comments = @post.post_comments.page(params[:page]).reverse_order
-    comment = current_user.post_comments.new(post_comment_params)
-    comment.post_id = @post.id
-    comment.save
-    @post.create_notification_comment!(current_user, comment.id)
+    @comment_reply = @post.post_comments.build
+    @post_comments = @post.post_comments.where(parent_id: nil).includes(:user).page(params[:page]).reverse_order
+    @comment = current_user.post_comments.new(post_comment_params)
+    @comment.post_id = @post.id
+    @comment.save
+    @post.create_notification_comment!(current_user, @comment.id)
+    # byebug
+    render "create_reply" unless @comment.parent_id.nil?
   end
-  
+
   def destroy
     @post = Post.find(params[:post_id])
-    @post_comments = @post.post_comments.page(params[:page]).reverse_order
-    PostComment.find_by(id: params[:id]).destroy
+    @comment_reply = @post.post_comments.build
+    @post_comments = @post.post_comments.where(parent_id: nil).includes(:user).page(params[:page]).reverse_order
+    @comment = PostComment.find_by(id: params[:id])
+    @comment.destroy
+    render "destroy_reply" unless @comment.parent_id.nil?
   end
-  
+
   private
-  
+
     def post_comment_params
-      params.require(:post_comment).permit(:comment)
+      params.require(:post_comment).permit(:comment, :parent_id)
     end
-  
+
 end
