@@ -37,7 +37,6 @@ ja:
         other: "%{count}年以上"
 
 # モデル
-ja:
   activerecord:
     attributes:
       user:

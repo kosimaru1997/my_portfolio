@@ -10,7 +10,7 @@
         </div>
         <div crass="post mt-4">
           <%= form_with(model: @post, local: true) do |f| %>
-            <!--</%= render 'shared/error_messages', object: f.object %>-->
+            <%= render 'shared/error_messages', object: f.object %>
             <div class="field">
               <%= f.text_area :content, :size=>"30x4", placeholder: "ポストを投稿" %>
             </div>
