@@ -1,13 +1,24 @@
-<div class="col-lg-4 ml-5 mt-5">
-  <h3>-エンジニアになるまで-</h3>
+<div class="col-lg-5 mt-5">
+  <h3 class="text-center">-エンジニアになるまで-</h3>
+  <p>エンジニア初学者に向けたサイトです。<br />
+     オンライン上で様々な未経験エンジニアの方々と繋がれるコミュニティ
+     として本サイトが使われることを願います。 <br />
+  </p>
   <div>
   </div>
 </div>
 
-<div class="col-lg7 offset-1 mt-4">
+<div class="col-lg-6 offset-1 mt-3">
   <div id="login">
     <%= render "devise/sessions/new" %>
   </div>
+    <% if @errors %>
+      <ul class="errors">
+        <% @errors.each do |error| %>
+          <li class="border-bottom mb-0 ml-5"><%= error %></li>
+        <% end %>
+      </ul>
+    <% end %>
   <div id="sign-up">
     <%= render "devise/registrations/new" %>
   </div>

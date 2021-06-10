@@ -35,3 +35,14 @@ ja:
       over_x_years:
         one:   "1年以上"
         other: "%{count}年以上"
+
+# モデル
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "次回から自動的にログイン"

@@ -4,6 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  before_save   :downcase_email
+  validates :name,  presence: true, length: { maximum: 50 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 255 },
+                    format: { with: VALID_EMAIL_REGEX },
+                    uniqueness: true
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :user_rooms
@@ -57,7 +65,7 @@ class User < ApplicationRecord
     other_user_ids = UserRoom.select(:user_id).where(room_id: my_rooms_ids).where.not(user_id: id)
     Chat.where(user_id: other_user_ids, room_id: my_rooms_ids).where.not(checked: true).any?
   end
-  
+
   # Chat.where("user_id IN (:other_user_ids) AND room_id IN (:my_rooms_ids) AND checked NOT :true",
               # other_user_ids: other_user_ids, my_rooms_ids: my_rooms_ids, true: true)
 

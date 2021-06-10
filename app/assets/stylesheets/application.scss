@@ -130,12 +130,16 @@ div#login {
 
 // ーーーー新規登録ーーーー
 div#sign-up {
-  margin-left: 180px;
+  margin-left: 160px;
 }
 
-#sign-up form#new_user {
+#sign-up form#signup_new_user {
   width: 320px;
   height: 240px;
+}
+
+.errors li {
+    list-style: disc;
 }
 // ーーーーーーーーーーーー
 
