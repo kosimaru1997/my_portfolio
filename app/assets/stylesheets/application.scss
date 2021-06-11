@@ -41,10 +41,76 @@ ol, ul, dl, li {
 .border-secondary {
     border-color: #ccd5dc !important;
 }
+.border-light {
+  border-color: #edf5fd !important;
+}
+
+.background-hover:hover {
+  background-color: #f6f8fd;
+}
+
+.post-delete a {
+  color:#ff5824;
+}
+
+.favorited:hover {
+  color: #ff78af;
+}
+.favorited-color {
+  color: #ff78af;
+}
 
 .navbar {
   height: 55px;
 }
+
+// ーーーーー投稿ボタンーーーーーーー
+.btn-cool-blues {
+  width: 100px;
+  background: #4facff;
+  color: #fff;
+  border: 3px solid #eee;
+}
+.btn-rounded {
+    border-radius: 35px;
+}
+//ーーーーーーーー フッター　ーーーーーーー
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 100px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+}
+
+.fa-backcolor:hover {
+  color: #5454ff;
+}
+
+.btn-circle {
+
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.btn-circle i {
+  position: relative;
+  top: -1px;
+}
+// ーーーーーーーーーーーーーーーー
+
 // ーーーーー通知マークーーーーーー
 .notice {
   position: relative;
@@ -130,12 +196,16 @@ div#login {
 
 // ーーーー新規登録ーーーー
 div#sign-up {
-  margin-left: 180px;
+  margin-left: 160px;
 }
 
-#sign-up form#new_user {
+#sign-up form#signup_new_user {
   width: 320px;
   height: 240px;
+}
+
+.errors li {
+    list-style: disc;
 }
 // ーーーーーーーーーーーー
 

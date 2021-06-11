@@ -1,2 +1,3 @@
 $("#comments-count").html("<%= @post_comments.size %>件のコメント");
 $("#post-comments").html("<%= j(render @post_comments) %>");
+$("#flash_messages").html('<p class="alert alert-danger">コメントを削除しました</p>')

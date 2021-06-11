@@ -1,12 +1,11 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :same_user!, only: [:destroy]
 
   def create
     @post = current_user.posts.build(post_params)
-    if @post.save
-      flash[:success] = "コメントを投稿しました"
-      redirect_to root_url
-    else
-      render 'homes/top.html.erb'
+    unless @post.save
+      render "shared/error"
     end
   end
 
@@ -29,7 +28,7 @@ class Public::PostsController < ApplicationController
     @user = @post.user
     @post_comment = PostComment.new
     @comment_reply = @post.post_comments.build
-    @post_comments = @post.post_comments.includes(:user).where(parent_id: nil).page(params[:page]).reverse_order
+    @post_comments = @post.post_comments.includes(:user).where(parent_id: nil).page(params[:page]).per(10).reverse_order
     # post_comment_all =  @post.post_comments.select(:id).where(parent_id: nil)
     # @post_comments = PostComment.includes(:user, :post, :replies).where(id: post_comment_all).page(params[:page]).reverse_order
   end
@@ -41,6 +40,12 @@ class Public::PostsController < ApplicationController
   end
 
   private
+
+    def same_user!
+      unless Post.find_by(id: params[:id]).user == current_user
+        redirect_to request.referer
+      end
+    end
 
     def post_params
       params.require(:post).permit(:content)

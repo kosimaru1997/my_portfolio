@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations',
     :sessions      => 'users/sessions'
   }
-
+  
+  
   scope module: :public do
     root to: 'homes#top'
     get '/about' => 'homes#about'

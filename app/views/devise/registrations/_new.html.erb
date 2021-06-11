@@ -1,19 +1,20 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "top-form" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "top-form", id: "signup_new_user" }) do |f| %>
 <div class="form-group">
   <h4>新規登録</h4>
+  <!--</%= render "devise/shared/error_messages", resource: resource %>-->
   <div class="field row mb-2">
     <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ニックネーム", class: 'form-control' %>
   </div>
 
   <div class="field row mb-2">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: 'form-control' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: 'form-control', id: "signup_user_name" %>
   </div>
 
   <div class="field row mb-2">
     <!--</% if @minimum_password_length %>-->
     <!--<em>(</%= @minimum_password_length %> characters minimum)</em>-->
     <!--</% end %><br />-->
-    <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: 'form-control' %>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: 'form-control', id: "signup_user_password" %>
   </div>
 
   <div class="field row">

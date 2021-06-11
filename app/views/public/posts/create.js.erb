@@ -1,0 +1,3 @@
+$("#post-all").prepend("<%= j(render "public/posts/post", { post: @post } ) %>");
+$("#post_content").val("");
+$("#flash_messages").html('<p class="alert alert-success">投稿しました</p>')

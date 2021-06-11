@@ -1,5 +1,5 @@
 <div class="row mt-3">
-  <div class="col-lg-5 ml-3">
+  <div class="col-lg-5">
     <div class="userーimage d-flex align-items-center">
       <%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpg', fallback: "no_image.jpg", size:'80x80', class: "rounded-circle" %>
       <span class="ml-3"><h5><%= @user.name %></h5></span>
@@ -30,7 +30,7 @@
   </div>
 
 
-  <div class="col-lg-6" id="user-detail">
+  <div class="col-lg-7" id="user-detail">
     <div class="scroll-list jscroll" id="user-about">
       <%= render @posts %>
       <%= paginate @posts %>
