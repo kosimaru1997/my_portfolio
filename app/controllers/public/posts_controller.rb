@@ -2,13 +2,8 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    if @post.save
-      flash[:success] = "投稿しましたしました"
-      redirect_to root_url
-    else
-      @posts = Post.all.includes(:user, :favorites, :favorited_users, :post_comments).page(params[:page]).reverse_order
-      flash[:danger] = "１文字以上１４０文字以下で投稿してください"
-      render "index"
+    unless @post.save
+      render "error"
     end
   end
 

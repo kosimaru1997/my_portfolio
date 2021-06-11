@@ -5,11 +5,7 @@
      aria-controls="collapseSearch">
       <i class="fas fa-search fa-lg"></i>
     </button>
-    <button type="button" class="btn btn-outline-secondary pt-1 mt-3" data-toggle="collapse" data-target="#collapsePost"
-     aria-controls="collapsePost">
-      <i class="fas fa-pencil-alt fa-lg"></i>
-    </button>
-    
+
     <div class="collapse mt-3" id="collapseSearch">
       <div class="search">
         <%= form_with url: posts_path, :method => 'get', local: true, class: "form-inline" do |f| %>
@@ -19,21 +15,10 @@
       </div>
     </div>
 
-    <div class="collapse  mt-3" id="collapsePost">
-      <div crass="post">
-        <%= form_with(model: @post, local: true) do |f| %>
-          <!--</%= render 'shared/error_messages', object: f.object %>-->
-          <div class="field">
-            <%= f.text_area :content, :size=>"30x4", placeholder: "ポストを投稿" %>
-          </div>
-          <%= f.submit "Post", class: "btn btn-outline-secondary" %>
-        <% end %>
-      </div>
-    </div>
-
   </div>
   <div class="col-lg-8 mt-3">
-    <ol class="posts scroll-list jscroll">
+    <h4 class="text-center" style="font-family: Hiragino Maru Gothic Pro">ポスト一覧</h4>
+    <ol class="posts scroll-list jscroll" id="post-all">
       <%= render @posts %>
       <%= paginate @posts %>
     </ol>

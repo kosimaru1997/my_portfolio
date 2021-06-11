@@ -41,10 +41,71 @@ ol, ul, dl, li {
 .border-secondary {
     border-color: #ccd5dc !important;
 }
+.border-light {
+  border-color: #edf5fd !important;
+}
+
+.background-hover:hover {
+  background-color: #f6f8fd;
+}
+
+.fa-backcolor:hover {
+  color: #5454ff;
+}
+
+.favorited:hover {
+  color: #ff78af;
+}
+.favorited-color {
+  color: #ff78af;
+}
 
 .navbar {
   height: 55px;
 }
+
+.btn-cool-blues {
+  width: 100px;
+  background: #4facff;
+  color: #fff;
+  border: 3px solid #eee;
+}
+.btn-rounded {
+    border-radius: 35px;
+}
+//ーーーーーーーー フッター　ーーーーーーー
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 100px;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+}
+
+.btn-circle {
+  
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.btn-circle i {
+  position: relative;
+  top: -1px;
+}
+// ーーーーーーーーーーーーーーーー
+
 // ーーーーー通知マークーーーーーー
 .notice {
   position: relative;

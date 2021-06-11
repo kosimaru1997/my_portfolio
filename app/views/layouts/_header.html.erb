@@ -1,36 +1,14 @@
 <div class="container-fluid">
   <header>
     <div class="menu-bar">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/"><%= image_tag 'logo.jpg', size: "150x20" %></a>
+      <nav class="navbar navbar-light border-bottom border-light">
+        <a class="navbar-brand text-center ml-2" href="/"><%= image_tag 'logo.jpg', size: "150x20" %></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto mt-3">
-            <li class="nav-item">
-              <%= link_to "ユーザー", users_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ポスト", posts_path, class: 'nav-link text-dark' %>
-            </li>
+        <div class="collapse navbar-collapse text-right" id="navbarNavDropdown">
+          <ul class="navbar-nav mt-3">
             <% if user_signed_in? %>
-              <li class="nav-item notice">
-                <%= link_to notifications_path, class: 'nav-link text-dark' do %>
-                  <i class="far fa-bell fa-lg.fa-stack-2x" style="font-size: 1.5em;" ></i>
-                  <% if current_user.unchecked_notifications? %>
-                    <i class="fa fa-circle fa-xs n-circle" style="color: blue;"></i>
-                  <% end %>
-                <% end %>
-              </li>
-              <li class="nav-item chat-notice">
-                <%= link_to chats_path, class: 'nav-link text-dark' do %>
-                  <i class="far fa-envelope fa-lg.fa-stack-2x" style="font-size: 1.5em;"></i>
-                  <% if current_user.unchecked_chats? %>
-                    <i class="fa fa-circle fa-xs n-circle-chat" style="color: blue;"></i>
-                  <% end %>
-                <% end %>
-              </li>
               <li class="nav-item">
                 <%= link_to "マイページ", user_path(current_user), class: 'nav-link text-dark' %>
               </li>

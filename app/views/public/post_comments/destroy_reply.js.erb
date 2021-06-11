@@ -1,2 +1,2 @@
-$("#post_comment_count<%= @comment.parent_id %>").html("<%= PostComment.find_by(id: @comment.parent_id).replies.size %>");
+$("#post_comment_count<%= @comment.parent_id %>").html("<%= PostComment.find_by(id: @comment.parent_id).replies.count %>");
 $("#reply_<%= @comment.id %>").remove();
