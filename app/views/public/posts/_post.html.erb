@@ -3,11 +3,11 @@
     <%= attachment_image_tag post.user, :image, :fill, 50, 50, format: 'jpg', fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" %>
     <div class="content ml-2">
       <span class="user-name mr-3"><%= link_to post.user.name, user_path(post.user) %></span>
-      <span class="timestamp text-secondary">
+      <span class="timestamp text-muted">
         <%= time_ago_in_words(post.created_at) %>前
       </span class="ml-3">
       <% if current_user == post.user %>
-        <span><%= link_to "削除", post_path(post), method: :delete %></span>
+        <span class="post-delete ml-3"><%= link_to "削除", post_path(post), method: :delete, data: {confirm: "本当に削除しますか？"} %></span>
       <% end %>
       <%= link_to post_path(post), class: "text-dark" do %>
           <% text = safe_join(post.content.split("\n"),tag(:br)) %>

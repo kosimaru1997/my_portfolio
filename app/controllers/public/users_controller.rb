@@ -1,4 +1,6 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :same_user!, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all.page(params[:page]).reverse_order
@@ -49,6 +51,12 @@ class Public::UsersController < ApplicationController
   end
 
   private
+
+    def same_user!
+      unless User.find_by(id: params[:id]) == current_user
+        redirect_to request.referer
+      end
+    end
 
     def user_params
       params.require(:user).permit(:name, :image)

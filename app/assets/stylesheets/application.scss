@@ -49,8 +49,8 @@ ol, ul, dl, li {
   background-color: #f6f8fd;
 }
 
-.fa-backcolor:hover {
-  color: #5454ff;
+.post-delete a {
+  color:#ff5824;
 }
 
 .favorited:hover {
@@ -64,6 +64,7 @@ ol, ul, dl, li {
   height: 55px;
 }
 
+// ーーーーー投稿ボタンーーーーーーー
 .btn-cool-blues {
   width: 100px;
   background: #4facff;
@@ -90,8 +91,12 @@ footer {
   height: 100px;
 }
 
+.fa-backcolor:hover {
+  color: #5454ff;
+}
+
 .btn-circle {
-  
+
   width: 45px;
   height: 45px;
   line-height: 45px;
