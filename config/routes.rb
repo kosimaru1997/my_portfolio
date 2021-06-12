@@ -5,9 +5,17 @@ Rails.application.routes.draw do
     :sessions      => 'users/sessions'
   }
   
+  #未ログイン時のルート
+   devise_scope :user do
+      unauthenticated :user do
+        root :to => 'users/registrations#new', as: :unauthenticated_root
+      end
+    end
   
   scope module: :public do
-    root to: 'homes#top'
+    authenticated :user do
+      root to: 'homes#top'
+    end
     get '/about' => 'homes#about'
     get 'chats/index' => 'chats#index', as: 'chats'
     resources :users, except: [:new] do

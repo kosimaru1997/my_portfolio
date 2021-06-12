@@ -1,6 +1,8 @@
 <li id="post-<%= post.id %>" class="border-bottom border-secondary background-hover mb-0">
   <div class="post-section d-flex pt-3">
-    <%= attachment_image_tag post.user, :image, :fill, 50, 50, format: 'jpg', fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" %>
+    <%= link_to user_path(post.user) do %>
+      <%= attachment_image_tag post.user, :image, :fill, 50, 50, format: 'jpg', fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" %>
+    <% end %>
     <div class="content ml-2">
       <span class="user-name mr-3"><%= link_to post.user.name, user_path(post.user) %></span>
       <span class="timestamp text-muted">
@@ -16,7 +18,9 @@
     </div>
   </div>
   <div class="about text-right mr-5">
-    <span class="mr-2"><%= link_to "#{post.post_comments.size}コメント", post_path(post) %></span>
+    <span class="mr-2">
+      <%= link_to post_path(post), class: "hover-grean" do %><i class="far fa-comment mr-2"> <%= post.post_comments.size %> </i><% end %>
+    </span>
       <span id="favorites_<%= post.id %>">
         <%= render partial: "public/favorites/favorite", locals:{ post: post} %>
       </span>

@@ -60,8 +60,16 @@ ol, ul, dl, li {
   color: #ff78af;
 }
 
+.hover-grean:hover {
+  color: #6fcc80;
+}
+
 .navbar {
   height: 55px;
+}
+
+.field_with_errors {
+  width: 100%;
 }
 
 // ーーーーー投稿ボタンーーーーーーー
@@ -95,8 +103,12 @@ footer {
   color: #5454ff;
 }
 
+.back {
+  position: fixed;
+  bottom: 70px;
+  left: 30px;
+}
 .btn-circle {
-
   width: 45px;
   height: 45px;
   line-height: 45px;
@@ -104,11 +116,25 @@ footer {
   padding: 0;
   border-radius: 50%;
 }
-
+.btn-circle-sm {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 0.9rem;
+}
 .btn-circle i {
   position: relative;
   top: -1px;
 }
+.btn-outline-back {
+    color: #a5a5a5;
+    border-color: #cfe6ff;
+}
+.btn-outline-back:hover {
+  background-color: #9ab9ff;
+  border-color: #71acff;
+}
+
 // ーーーーーーーーーーーーーーーー
 
 // ーーーーー通知マークーーーーーー
@@ -118,8 +144,8 @@ footer {
 
 .n-circle {
   position: absolute;
-  top: 30px;
-  left: 24px;
+  top: 20px;
+  left: 18px;
 }
 
 .chat-notice {
@@ -128,8 +154,8 @@ footer {
 
 .n-circle-chat {
     position: absolute;
-    top: 30px;
-    left: 30px;
+    top: 20px;
+    left: 20px;
 }
 // ーーーーーーーーーーーーーーーー
 // .top-page {
@@ -140,12 +166,12 @@ footer {
 
 //ーーーー ログインーーーー
 div#login {
-    width: 100%;
-    height: 260px;
+    height: 230px;
+    margin-top: 30px;
 }
 
 .top-form {
-  width: 300px;
+  width: 320px;
   height: 210px;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2),
                 0 1px 1px rgba(0, 0, 0, .2),
@@ -195,17 +221,22 @@ div#login {
 // ーーーーーーーーーーーー
 
 // ーーーー新規登録ーーーー
-div#sign-up {
+#sign-up {
   margin-left: 160px;
+  height: 280px;
 }
 
 #sign-up form#signup_new_user {
-  width: 320px;
-  height: 240px;
+  width: 370px;
+  height: 250px;
 }
 
 .errors li {
     list-style: disc;
+}
+
+.border-error {
+  border-color: #ff9f9f !important;
 }
 // ーーーーーーーーーーーー
 
@@ -225,7 +256,13 @@ div#sign-up {
 // ーーーーーーーーーーーーーーー
 
 
-// チャットルームーーーーー
+// ーーーーーチャットルームーーーーー
+.scroll {
+  overflow-y: scroll;
+}
+#scroll-inner{
+　height: 500px;
+}
 
 .inbox_msg {
   border: 1px solid #c4c4c4;
@@ -251,11 +288,11 @@ div#sign-up {
   width: 6%;
 }
 .received_msg {
+  margin-top: 15px;
   display: inline-block;
-  padding: 0 0 0 10px;
   vertical-align: top;
   width: 92%;
- }
+}
  .received_withd_msg p {
   background: #ebebeb none repeat scroll 0 0;
   border-radius: 3px;
@@ -273,9 +310,10 @@ div#sign-up {
 }
 .received_withd_msg { width: 57%;}
 .mesgs {
+  min-height: 580px;
   width: 100%;
   float: left;
-  padding: 30px 15px 0 25px;
+  padding: 0 15px;
 }
 
  .sent_msg p {
@@ -286,7 +324,7 @@ div#sign-up {
   padding: 5px 10px 5px 12px;
   width:100%;
 }
-.outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+.outgoing_msg{ overflow:hidden; margin-top :15px;}
 .sent_msg {
   float: right;
   width: 46%;
@@ -314,9 +352,9 @@ div#sign-up {
   top: 11px;
   width: 33px;
 }
-.messaging { padding: 0 0 50px 0;}
+
 .msg_history {
-  height: 516px;
+  height: 510px;
   overflow-y: auto;
 }
 
