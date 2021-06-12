@@ -261,9 +261,8 @@ div#login {
   overflow-y: scroll;
 }
 #scroll-inner{
-    height: 600px;
+　height: 500px;
 }
-
 
 .inbox_msg {
   border: 1px solid #c4c4c4;
@@ -289,11 +288,11 @@ div#login {
   width: 6%;
 }
 .received_msg {
+  margin-top: 15px;
   display: inline-block;
-  padding: 0 0 0 10px;
   vertical-align: top;
   width: 92%;
- }
+}
  .received_withd_msg p {
   background: #ebebeb none repeat scroll 0 0;
   border-radius: 3px;
@@ -311,9 +310,10 @@ div#login {
 }
 .received_withd_msg { width: 57%;}
 .mesgs {
+  min-height: 580px;
   width: 100%;
   float: left;
-  padding: 30px 15px 0 25px;
+  padding: 0 15px;
 }
 
  .sent_msg p {
@@ -324,7 +324,7 @@ div#login {
   padding: 5px 10px 5px 12px;
   width:100%;
 }
-.outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+.outgoing_msg{ overflow:hidden; margin-top :15px;}
 .sent_msg {
   float: right;
   width: 46%;
@@ -352,9 +352,9 @@ div#login {
   top: 11px;
   width: 33px;
 }
-.messaging { padding: 0 0 50px 0;}
+
 .msg_history {
-  height: 516px;
+  height: 510px;
   overflow-y: auto;
 }
 
