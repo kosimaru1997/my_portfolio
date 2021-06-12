@@ -1,4 +1,5 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "top-form" }) do |f| %>
+
 <div class="form-group">
 <h4>ログイン</h4>
 
@@ -19,9 +20,9 @@
       <%= f.label :remember_me %>
     </div>
   <% end %>
-  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <!--</%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>-->
     <%= link_to "Forgot your password?", new_password_path(resource_name), style: "margin-left: 20px;" %><br />
-  <% end %>
+  <!--<_% end %>-->
 
   <div class="actions">
     <%= f.submit "Log in", class: "btn btn-outline-secondary", style: "margin-left: 195px;" %>

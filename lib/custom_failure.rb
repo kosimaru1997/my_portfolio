@@ -10,4 +10,5 @@ class CustomFailure < Devise::FailureApp
    redirect
   end
  end
+ 
 end

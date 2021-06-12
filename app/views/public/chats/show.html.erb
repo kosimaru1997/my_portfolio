@@ -1,6 +1,8 @@
 <div class="partner text-center border-bottom border-secondary py-1">
-  <%= attachment_image_tag @user, :image, :fill, 50, 50, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle"%>
-  <%= @user.name %>
+  <%= link_to user_path(@user) do %>
+    <%= attachment_image_tag @user, :image, :fill, 50, 50, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle"%>
+    <%= @user.name %>
+  <% end %>
 </div>
 <div class="messaging">
   <div class="inbox_msg">
