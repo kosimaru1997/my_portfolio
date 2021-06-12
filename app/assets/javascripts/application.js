@@ -31,3 +31,8 @@ $(window).on('scroll', function() {
     });
   }
 });
+
+$(document).on('turbolinks:load',function scrollToEnd() {
+  const messagesArea = document.getElementById('scroll-inner');
+  messagesArea.scrollTop = messagesArea.scrollHeight;
+});

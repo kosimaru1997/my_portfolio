@@ -18,6 +18,9 @@
       <% end %>
     </div>
       <%= yield %>
+    <%= link_to :back, class: "back" do%>
+      <button class="btn btn-outline-back btn-circle btn-circle-sm m-1"><i class="fas fa-arrow-left"></i></button>
+    <% end %>
     <%= render 'layouts/footer' %>
     </div>
   </body>

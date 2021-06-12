@@ -103,8 +103,12 @@ footer {
   color: #5454ff;
 }
 
+.back {
+  position: fixed;
+  bottom: 70px;
+  left: 30px;
+}
 .btn-circle {
-
   width: 45px;
   height: 45px;
   line-height: 45px;
@@ -112,11 +116,25 @@ footer {
   padding: 0;
   border-radius: 50%;
 }
-
+.btn-circle-sm {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 0.9rem;
+}
 .btn-circle i {
   position: relative;
   top: -1px;
 }
+.btn-outline-back {
+    color: #a5a5a5;
+    border-color: #cfe6ff;
+}
+.btn-outline-back:hover {
+  background-color: #9ab9ff;
+  border-color: #71acff;
+}
+
 // ーーーーーーーーーーーーーーーー
 
 // ーーーーー通知マークーーーーーー
@@ -238,7 +256,14 @@ div#login {
 // ーーーーーーーーーーーーーーー
 
 
-// チャットルームーーーーー
+// ーーーーーチャットルームーーーーー
+.scroll {
+  overflow-y: scroll;
+}
+#scroll-inner{
+    height: 600px;
+}
+
 
 .inbox_msg {
   border: 1px solid #c4c4c4;

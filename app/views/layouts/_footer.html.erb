@@ -1,31 +1,31 @@
-  <footer class="fixed-bottom bg-light" style="height: 60px;">
-    <div class="container-fulid">
-      <div class="row">
-        <div class="col-md-10 col-lg-8 mx-auto d-flex align-items-center justify-content-between" style="height: 60px;">
-           <%= link_to root_path, class: 'nav-link text-dark' do %>
-            <i class="fas fa-home fa-lg fa-backcolor"></i>
-          <% end %>
-          <%= link_to users_path, class: 'nav-link text-dark' do %>
-            <i class="fas fa-users fa-lg fa-backcolor"></i>
-          <% end %>
-          <%= link_to posts_path, class: 'nav-link text-dark' do %>
-            <i class="fas fa-comments fa-lg fa-backcolor"></i>
-          <% end %>
-          <% if user_signed_in? %>
-            <%= link_to notifications_path, class: 'text-dark notice' do %>
-              <i class="far fa-bell fa-lg.fa-stack-2x fa-backcolor" style="font-size: 1.5em;" ></i>
-              <% if current_user.unchecked_notifications? %>
-                <i class="fa fa-circle fa-xs n-circle" style="color: blue;"></i>
-              <% end %>
-            <% end %>
-            <%= link_to chats_path, class: 'text-dark chat-notice' do %>
-              <i class="far fa-envelope fa-lg.fa-stack-2x fa-backcolor" style="font-size: 1.5em;"></i>
-              <% if current_user.unchecked_chats? %>
-                <i class="fa fa-circle fa-xs n-circle-chat" style="color: blue;"></i>
-              <% end %>
+<footer class="fixed-bottom bg-light" style="height: 60px;">
+  <div class="container-fulid">
+    <div class="row">
+      <div class="col-md-10 col-lg-8 mx-auto d-flex align-items-center justify-content-between" style="height: 60px;">
+         <%= link_to root_path, class: 'nav-link text-dark' do %>
+          <i class="fas fa-home fa-lg fa-backcolor"></i>
+        <% end %>
+        <%= link_to users_path, class: 'nav-link text-dark' do %>
+          <i class="fas fa-users fa-lg fa-backcolor"></i>
+        <% end %>
+        <%= link_to posts_path, class: 'nav-link text-dark' do %>
+          <i class="fas fa-comments fa-lg fa-backcolor"></i>
+        <% end %>
+        <% if user_signed_in? %>
+          <%= link_to notifications_path, class: 'text-dark notice' do %>
+            <i class="far fa-bell fa-lg.fa-stack-2x fa-backcolor" style="font-size: 1.5em;" ></i>
+            <% if current_user.unchecked_notifications? %>
+              <i class="fa fa-circle fa-xs n-circle" style="color: blue;"></i>
             <% end %>
           <% end %>
-         </div>
-      </div>
+          <%= link_to chats_path, class: 'text-dark chat-notice' do %>
+            <i class="far fa-envelope fa-lg.fa-stack-2x fa-backcolor" style="font-size: 1.5em;"></i>
+            <% if current_user.unchecked_chats? %>
+              <i class="fa fa-circle fa-xs n-circle-chat" style="color: blue;"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+       </div>
     </div>
-  </footer>
+  </div>
+</footer>
