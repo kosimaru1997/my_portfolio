@@ -34,6 +34,6 @@ $(window).on('scroll', function() {
 
 $(document).on('turbolinks:load',function scrollToEnd() {
   if(document.URL.match(/\d+\/chats/)){
-    const messagesArea = document.getElementById('scroll-inner');
+    messagesArea = document.getElementById('scroll-inner');
     messagesArea.scrollTop = messagesArea.scrollHeight;
  }});
