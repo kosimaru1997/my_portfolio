@@ -21,6 +21,7 @@
 //= require turbolinks
 //= require_tree .
 
+// 無限スクロール
 $(window).on('scroll', function() {
   scrollHeight = $(document).height();
   scrollPosition = $(window).height() + $(window).scrollTop();
@@ -32,6 +33,7 @@ $(window).on('scroll', function() {
   }
 });
 
+// チャットページのみスクロール位置の固定
 $(document).on('turbolinks:load',function scrollToEnd() {
   if(document.URL.match(/\d+\/chats/)){
     const messagesArea = document.getElementById('scroll-inner');

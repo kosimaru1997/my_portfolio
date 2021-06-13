@@ -64,10 +64,16 @@ ol, ul, dl, li {
   color: #6fcc80;
 }
 
+// ーーーーーーヘッダーーーーーー
 .navbar {
   height: 55px;
 }
-
+.navbar-collapse {
+  background-color: #ffffff;
+  z-index: 1;
+  opacity: 0.9;
+}
+// ーーーーーーーーーーーーーーー
 .field_with_errors {
   width: 100%;
 }
@@ -165,71 +171,72 @@ footer {
 // }
 
 //ーーーー ログインーーーー
-div#login {
-    height: 230px;
-    margin-top: 30px;
-}
+// div#login {
+//     height: 230px;
+//     margin-top: 30px;
+// }
 
-.top-form {
-  width: 320px;
-  height: 210px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2),
-                0 1px 1px rgba(0, 0, 0, .2),
-                0 3px 0 #fff,
-                0 4px 0 rgba(0, 0, 0, .2),
-                0 6px 0 #fff,
-                0 7px 0 rgba(0, 0, 0, .2);
-  position: absolute;
-  z-index: 0;
-}
+// .top-form {
+//   width: 320px;
+//   height: 210px;
+//   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2),
+//                 0 1px 1px rgba(0, 0, 0, .2),
+//                 0 3px 0 #fff,
+//                 0 4px 0 rgba(0, 0, 0, .2),
+//                 0 6px 0 #fff,
+//                 0 7px 0 rgba(0, 0, 0, .2);
+//   position: absolute;
+//   z-index: 0;
+// }
 
-.top-form:before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  border: 1px dashed #ccc;
-  top: 5px;
-  bottom: 5px;
-  left: 5px;
-  right: 5px;
-  box-shadow: 0 0 0 1px #fff;
-}
+// .top-form:before {
+//   content: '';
+//   position: absolute;
+//   z-index: -1;
+//   border: 1px dashed #ccc;
+//   top: 5px;
+//   bottom: 5px;
+//   left: 5px;
+//   right: 5px;
+//   box-shadow: 0 0 0 1px #fff;
+// }
 
-.top-form h4 {
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
-  text-transform: uppercase;
-  text-align: center;
-  color: #666;
-  margin: 10px 0;
-  letter-spacing: 4px;
-  font: normal 26px/1 Verdana, Helvetica;
-  position: relative;
-}
+// .top-form h4 {
+//   text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
+//   text-transform: uppercase;
+//   text-align: center;
+//   color: #666;
+//   margin: 10px 0;
+//   letter-spacing: 4px;
+//   font: normal 26px/1 Verdana, Helvetica;
+//   position: relative;
+// }
 
-.top-form input {
+// .top-form input {
+//   margin: 0 auto;
+// }
+
+.form-control {
+  width: 90%;
+  height: 30px;
   margin: 0 auto;
 }
 
-.form-control {
-  width: 75%;
-  height: 30px;
-}
-
-.btn-outline-secondary {
-  padding: 1px 12px;
-}
+// .btn-outline-secondary {
+//   padding: 1px 12px;
+// }
 // ーーーーーーーーーーーー
 
 // ーーーー新規登録ーーーー
-#sign-up {
-  margin-left: 160px;
-  height: 280px;
-}
+// #sign-up {
+//   margin-left: 160px;
+//   height: 280px;
+// }
 
-#sign-up form#signup_new_user {
-  width: 370px;
-  height: 250px;
-}
+// #sign-up form#signup_new_user {
+//   width: 370px;
+//   height: 250px;
+// }
 
 .errors li {
     list-style: disc;
@@ -381,3 +388,18 @@ div#login {
   box-shadow: 0 0 0 0.1rem rgba(0,0,0,0.2);
 }
 // ーーーーーーーーーーーーーーーーー
+
+// ーーーレスポンシブーーーーー
+
+ @media (min-width: 768px) {
+
+  #login {
+    width: 50%;
+  }
+
+  #sign-up {
+    width: 50%;
+    margin-left: auto;
+  }
+
+}
