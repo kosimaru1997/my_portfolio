@@ -23,7 +23,7 @@
             <div class="received_msg">
               <div class="received_withd_msg">
                 <p><%= safe_join(chat.message.split("\n"),tag(:br)) %></p>
-                <span class="time_date"><%= chat.created_at %></span></div>
+                <span class="time_date"><%= chat.created_at.strftime("%Y/%m/%d %H:%M") %></span></div>
             </div>
           </div>
             <% end %>
@@ -31,9 +31,11 @@
       </div>
       <div class="type_msg">
           <%= form_with model: [@user, @chat] do |f| %>
-            <%= f.text_area :message, class: "chat-form", :size=>"40x4" %>
+            <%= f.text_area :message, class: "chat-form", :size=>"35x3" %>
             <%= f.hidden_field :room_id %>
-            <%= f.submit "メッセージを送信", class: "btn btn-outline-secondary" %>
+            <div class="chatt-action">
+              <%= f.submit "送信", class: "btn btn-dark-blues btn-rounded d-block ml-auto" %>
+            </div>
           <% end %>
       </div>
     </div>

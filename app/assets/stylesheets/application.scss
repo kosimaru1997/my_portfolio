@@ -103,6 +103,13 @@ a:hover {
 .btn-rounded {
     border-radius: 35px;
 }
+.btn-dark-blues {
+    width: 100px;
+    background: #80b6cc;
+    color: #fff;
+    border: 3px solid #eee;
+}
+
 //ーーーーーーーー フッターーーーーーーー
 
 html {
@@ -323,6 +330,7 @@ footer {
   margin: 0;
   padding: 5px 10px 5px 12px;
   width: 100%;
+  word-wrap: break-word;
 }
 .time_date {
   color: #747474;
@@ -332,19 +340,20 @@ footer {
 }
 .received_withd_msg { width: 57%;}
 .mesgs {
-  min-height: 580px;
+  min-height: 600px;
   width: 100%;
   float: left;
   padding: 0 15px;
 }
 
  .sent_msg p {
-  background: #05728f none repeat scroll 0 0;
+  background: #82bccc none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
   margin: 0; color:#fff;
   padding: 5px 10px 5px 12px;
   width:100%;
+  word-wrap: break-word;
 }
 .outgoing_msg{ overflow:hidden; margin-top :15px;}
 .sent_msg {
@@ -382,7 +391,6 @@ footer {
 
 .chat-form {
   display: block;
-  height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
@@ -393,6 +401,9 @@ footer {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.chat-btn {
+  margin-left: auto;
 }
 
 .chat-form:focus {
@@ -446,6 +457,10 @@ footer {
 
   .form-control {
     width: 80%;
+  }
+
+  textarea#chat_message {
+    width: 90%;
   }
 
 }

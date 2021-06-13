@@ -1,32 +1,34 @@
 <div class="row mt-3">
   <div class="col-lg-5">
-    <div class="userーimage d-flex align-items-center">
-      <%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpg', fallback: "no_image.jpg", size:'80x80', class: "rounded-circle" %>
-      <span class="ml-3"><h5><%= @user.name %></h5></span>
-      <div id="follow_<%= @user.id %>">
-        <%= render partial: "public/relationships/relationship", locals:{ user: @user} %>
+    <div id="user-fixed">
+      <div class="userーimage d-flex align-items-center">
+        <%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpg', fallback: "no_image.jpg", size:'80x80', class: "rounded-circle" %>
+        <span class="ml-3"><h5><%= @user.name %></h5></span>
+        <div id="follow_<%= @user.id %>">
+          <%= render partial: "public/relationships/relationship", locals:{ user: @user} %>
+        </div>
       </div>
-    </div>
-    <div class="my-2 border-bottom border-secondary">
-      <%= link_to "ポスト", user_path(@user), class: "mr-1" %>
-      <%= link_to "いいね", favorites_user_path(@user), class: "mr-2" %>
-      <span id="following-count"><%= @user.following.count %> </span>
-      <%= link_to "フォロー中", following_user_path(@user), remote: true, class: "mr-3" %>
-      <span id="following-count"><%= @user.followers.count %> </span>
-      <%= link_to "フォロワー", followers_user_path(@user), remote: true %>
-    </div>
-    <% if current_user == @user %>
-      <div class="edit mt-3">
-        <%= link_to edit_user_path(current_user) do %>
-          <buttun class="btn btn-outline-info mr-3">編集する</buttun>
-        <% end %>
-        <%= link_to user_path, method: :DELETE, data: {confirm: "本当に退会してもよろしいですか？"} do %>
-          <buttun class="btn btn-outline-danger">退会する</buttun>
-        <% end %>
+      <div class="my-2 border-bottom border-secondary">
+        <%= link_to "ポスト", user_path(@user), class: "mr-1" %>
+        <%= link_to "いいね", favorites_user_path(@user), class: "mr-2" %>
+        <span id="following-count"><%= @user.following.count %> </span>
+        <%= link_to "フォロー中", following_user_path(@user), remote: true, class: "mr-3" %>
+        <span id="following-count"><%= @user.followers.count %> </span>
+        <%= link_to "フォロワー", followers_user_path(@user), remote: true %>
       </div>
-    <% else %>
-      <%= link_to 'chatを始める', user_chats_path(@user.id)%>
-    <% end %>
+      <% if current_user == @user %>
+        <div class="edit mt-3">
+          <%= link_to edit_user_path(current_user) do %>
+            <buttun class="btn btn-outline-info mr-3">編集する</buttun>
+          <% end %>
+          <%= link_to user_path, method: :DELETE, data: {confirm: "本当に退会してもよろしいですか？"} do %>
+            <buttun class="btn btn-outline-danger">退会する</buttun>
+          <% end %>
+        </div>
+      <% else %>
+        <%= link_to 'chatを始める', user_chats_path(@user.id)%>
+      <% end %>
+    </div>
   </div>
 
 

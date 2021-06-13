@@ -25,10 +25,10 @@
 
 <div class="collapse mt-3" id="collapseReplay_<%= post_comment.id %>">
   <div class="new-replies border w-75 p-3 my-3 ml-auto" id="post_comment<%= post_comment.id %>">
-    <% post_comment.replies.page(params[:page]).each do |reply| %>
+    <% post_comment.replies.includes([:user,:post]).page(params[:page]).each do |reply| %>
     <li class="border-bottom border-secondary  background-hover", id="reply_<%= reply.id %>">
       <div class="reply d-flex">
-        <%= attachment_image_tag reply.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle"%>
+        </%= attachment_image_tag reply.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle"%>
         <div class="content">
           <span class="user-name mr-3"><%= link_to reply.user.name, user_path(reply.user) %></span>
           <% text = safe_join(reply.comment.split("\n"),tag(:br)) %>
