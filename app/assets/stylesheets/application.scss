@@ -34,9 +34,24 @@ ol, ul, dl, li {
   list-style: none;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .pagination {
   display: none;
 }
+
+#sign-up .field_with_errors input {
+  border-color: #ff9c62;
+}
+
+#sign-up .field_with_errors input:focus {
+  box-shadow: 0 0 0 0.2rem #ffdba6;
+}
+// #sign-up .field_with_errors input:focus {
+//   box-shadow: 0 0 0 0.2rem rgb(255 153 0 / 25%);
+// }
 
 .border-secondary {
     border-color: #ccd5dc !important;
@@ -88,7 +103,7 @@ ol, ul, dl, li {
 .btn-rounded {
     border-radius: 35px;
 }
-//ーーーーーーーー フッター　ーーーーーーー
+//ーーーーーーーー フッターーーーーーーー
 
 html {
   position: relative;
@@ -239,7 +254,7 @@ footer {
 // }
 
 .errors li {
-    list-style: disc;
+  list-style: disc;
 }
 
 .border-error {
@@ -268,7 +283,7 @@ footer {
   overflow-y: scroll;
 }
 #scroll-inner{
-　height: 500px;
+  height: 500px;
 }
 
 .inbox_msg {
@@ -393,13 +408,44 @@ footer {
 
  @media (min-width: 768px) {
 
+ .d-flex-lg {
+   display: flex;
+ }
+
   #login {
     width: 50%;
   }
+  .back-color {
+    height: 300px;
+    width: 50%;
+    background-color: #c5c5c5;
+  }
 
   #sign-up {
+    // width: 50%;
+    // margin-left: auto;
+  }
+  .form-group {
+    margin-top: 0 !important;
+  }
+  form#signup_new_user {
     width: 50%;
-    margin-left: auto;
+  }
+  #sign-up .back-color {
+    height: 309px;
+  }
+  ul.errors {
+    background-color: #e6e6e6;
+    margin-bottom: 0px;
+  }
+  .errors li {
+    width: 50%;
+    margin-left: auto !important;
+    margin-right: 20px;
+  }
+
+  .form-control {
+    width: 80%;
   }
 
 }
