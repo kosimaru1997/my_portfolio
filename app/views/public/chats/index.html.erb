@@ -1,4 +1,5 @@
 <div class="row my-5">
+  <% if @rooms.empty? %><p class="ml-4">メッセージはありません</p><% end %>
   <% @rooms.each do |room| %>
     <div class="col-8 mx-auto mb-3 border border-secondary rounded pt-2 px-2">
       <div class="user border-bottom border-secondary">

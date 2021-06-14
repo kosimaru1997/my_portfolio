@@ -1,10 +1,11 @@
 <div class="row my-5">
   <% if @notifications.exists? %>
-    <div class="users-index w-100">
+  <%= link_to "通知を全て削除する", notifications_all_path, method: :delete, data: {confirm: "本当に削除しますか？"} %>
+    <div class="scroll-list jscroll w-100">
       <%= render @notifications %>
       <%= paginate @notifications %>
     </div>
   <% else %>
-    <p>通知はありません</p>
+    <p class="ml-4">通知はありません</p>
   <% end %>
 </div>

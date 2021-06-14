@@ -28,10 +28,17 @@
             <strong><%= notification.post.user.name %></strong><% end %>さんの投稿
           </span>
         <% end %>
-          <span>にコメントしました</span>
+          <% if notification.post_comment.parent_id.nil? %>
+            <span>にリプライしました</span>
+          <% else %>
+            <span>にコメントしました</span>
+          <% end %>
          <div><p class="text-muted ml-3 mb-0"><%= notification.post_comment.comment %></p></div>
     <% end %>
           </div>
-      <div class="small text-muted ml-auto"><p class="mt-3 mb-0"><%= time_ago_in_words(notification.created_at).upcase %></p></div>
+      <div class="ml-auto d-flex" style="height: 25px">
+        <%= link_to "削除", notification_path(notification.id), method: :delete, class: "mr-3 text-danger" %>
+        <p class="small text-muted mt-1"><%= time_ago_in_words(notification.created_at).upcase %></p>
+      </div>
   </div>
 </div>

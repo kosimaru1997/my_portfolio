@@ -29,7 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         sign_up(resource_name, resource)
         # リダイレクト先を指定
         # respond_with resource, location: after_sign_up_path_for(resource)
-        redirect_to root #formatをHTMLに固定
+        redirect_to root_path #formatをHTMLに固定
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         # sessionを削除

@@ -21,7 +21,7 @@
       <% end %>
     </div>
     <div class="about border-bottom border-secondary pb-2 mb-2 mt-2">
-      <span id="comments-count"><%= @post.post_comments.count %>件のコメント</span>
+      <span id="comments-count"><%= @post_comment_count %>件のコメント</span>
       <%= link_to "いいねしたユーザー", favorited_post_path(@post), remote: true, class: "mx-2" %>
       <span id="favorites_<%= @post.id %>">
        <%= render partial: "public/favorites/favorite", locals:{ post: @post} %>
