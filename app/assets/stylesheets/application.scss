@@ -41,6 +41,15 @@ a:hover {
 .pagination {
   display: none;
 }
+.scroll-list {
+  padding: 0;
+}
+
+.new-replies {
+  overflow: auto;
+  max-height: 430px;
+}
+
 
 #sign-up .field_with_errors input {
   border-color: #ff9c62;

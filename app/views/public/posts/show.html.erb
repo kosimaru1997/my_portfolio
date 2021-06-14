@@ -21,7 +21,7 @@
       <% end %>
     </div>
     <div class="about border-bottom border-secondary pb-2 mb-2 mt-2">
-      <span id="comments-count"><%= @post_comments.count %>件のコメント</span>
+      <span id="comments-count"><%= @post.post_comments.count %>件のコメント</span>
       <%= link_to "いいねしたユーザー", favorited_post_path(@post), remote: true, class: "mx-2" %>
       <span id="favorites_<%= @post.id %>">
        <%= render partial: "public/favorites/favorite", locals:{ post: @post} %>
@@ -33,6 +33,7 @@
       <%= paginate @post_comments %>
     </div>
     <div class="new-comments my-3">
+      <div id="comment_flash"></div>
       <%= form_with(model:[@post, @post_comment]) do |f| %>
         <%= f.text_area :comment, :size=>"40x5", class: "form-control w-100", placeholder: "コメントする" %>
         <%= f.submit "コメント", class: "btn btn-cool-blues btn-rounded d-block ml-auto mt-3" %>

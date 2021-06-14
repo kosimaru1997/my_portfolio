@@ -1,0 +1,1 @@
+$("#post_comment<%= @comment.id %>").html("<%= j(render "public/post_comments/replies", { replies: @replies, post_comment: @comment } ) %>");

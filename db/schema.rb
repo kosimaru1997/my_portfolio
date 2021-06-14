@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2021_06_09_095011) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "parent_id"
+    t.integer "post_comments_count"
     t.index ["parent_id"], name: "index_post_comments_on_parent_id"
     t.index ["post_id"], name: "index_post_comments_on_post_id"
     t.index ["user_id"], name: "index_post_comments_on_user_id"

@@ -8,10 +8,13 @@
     </div>
   </div>
   <div class="text-right mr-4">
-
-    <i type="button" class="far fa-comment mr-3" data-toggle="collapse" data-target="#collapseReplay_<%= post_comment.id %>"
-    aria-controls="ccollapseReplay_<%= post_comment.id %>">
-      <span class="ml-1" id="post_comment_count<%= post_comment.id %>"><%= post_comment.replies.count %></span></i>
+    <%= link_to post_post_comment_path(@post, post_comment), remote: :true do %>
+      <i type="button" class="far fa-comment mr-3">
+        <span class="ml-1" id="post_comment_count<%= post_comment.id %>">
+          <% if post_comment.post_comments_count.nil? %>0<% end %><%= post_comment.post_comments_count %>
+        </span>
+      </i>
+    <% end %>
 
     <span class="text-muted mr-2"><%= time_ago_in_words(post_comment.created_at) %>前</span>
     <% if current_user == post_comment.user %>
@@ -22,36 +25,7 @@
   </div>
 </li>
 
-
-<div class="collapse mt-3" id="collapseReplay_<%= post_comment.id %>">
-  <div class="new-replies border w-75 p-3 my-3 ml-auto" id="post_comment<%= post_comment.id %>">
-    <% post_comment.replies.includes([:user,:post]).page(params[:page]).each do |reply| %>
-    <li class="border-bottom border-secondary  background-hover", id="reply_<%= reply.id %>">
-      <div class="reply d-flex">
-        </%= attachment_image_tag reply.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle"%>
-        <div class="content">
-          <span class="user-name mr-3"><%= link_to reply.user.name, user_path(reply.user) %></span>
-          <% text = safe_join(reply.comment.split("\n"),tag(:br)) %>
-          <div><p class="post pt-2 ml-2 mb-0 text-dark"><%= convert_url_into_a_tag(text).html_safe %></p></div>
-        </div>
-      </div>
-      <div class="text-right mr-4">
-        <span class="text-muted mr-2"><%= time_ago_in_words(reply.created_at) %>前</span>
-        <% if current_user == reply.user %>
-          <span class="post-delete">
-            <%= link_to "削除", post_post_comment_path(reply.post, reply), method: :delete, data: {confirm: "本当に削除しますか？"}, remote: true %>
-          </span>
-        <% end %>
-      </div>
-    </li>
-    <% end %>
-  </div>
-  <div class="new-reply">
-    <%= form_with(model:[@post, @comment_reply]) do |f| %>
-    <%= f.text_area :comment, :size=>"50x3", class: "form-control w-75 ml-auto", placeholder: "リプライする", id: "new_reply_#{post_comment.id}" %>
-    <%= f.hidden_field :parent_id, value: post_comment.id%>
-    <%= f.submit "リプライ", class: "btn btn-cool-blues btn-rounded d-block ml-auto mt-3" %>
-  <% end %>
+<div class="replies-page">
+  <div id="post_comment<%= post_comment.id %>">
   </div>
 </div>
-

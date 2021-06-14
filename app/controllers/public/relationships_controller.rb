@@ -3,9 +3,9 @@ class Public::RelationshipsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    current_user.active_relationships.create(followed_id: params[:user_id])
-    @login_user = User.includes(:following).find(current_user.id)
+    current_user.follow(@user)   #active_relationships.create(followed_id: params[:user_id])
     @user.create_notification_follow!(current_user)
+    @login_user = User.includes(:following).find(current_user.id)
   end
 
   def destroy

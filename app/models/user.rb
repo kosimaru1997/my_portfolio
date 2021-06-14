@@ -29,6 +29,10 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   attachment :image
 
+  def follow(other_user)
+    following << other_user
+  end
+
   #フォロー済みか確認
   def following?(other_user)
     following.include?(other_user)

@@ -28,11 +28,10 @@ class Public::PostsController < ApplicationController
     @user = @post.user
     @post_comment = PostComment.new
     @comment_reply = @post.post_comments.build
-    @post_comments = @post.post_comments.includes({replies: [:user, :post]}).where(parent_id: nil).page(params[:page]).per(10).reverse_order
-    # post_comment_all =  @post.post_comments.select(:id).where(parent_id: nil)
-    # @post_comments = PostComment.includes(:user, :post, :replies).where(id: post_comment_all).page(params[:page]).reverse_order
+    @post_comments = @post.post_comments.includes(:user).where(parent_id: nil).page(params[:page]).per(10).reverse_order
   end
 
+#投稿に対していいねしたユーザーの一覧を取得、モーダルで表示(format js)
   def favorited
     @post = Post.find(params[:id])
     @users = @post.favorited_users.page(params[:page]).reverse_order

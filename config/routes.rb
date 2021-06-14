@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     end
     resources :posts, except: [:edit, :new] do
       resource :favorites, only: [:create, :destroy]
-      resources :post_comments, only: [:create, :destroy]
+      resources :post_comments, only: [:create, :destroy, :show]
       get :favorited, on: :member
     end
     resources :notifications, only: :index

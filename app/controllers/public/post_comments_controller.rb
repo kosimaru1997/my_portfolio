@@ -12,7 +12,7 @@ class Public::PostCommentsController < ApplicationController
       render "create_reply" unless @comment.parent_id.nil?
       @post.create_notification_comment!(current_user, @comment.id)
     else
-      render "shared/error"
+      render "error_comment"
     end
   end
 
@@ -23,6 +23,14 @@ class Public::PostCommentsController < ApplicationController
     @comment = PostComment.find_by(id: params[:id])
     @comment.destroy
     render "destroy_reply" unless @comment.parent_id.nil?
+  end
+
+  #repliesをAjaxでするためのメソッド
+  def show
+    post = Post.find(params[:post_id])
+    @comment_reply = post.post_comments.build
+    @comment = PostComment.find_by(id: params[:id])
+    @replies = @comment.replies.includes(:user, :post)
   end
 
   private
