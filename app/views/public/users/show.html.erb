@@ -3,7 +3,7 @@
     <div id="user-fixed">
       <div class="userーimage d-flex align-items-center">
         <%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpg', fallback: "no_image.jpg", size:'80x80', class: "rounded-circle" %>
-        <span class="ml-3"><h5><%= @user.name %></h5></span>
+        <span class="mx-3"><h5><%= @user.name %></h5></span>
         <div id="follow_<%= @user.id %>">
           <%= render partial: "public/relationships/relationship", locals:{ user: @user} %>
         </div>
@@ -21,7 +21,7 @@
           <%= link_to edit_user_path(current_user) do %>
             <buttun class="btn btn-outline-info mr-3">編集する</buttun>
           <% end %>
-          <%= link_to user_path, method: :DELETE, data: {confirm: "本当に退会してもよろしいですか？"} do %>
+          <%= link_to user_path, method: :delete, data: {confirm: "本当に退会してもよろしいですか？"} do %>
             <buttun class="btn btn-outline-danger">退会する</buttun>
           <% end %>
         </div>
