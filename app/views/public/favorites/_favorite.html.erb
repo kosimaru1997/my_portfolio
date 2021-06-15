@@ -1,9 +1,14 @@
 <% if post.favorited_users.include?(current_user) %>
   <%= link_to post_favorites_path(post), method: :delete, remote: true do %>
-    <span class="favorited-color"><i class="fas fa-heart mr-1"></i><%= post.favorites.size %></span>
+    <span class="favorited-color"><i class="fas fa-heart"></i>
+      <% if post.favorites_count.nil? %>0<% else %><%= post.favorites_count %><% end %>
+    </span>
   <% end %>
 <% else %>
   <%= link_to post_favorites_path(post), method: :post, remote: true do %>
-    <span class="favorited"><i class="far fa-heart mr-1"></i><%= post.favorites.size %></span>
+    <span class="favorited"><i class="far fa-heart">
+      <% if post.favorites_count.nil? %>0<% else %><%= post.favorites_count %><% end %>
+      </i>
+    </span>
   <% end %>
 <% end %>

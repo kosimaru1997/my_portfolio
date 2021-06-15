@@ -19,7 +19,10 @@
   </div>
   <div class="about text-right mr-5">
     <span class="mr-2">
-      <%= link_to post_path(post), class: "hover-grean" do %><i class="far fa-comment mr-2"> <%= post.only_comment_count %> </i><% end %>
+      <%= link_to post_path(post), class: "hover-grean" do %>
+        <i class="far fa-comment mr-2">
+          <% if post.post_comments_count.nil? %>0<% else %><%= post.post_comments_count %><% end %></i>
+      <% end %>
     </span>
       <span id="favorites_<%= post.id %>">
         <%= render partial: "public/favorites/favorite", locals:{ post: post} %>

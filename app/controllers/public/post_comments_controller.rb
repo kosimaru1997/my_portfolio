@@ -8,7 +8,7 @@ class Public::PostCommentsController < ApplicationController
     @comment.post_id = @post.id
     #セーブできた場合、通知を作成し、ペアレントIDが存在したらrennder'create_reply'、無い場合はif文終了後create.js.erbへ。
     if @comment.save
-      #コメントのセーブができていないと勘違いしたユーザーがcreate処理を連続で行うことを回避し、エラーログの出力に留める。
+      #ここで例外が発生した場合、コメントのセーブができていないと勘違いしたユーザーがcreateを連続で行うことを回避し、エラーログの出力に留める。
       begin
         @post.create_notification_comment!(current_user, @comment.id)
       rescue => e
@@ -24,11 +24,13 @@ class Public::PostCommentsController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     @comment = PostComment.find_by(id: params[:id])
-    @comment.destroy if @co
-    render "destroy_reply" unless @comment.parent_id.nil?
+    if @comment
+      @comment.destroy
+      render "destroy_reply" unless @comment.parent_id.nil?
+    end
   end
 
-  #N+１問題に対応するため、repliesをAjaxで表示するメソッド
+  #N+１問題に対応するため、repliesをポスト詳細ページにてAjaxで表示するメソッド
   def show
     post = Post.find(params[:post_id])
     @comment_reply = post.post_comments.build

@@ -2,14 +2,19 @@ class Public::FavoritesController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    current_user.favorites.create(post_id: @post.id)
-    @post.create_notification_favorite!(current_user)
+    current_user.favorite(@post)
+    begin
+      @post.create_notification_favorite!(current_user)
+    rescue => e
+      logger.error e
+      logger.error e.backtrace.join("\n")
+    end
   end
 
   def destroy
     @post = Post.find(params[:post_id])
-    favorite = current_user.favorites.find_by(post_id: @post)
-    favorite.destroy if favorite
+    current_user.remove_favorite(@post)
+    @post.reload
   end
 
 end
