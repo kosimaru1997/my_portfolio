@@ -27,6 +27,7 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
+#ユーザー詳細画面から、Ajaxによりユーザーがフォローしているユーザーを表示
   def following
     @follow = "follow" #cssスタイルを渡すための記述
     @user = User.find(params[:id])
@@ -35,6 +36,7 @@ class Public::UsersController < ApplicationController
     render "follow"
   end
 
+#ユーザー詳細画面から、Ajaxによりユーザーにフォローされているユーザーを表示
   def followers
     @follower = "follower" #CSSスタイルを渡すための
     @user = User.find(params[:id])
@@ -43,6 +45,7 @@ class Public::UsersController < ApplicationController
     render "follow"
   end
 
+#ユーザー詳細画面から、Ajaxによりユーザーがいいねしているポストを表示
   def favorites
     @user = User.find(params[:id])
     @posts = @user.favorites_posts.includes(:user, :favorites, :favorited_users, :post_comments).page(params[:page]).reverse_order

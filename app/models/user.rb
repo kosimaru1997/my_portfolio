@@ -29,8 +29,24 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   attachment :image
 
+  #ポストにいいねをする
+  def favorite(post)
+    favorites_posts << post
+  end
+
+  #いいねを解除
+  def remove_favorite(post)
+    favorites.find_by(post_id: post.id).destroy
+  end
+
+  #フォローする
   def follow(other_user)
     following << other_user
+  end
+
+  #フォロー解除する
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
   end
 
   #フォロー済みか確認
@@ -68,8 +84,5 @@ class User < ApplicationRecord
     other_user_ids = UserRoom.select(:user_id).where(room_id: my_rooms_ids).where.not(user_id: id)
     Chat.where(user_id: other_user_ids, room_id: my_rooms_ids).where.not(checked: true).any?
   end
-
-  # Chat.where("user_id IN (:other_user_ids) AND room_id IN (:my_rooms_ids) AND checked NOT :true",
-              # other_user_ids: other_user_ids, my_rooms_ids: my_rooms_ids, true: true)
 
 end

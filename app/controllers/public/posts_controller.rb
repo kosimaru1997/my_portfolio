@@ -16,18 +16,17 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @post = current_user.posts.build
-    @posts = Post.all.includes(:user, :favorites, :favorited_users, :post_comments).page(params[:page]).reverse_order
     if params[:search].present?
-      @posts = Post.search(params[:search]).includes(:user, :favorites, :favorited_users, :post_comments).page(params[:page]).reverse_order
+      @posts = Post.search(params[:search]).includes(:user, :favorited_users).page(params[:page]).reverse_order
     end
+    @post = current_user.posts.build
+    @posts = Post.all.includes(:user, :favorited_users).page(params[:page]).reverse_order
   end
 
   def show
     @post = Post.find(params[:id])
     @user = @post.user
     @post_comment = PostComment.new
-    @comment_reply = @post.post_comments.build
     @post_comment_count = @post.only_comment_count
     @post_comments = @post.post_comments.includes(:user).where(parent_id: nil).page(params[:page]).per(10).reverse_order
   end
