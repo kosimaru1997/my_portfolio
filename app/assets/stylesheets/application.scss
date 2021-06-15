@@ -34,9 +34,33 @@ ol, ul, dl, li {
   list-style: none;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .pagination {
   display: none;
 }
+.scroll-list {
+  padding: 0;
+}
+
+.new-replies {
+  overflow: auto;
+  max-height: 430px;
+}
+
+
+#sign-up .field_with_errors input {
+  border-color: #ff9c62;
+}
+
+#sign-up .field_with_errors input:focus {
+  box-shadow: 0 0 0 0.2rem #ffdba6;
+}
+// #sign-up .field_with_errors input:focus {
+//   box-shadow: 0 0 0 0.2rem rgb(255 153 0 / 25%);
+// }
 
 .border-secondary {
     border-color: #ccd5dc !important;
@@ -64,10 +88,16 @@ ol, ul, dl, li {
   color: #6fcc80;
 }
 
+// ーーーーーーヘッダーーーーーー
 .navbar {
   height: 55px;
 }
-
+.navbar-collapse {
+  background-color: #ffffff;
+  z-index: 1;
+  opacity: 0.9;
+}
+// ーーーーーーーーーーーーーーー
 .field_with_errors {
   width: 100%;
 }
@@ -82,7 +112,14 @@ ol, ul, dl, li {
 .btn-rounded {
     border-radius: 35px;
 }
-//ーーーーーーーー フッター　ーーーーーーー
+.btn-dark-blues {
+    width: 100px;
+    background: #80b6cc;
+    color: #fff;
+    border: 3px solid #eee;
+}
+
+//ーーーーーーーー フッターーーーーーーー
 
 html {
   position: relative;
@@ -144,8 +181,8 @@ footer {
 
 .n-circle {
   position: absolute;
-  top: 20px;
-  left: 18px;
+  top: 25px;
+  left: 32px;
 }
 
 .chat-notice {
@@ -154,8 +191,8 @@ footer {
 
 .n-circle-chat {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 25px;
+    left: 35px;
 }
 // ーーーーーーーーーーーーーーーー
 // .top-page {
@@ -165,74 +202,75 @@ footer {
 // }
 
 //ーーーー ログインーーーー
-div#login {
-    height: 230px;
-    margin-top: 30px;
-}
+// div#login {
+//     height: 230px;
+//     margin-top: 30px;
+// }
 
-.top-form {
-  width: 320px;
-  height: 210px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2),
-                0 1px 1px rgba(0, 0, 0, .2),
-                0 3px 0 #fff,
-                0 4px 0 rgba(0, 0, 0, .2),
-                0 6px 0 #fff,
-                0 7px 0 rgba(0, 0, 0, .2);
-  position: absolute;
-  z-index: 0;
-}
+// .top-form {
+//   width: 320px;
+//   height: 210px;
+//   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2),
+//                 0 1px 1px rgba(0, 0, 0, .2),
+//                 0 3px 0 #fff,
+//                 0 4px 0 rgba(0, 0, 0, .2),
+//                 0 6px 0 #fff,
+//                 0 7px 0 rgba(0, 0, 0, .2);
+//   position: absolute;
+//   z-index: 0;
+// }
 
-.top-form:before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  border: 1px dashed #ccc;
-  top: 5px;
-  bottom: 5px;
-  left: 5px;
-  right: 5px;
-  box-shadow: 0 0 0 1px #fff;
-}
+// .top-form:before {
+//   content: '';
+//   position: absolute;
+//   z-index: -1;
+//   border: 1px dashed #ccc;
+//   top: 5px;
+//   bottom: 5px;
+//   left: 5px;
+//   right: 5px;
+//   box-shadow: 0 0 0 1px #fff;
+// }
 
-.top-form h4 {
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
-  text-transform: uppercase;
-  text-align: center;
-  color: #666;
-  margin: 10px 0;
-  letter-spacing: 4px;
-  font: normal 26px/1 Verdana, Helvetica;
-  position: relative;
-}
+// .top-form h4 {
+//   text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
+//   text-transform: uppercase;
+//   text-align: center;
+//   color: #666;
+//   margin: 10px 0;
+//   letter-spacing: 4px;
+//   font: normal 26px/1 Verdana, Helvetica;
+//   position: relative;
+// }
 
-.top-form input {
+// .top-form input {
+//   margin: 0 auto;
+// }
+
+.form-control {
+  width: 90%;
+  height: 30px;
   margin: 0 auto;
 }
 
-.form-control {
-  width: 75%;
-  height: 30px;
-}
-
-.btn-outline-secondary {
-  padding: 1px 12px;
-}
+// .btn-outline-secondary {
+//   padding: 1px 12px;
+// }
 // ーーーーーーーーーーーー
 
 // ーーーー新規登録ーーーー
-#sign-up {
-  margin-left: 160px;
-  height: 280px;
-}
+// #sign-up {
+//   margin-left: 160px;
+//   height: 280px;
+// }
 
-#sign-up form#signup_new_user {
-  width: 370px;
-  height: 250px;
-}
+// #sign-up form#signup_new_user {
+//   width: 370px;
+//   height: 250px;
+// }
 
 .errors li {
-    list-style: disc;
+  list-style: disc;
 }
 
 .border-error {
@@ -261,7 +299,7 @@ div#login {
   overflow-y: scroll;
 }
 #scroll-inner{
-　height: 500px;
+  height: 500px;
 }
 
 .inbox_msg {
@@ -301,6 +339,7 @@ div#login {
   margin: 0;
   padding: 5px 10px 5px 12px;
   width: 100%;
+  word-wrap: break-word;
 }
 .time_date {
   color: #747474;
@@ -310,19 +349,20 @@ div#login {
 }
 .received_withd_msg { width: 57%;}
 .mesgs {
-  min-height: 580px;
+  min-height: 600px;
   width: 100%;
   float: left;
   padding: 0 15px;
 }
 
  .sent_msg p {
-  background: #05728f none repeat scroll 0 0;
+  background: #82bccc none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
   margin: 0; color:#fff;
   padding: 5px 10px 5px 12px;
   width:100%;
+  word-wrap: break-word;
 }
 .outgoing_msg{ overflow:hidden; margin-top :15px;}
 .sent_msg {
@@ -360,7 +400,6 @@ div#login {
 
 .chat-form {
   display: block;
-  height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
@@ -372,6 +411,9 @@ div#login {
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+.chat-btn {
+  margin-left: auto;
+}
 
 .chat-form:focus {
   color: #495057;
@@ -381,3 +423,53 @@ div#login {
   box-shadow: 0 0 0 0.1rem rgba(0,0,0,0.2);
 }
 // ーーーーーーーーーーーーーーーーー
+
+// ーーーレスポンシブーーーーー
+
+ @media (min-width: 768px) {
+
+ .d-flex-lg {
+   display: flex;
+ }
+
+  #login {
+    width: 50%;
+  }
+  .back-color {
+    height: 300px;
+    width: 50%;
+    background-color: #c5c5c5;
+  }
+
+  #sign-up {
+    // width: 50%;
+    // margin-left: auto;
+  }
+  .form-group {
+    margin-top: 0 !important;
+  }
+  form#signup_new_user {
+    width: 50%;
+  }
+  #sign-up .back-color {
+    height: 309px;
+  }
+  ul.errors {
+    background-color: #e6e6e6;
+    margin-bottom: 0px;
+  }
+  .errors li {
+    width: 50%;
+    margin-left: auto !important;
+    margin-right: 20px;
+  }
+
+  .form-control {
+    width: 80%;
+  }
+
+  textarea#chat_message {
+    width: 90%;
+  }
+
+}

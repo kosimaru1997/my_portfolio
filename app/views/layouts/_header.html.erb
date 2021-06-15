@@ -3,21 +3,26 @@
     <div class="menu-bar">
       <nav class="navbar navbar-light border-bottom border-light">
         <a class="navbar-brand text-center ml-2" href="/"><%= image_tag 'logo.jpg', size: "150x20" %></a>
+            <% if user_signed_in? %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse text-right" id="navbarNavDropdown">
           <ul class="navbar-nav mt-3">
-            <% if user_signed_in? %>
               <li class="nav-item">
                 <%= link_to "マイページ", user_path(current_user), class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
+                <%= link_to users_path, class: 'nav-link text-dark' do %>
+                  <!--<i class="fas fa-users fa-lg fa-backcolor"></i>--><span>ユーザー一覧</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
               </li>
-            <%end%>
           </ul>
         </div>
+            <%end%>
       </nav>
     </div>
   </header>

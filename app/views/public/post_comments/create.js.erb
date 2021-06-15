@@ -1,4 +1,4 @@
-$("#comments-count").html("<%= @post_comments.size %>件のコメント");
+$("#comments-count").html("<%= @post.only_comment_count %>件のコメント");
 $("#post-comments").prepend("<%= j(render "public/post_comments/post_comment", { post_comment: @comment } ) %>");
 $("#post_comment_comment").val("");
-$("#flash_messages").html('<p class="alert alert-success">コメントしました</p>')
+$("#comment_flash").html('<p class="alert alert-success">コメントしました</p>')

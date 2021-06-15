@@ -11,15 +11,19 @@
 </div>
 
 <div class="row">
-  <div class="col-8 offset-2">
-    <div id="login" class="w-50">
-      <%= render "devise/sessions/new" %>
+  <div class="col-12">
+    <div class="d-flex-lg">
+      <div id="login" class="pt-3 px-3 border">
+        <%= render "devise/sessions/new" %>
+     </div>
+        <div class="back-color"></div>
     </div>
-    <div>
-      <div id="sign-up" class="w-50 ml-auto">
-        <%= render "shared/error_messages" %>
-        <%= render "devise/registrations/new" %>
-      </div>
+
+    <div id="sign-up" class="">
+      
+       <!--<div class="back-color"></div>-->
+       <%= render "devise/registrations/new" %>
+      <!--</div>-->
     </div>
   </div>
 </div>

@@ -4,14 +4,14 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations',
     :sessions      => 'users/sessions'
   }
-  
+
   #未ログイン時のルート
    devise_scope :user do
       unauthenticated :user do
         root :to => 'users/registrations#new', as: :unauthenticated_root
       end
     end
-  
+
   scope module: :public do
     authenticated :user do
       root to: 'homes#top'
@@ -27,10 +27,11 @@ Rails.application.routes.draw do
     end
     resources :posts, except: [:edit, :new] do
       resource :favorites, only: [:create, :destroy]
-      resources :post_comments, only: [:create, :destroy]
+      resources :post_comments, only: [:create, :destroy, :show]
       get :favorited, on: :member
     end
-    resources :notifications, only: :index
+    resources :notifications, only: [:index, :destroy]
+    delete 'notifications_all' => 'notifications#destroy_all'
   end
 
 end
