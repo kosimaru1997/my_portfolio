@@ -28,19 +28,19 @@
   </div>
 </div>
 
-      <% to = Time.current.at_beginning_of_day #１週間の投稿をランダムに並び替え
-         from = (to - 6.day).at_end_of_day
-         weekly_post = Post.includes(:user).where(created_at: from...to).shuffle
-         @posts = weekly_post.first(5) %>
+    <!--  </% to = Time.current.at_beginning_of_day #１週間の投稿をランダムに並び替え-->
+    <!--     from = (to - 6.day).at_end_of_day-->
+    <!--     weekly_post = Post.includes(:user).where(created_at: from...to).shuffle-->
+    <!--     @posts = weekly_post.first(5) %>-->
 
-    <div class="border p-3">
-      <% @posts.each do |post| %>
-        <div class="post-section d-flex">
-          <%= attachment_image_tag post.user, :image, :fill, 30, 30, format: 'jpg', fallback: "no_image.jpg", size:'30x30', class: "rounded-circle" %>
-          <%= post.user.name %>
-        </div>
-          <p><%= post.content %></p>
-      <% end %>
-    </div>
+    <!--<div class="border p-3">-->
+    <!--  <_% @posts.each do |post| %>-->
+    <!--    <div class="post-section d-flex">-->
+    <!--      </%= attachment_image_tag post.user, :image, :fill, 30, 30, format: 'jpg', fallback: "no_image.jpg", size:'30x30', class: "rounded-circle" %>-->
+    <!--      </%= post.user.name %>-->
+    <!--    </div>-->
+    <!--      <p></%= post.content %></p>-->
+    <!--  </% end %>-->
+    <!--</div>-->
 
   <!--<div class="col-lg-5 ml-3 mt-5">-->
