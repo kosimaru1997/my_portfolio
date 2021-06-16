@@ -34,4 +34,9 @@ Rails.application.routes.draw do
     delete 'notifications_all' => 'notifications#destroy_all'
   end
 
+  get   'inquiry'         => 'inquiry#index'
+  post  'inquiry'         => 'inquiry#index'
+  post  'inquiry/confirm' => 'inquiry#confirm'
+  post  'inquiry/thanks'  => 'inquiry#thanks'
+
 end

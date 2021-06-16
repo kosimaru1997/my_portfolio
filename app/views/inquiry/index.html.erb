@@ -1,0 +1,30 @@
+<%= form_for @inquiry, :url => inquiry_confirm_path do |f| %>
+  <div class="page-header mt-4">
+    <h1>お問い合わせ</h1>
+  </div>
+
+  <% if @inquiry.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <strong>入力内容にエラーがあります</strong>
+      <ul>
+        <% @inquiry.errors.each do |attr, msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table class="table">
+    <tr>
+      <th>名前<span class="text-danger">（必須）</span></th>
+      <td><%= f.text_field :name, value: @inquiry.name, class: "px-1" %></td>
+    </tr>
+    <tr class="border-bottom border-secondary">
+      <th>メールアドレス<span class="text-danger">（必須）</span></th>
+      <td><%= f.text_field :email, value: @inquiry.email, class: "px-1" %></td>
+    </tr>
+  </table>
+      <p>お問い合わせ内容</p>
+      <%= f.text_area :message, :size=>"30x4", class: 'form-control ml-0 mb-3' %>
+  <%= f.submit '確認', class: 'btn btn-primary' %>
+<% end %>
