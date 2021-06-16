@@ -20,13 +20,13 @@ class Post < ApplicationRecord
 
   #検索機能
   def self.search(search)
-    return Post.all unless search
     Post.where(['content LIKE ?', "%#{search}%"])
   end
 
   def create_notification_favorite!(current_user)
     # すでに「いいね」されているか検索
-    temp = Notification.where("visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite')
+    # temp = Notification.where("visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite')
+      temp =  Notification.where(visitor_id: current_user.id, visited_id: user_id, action: 'favorite')
     # いいねされていない場合のみ、通知レコードを作成
     if temp.blank?
       notification = current_user.active_notifications.new(post_id: id, visited_id: user_id, action: 'favorite')
