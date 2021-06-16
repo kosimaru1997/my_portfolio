@@ -3,7 +3,11 @@ class Public::UsersController < ApplicationController
   before_action :same_user!, only: [:edit, :update, :destroy]
 
   def index
-    @users = User.all.page(params[:page]).reverse_order
+    if params[:search].present?
+      @users = User.search(params[:search]).page(params[:page]).reverse_order
+    else
+      @users = User.all.page(params[:page]).reverse_order
+    end
     @login_user = User.includes(:following).find(current_user.id)
   end
 

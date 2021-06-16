@@ -29,6 +29,11 @@ class User < ApplicationRecord
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   attachment :image
 
+#ユーザー検索
+  def self.search(search)
+    User.where(['name LIKE ?', "%#{search}%"])
+  end
+
   #ポストにいいねをする
   def favorite(post)
     favorites_posts << post
