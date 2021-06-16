@@ -5,10 +5,10 @@
         <%= link_to root_path, class: 'nav-link text-dark' do %>
           <i class="fas fa-home fa-lg fa-backcolor"></i>
         <% end %>
+        <% if user_signed_in? %>
         <%= link_to posts_path, class: 'nav-link text-dark' do %>
           <i class="fas fa-comments fa-lg fa-backcolor"></i>
         <% end %>
-        <% if user_signed_in? %>
           <%= link_to notifications_path, class: 'nav-link text-dark notice' do %>
             <i class="far fa-bell fa-lg.fa-stack-2x fa-backcolor" style="font-size: 1.5em;" ></i>
             <% if current_user.unchecked_notifications? %>
