@@ -82,7 +82,14 @@ class User < ApplicationRecord
     Post.where("user_id IN (:following_ids)
                  OR user_id = :user_id", following_ids: following_ids, user_id: id)
   end
-  
+
+  def with
+    following_ids = self.following.select(:id)
+    Post.left_joins(:reposts).where(reposts: {user_id: following_ids})
+
+  end
+
+
   def zenbu
     follow_user_ids = self.following.select(:id)
       repost_ids = Repost.where("user_id IN (:follow_user_ids) OR user_id = :user_id",
@@ -113,16 +120,19 @@ class User < ApplicationRecord
     Chat.where(user_id: other_user_ids, room_id: my_rooms_ids).where.not(checked: true).any?
   end
 
-  
+
   def posts_with_reposts
   relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND reposts.user_id = #{self.id}")
-                 .select("posts.*, reposts.user_id AS repost_user_id, (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name")
+                 .select("posts.*, reposts.user_id, (SELECT name FROM users WHERE id = reposts.user_id) AS repost_user_name")
   relation.where(user_id: self.id)
           .or(relation.where("reposts.user_id = ?", self.id))
-          .preload(:user, :review, :comments, :likes, :reposts)
+          .preload(:user, :reposts)
           .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
   end
-  
+
+# Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND reposts.user_id IN(1,2,3)")
+# User.first.following.pluck(:id)
+
   def followings_with_userself
     User.where(id: self.following.pluck(:id)).or(User.where(id: self.id))
   end
