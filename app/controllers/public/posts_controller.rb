@@ -11,7 +11,7 @@ class Public::PostsController < ApplicationController
 
   def destroy
     post = Post.find_by(id: params[:id])
-    post.destroy if post
+    post.destroy
     redirect_back(fallback_location: root_path)
   end
 

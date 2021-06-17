@@ -8,6 +8,9 @@
         </button>
         <div class="collapse navbar-collapse text-right" id="navbarNavDropdown">
           <ul class="navbar-nav mt-3">
+          <% if admin_signed_in? %>
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+          <% else %>
             <% if user_signed_in? %>
               <li class="nav-item">
                 <%= link_to "マイページ", user_path(current_user), class: 'nav-link text-dark' %>
@@ -24,6 +27,7 @@
               <li class="nav-item">
                 <%= link_to "お問い合わせ", inquiry_path, class: 'nav-link text-dark' %>
               </li>
+          <% end %>
           </ul>
         </div>
       </nav>
