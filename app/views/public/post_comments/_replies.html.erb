@@ -1,5 +1,5 @@
 <div id="replies-page-<%= post_comment.id%>" class="new-replies border p-3 my-3 ml-auto">
-  <% if replies.empty? %><p id="no-reply">コメントはありません</p><% end %>
+  <% if replies.empty? %><p id="no-reply">リプライはありません</p><% end %>
     <% replies.each do |reply| %>
       <li class="border-bottom border-secondary  background-hover", id="reply_<%= reply.id %>">
         <div class="reply d-flex">
