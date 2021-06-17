@@ -1,0 +1,11 @@
+<% if current_user.reposted?(post.id) %>
+  <span>リツイート済み</span>
+  <%= link_to post_reposts_path(post.id), method: :delete do %>
+    <i class="fas fa-retweet"></i><%= post.reposts.count %>
+  <% end %>
+
+<% else %>
+  <%= link_to post_reposts_path(post.id), method: :post do %>
+    <i class="fas fa-retweet"></i><%= post.reposts.count %>
+  <% end %>
+<% end %>

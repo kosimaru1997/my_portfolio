@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_09_095011) do
+ActiveRecord::Schema.define(version: 2021_06_17_010106) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
@@ -78,6 +78,15 @@ ActiveRecord::Schema.define(version: 2021_06_09_095011) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "reposts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_reposts_on_post_id"
+    t.index ["user_id"], name: "index_reposts_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|

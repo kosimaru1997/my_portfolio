@@ -27,6 +27,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  has_many :reposts, dependent: :destroy
+  has_many :repost_posts, through: :reposts, source: :post
   attachment :image
 
 #ユーザー検索
@@ -59,11 +61,34 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
+  #リポスト
+  def repost(post)
+    repost_posts << post
+  end
+
+  #リポストを解除
+  def remove_repost(post)
+    reposts.find_by(post_id: post.id).destroy
+  end
+
+  #リポスト済みか確認
+  def reposted?(post_id)
+    reposts.where(post_id: post_id).exists?
+  end
+
   #フォロー済みユーザーのポストを取得
   def feed
     following_ids = self.following.select(:id)
     Post.where("user_id IN (:following_ids)
                  OR user_id = :user_id", following_ids: following_ids, user_id: id)
+  end
+  
+  def zenbu
+    follow_user_ids = self.following.select(:id)
+      repost_ids = Repost.where("user_id IN (:follow_user_ids) OR user_id = :user_id",
+                                 follow_user_ids: follow_user_ids, user_id: self.id).select(:post_id)
+      Post.where("id IN (:repost_ids) OR user_id IN (:follow_user_ids) OR user_id = :user_id",
+                  repost_ids: repost_ids, follow_user_ids: follow_user_ids, user_id: self.id)
   end
 
   #フォロー時の通知を作成
@@ -86,6 +111,20 @@ class User < ApplicationRecord
     my_rooms_ids = UserRoom.select(:room_id).where(user_id: id)
     other_user_ids = UserRoom.select(:user_id).where(room_id: my_rooms_ids).where.not(user_id: id)
     Chat.where(user_id: other_user_ids, room_id: my_rooms_ids).where.not(checked: true).any?
+  end
+
+  
+  def posts_with_reposts
+  relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND reposts.user_id = #{self.id}")
+                 .select("posts.*, reposts.user_id AS repost_user_id, (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name")
+  relation.where(user_id: self.id)
+          .or(relation.where("reposts.user_id = ?", self.id))
+          .preload(:user, :review, :comments, :likes, :reposts)
+          .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
+  end
+  
+  def followings_with_userself
+    User.where(id: self.following.pluck(:id)).or(User.where(id: self.id))
   end
 
 end

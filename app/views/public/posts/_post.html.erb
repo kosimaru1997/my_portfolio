@@ -24,8 +24,11 @@
           <% if post.post_comments_count.nil? %>0<% else %><%= post.post_comments_count %><% end %></i>
       <% end %>
     </span>
-      <span id="favorites_<%= post.id %>">
-        <%= render partial: "public/favorites/favorite", locals:{ post: post} %>
-      </span>
+    <span id="reposts_<%= post.id %>">
+      <%= render partial: "public/reposts/repost", locals:{ post: post} %>
+    </span>
+    <span id="favorites_<%= post.id %>">
+      <%= render partial: "public/favorites/favorite", locals:{ post: post} %>
+    </span>
   </div>
 </li>
