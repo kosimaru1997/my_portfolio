@@ -3,7 +3,6 @@
     <div class="menu-bar">
       <nav class="navbar navbar-light border-bottom border-light">
         <a class="navbar-brand text-center ml-2" href="/"><%= image_tag 'logo.jpg', size: "150x20" %></a>
-        <% if user_signed_in? %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,7 +26,6 @@
               </li>
           </ul>
         </div>
-        <%end%>
       </nav>
     </div>
   </header>
