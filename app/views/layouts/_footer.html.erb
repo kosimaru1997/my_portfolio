@@ -2,6 +2,14 @@
   <div class="container-fulid">
     <div class="row">
       <div class="col-md-10 col-lg-8 mx-auto d-flex align-items-center justify-content-between" style="height: 60px;">
+      <% if admin_signed_in? %>
+        <%= link_to admin_root_path, class: 'nav-link text-dark' do %>
+          <i class="fas fa-home fa-lg fa-backcolor"></i>
+        <% end %>
+        <%= link_to admin_posts_path, class: 'nav-link text-dark' do %>
+          <i class="fas fa-comments fa-lg fa-backcolor"></i>
+        <% end %>
+      <% else %>
         <%= link_to root_path, class: 'nav-link text-dark' do %>
           <i class="fas fa-home fa-lg fa-backcolor"></i>
         <% end %>
@@ -21,7 +29,8 @@
               <i class="fa fa-circle fa-xs n-circle-chat" style="color: blue;"></i>
             <% end %>
           <% end %>
-        <% end %>
+         <% end %>
+       <% end %>
        </div>
     </div>
   </div>

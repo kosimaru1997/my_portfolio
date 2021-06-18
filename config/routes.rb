@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       root to: 'homes#top'
     end
     get 'chats/index' => 'chats#index', as: 'chats'
+    get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'
     resources :users, except: [:new] do
       resource :relationships, only: [:create, :destroy]
       resource :chats, only: [:show, :create]
@@ -41,7 +42,7 @@ Rails.application.routes.draw do
     end
     resources :posts, except: [:edit, :new] do
       resource :favorites, only: [:create, :destroy]
-      resources :post_comments, only: [:create, :destroy, :show]
+      resources :post_comments, only: [:create, :destroy, :show] #showはAjaxによりリプライ一覧を表示するために使用
       get :favorited, on: :member
     end
     resources :notifications, only: [:index, :destroy]

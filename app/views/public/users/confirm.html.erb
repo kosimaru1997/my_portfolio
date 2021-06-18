@@ -1,0 +1,11 @@
+<div class="row mt-3">
+  <div class="col-10 mx-auto">
+    <h2>本当に退会しますか？</h2>
+    <p class="mt-4">退会すると、過去の投稿、コメント等、ユーザーの持つ全ての情報が削除されます。</p>
+    <div class="quit">
+      <%= link_to user_path, method: :delete, data: {confirm: "本当に退会してもよろしいですか？"} do %>
+        <buttun class="btn btn-outline-danger">退会する</buttun>
+      <% end %>
+    </div>
+  </div>
+</div>
