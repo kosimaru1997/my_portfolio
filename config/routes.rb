@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     delete 'user/:id/down' => 'users#down', as: 'user_down'
     post 'user/:id/up' => 'users#up', as: 'user_up'
     resources :posts,  only: [:index, :show, :destroy]
-    resources :post_comments, only: [:index, :destroy]
+    resources :post_comments, only: [:index, :show, :destroy]
   end
 
   devise_for :users, :controllers => {

@@ -17,7 +17,7 @@
   </div>
   <div class="about text-right mr-5">
     <span class="mr-2">
-      <%= link_to post_path(post), class: "hover-grean" do %>
+      <%= link_to admin_post_path(post), class: "hover-grean" do %>
         <i class="far fa-comment mr-2">
           <% if post.post_comments_count.nil? %>0<% else %><%= post.post_comments_count %><% end %></i>
       <% end %>
