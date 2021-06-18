@@ -1,13 +1,16 @@
 <div class="row">
-  <div class="col-lg-4 ml-5 mt-5">
-    <section class="user_info">
-      <%= link_to user_path(@post.user) do %>
-      <h4>
-      <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100', class: "rounded-circle"%>
-      <%= @user.name %>
-      <% end %>
-      </h4>
-    </section>
+  <div class="col-lg-4 ml-2 mt-5">
+      <div class="userーimage d-flex align-items-center">
+        <%= link_to user_path(@user) do%>
+        <%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpg', fallback: "no_image.jpg", size:'80x80', class: "rounded-circle" %>
+        <% end %>
+        <%= link_to user_path(@user) do%>
+        <span class="mx-3"><h5><%= @user.name %></h5></span>
+        <% end %>
+        <div id="follow_<%= @user.id %>">
+          <%= render partial: "public/relationships/relationship", locals:{ user: @user} %>
+        </div>
+      </div>
   </div>
 
   <div class="col-lg-7 mt-5">
