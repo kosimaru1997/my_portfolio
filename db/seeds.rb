@@ -1,3 +1,5 @@
+ENV['ADMIN_SEED']
+
 User.create!(name:  "テストユーザー",
              email: "test@test.com",
              password:              "aaaaaa",

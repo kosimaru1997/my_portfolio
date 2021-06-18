@@ -1,5 +1,20 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+
+  end
+  devise_for :admins, controllers: {
+    sessions: 'users/sessions',
+  }
+
+  namespace :admin do
+    authenticated :admin do
+      root to: 'users#top'
+    end
+    resources :users, only: [:destroy]
+    resources :posts,  only: [:index, :destroy]
+  end
+
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions      => 'users/sessions'
@@ -16,8 +31,8 @@ Rails.application.routes.draw do
     authenticated :user do
       root to: 'homes#top'
     end
-    get '/about' => 'homes#about'
     get 'chats/index' => 'chats#index', as: 'chats'
+    get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'
     resources :users, except: [:new] do
       resource :relationships, only: [:create, :destroy]
       resource :chats, only: [:show, :create]
@@ -27,7 +42,7 @@ Rails.application.routes.draw do
     end
     resources :posts, except: [:edit, :new] do
       resource :favorites, only: [:create, :destroy]
-      resources :post_comments, only: [:create, :destroy, :show]
+      resources :post_comments, only: [:create, :destroy, :show] #showはAjaxによりリプライ一覧を表示するために使用
       get :favorited, on: :member
     end
     resources :notifications, only: [:index, :destroy]

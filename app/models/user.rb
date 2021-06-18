@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
+  validates :introduction, length: { maximum: 100 }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   has_many :posts, dependent: :destroy
@@ -28,6 +29,11 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
   attachment :image
+
+  # 退会後のログインを禁止(deviseメソッド)
+  def active_for_authentication?
+    super && (self.activated == true)
+  end
 
 #ユーザー検索
   def self.search(search)

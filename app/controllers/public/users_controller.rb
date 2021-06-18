@@ -21,8 +21,15 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    current_user.update(user_params)
-    redirect_to user_path(current_user)
+    if current_user.update(user_params)
+      redirect_to user_path(current_user)
+    else
+      render action: "edit"
+    end
+  end
+  
+  def confirm
+    @user = User.find(params[:id])
   end
 
   def destroy
@@ -66,7 +73,7 @@ class Public::UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :image)
+      params.require(:user).permit(:name, :image, :introduction)
     end
 
 end

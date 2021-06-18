@@ -1,0 +1,15 @@
+<li class="border-bottom border-secondary">
+  <div class="user_info d-flex align-items-center">
+    <%= link_to "#" do %>
+      <div class="user_info d-flex align-items-center">
+        <%= attachment_image_tag user, :image, :fill, 70, 70, format: 'jpg', fallback: "no_image.jpg", size:'70x70', class: "rounded-circle" %>
+        <div class="ml-3"><h5 class="text-dark"><%= user.name %></h5></div>
+      </div>
+    <% end %>
+    <div class="ml-auto">
+      <div class="text-danger">
+        <%= link_to "アカウントの凍結", admin_user_path(user), method: :delete, class: "text-danger" %>
+      </div>
+    </div>
+  </div>
+</li>
