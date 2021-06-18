@@ -9,6 +9,9 @@
         <%= link_to admin_posts_path, class: 'nav-link text-dark' do %>
           <i class="fas fa-comments fa-lg fa-backcolor"></i>
         <% end %>
+        <%= link_to admin_post_comments_path, class: 'nav-link text-dark' do %>
+          <i type="button" class="fas fa-comment fa-lg fa-backcolor"></i>
+        <% end %>
       <% else %>
         <%= link_to root_path, class: 'nav-link text-dark' do %>
           <i class="fas fa-home fa-lg fa-backcolor"></i>

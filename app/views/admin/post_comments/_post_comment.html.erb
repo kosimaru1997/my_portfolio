@@ -1,0 +1,23 @@
+<li id="post_comment_<%= post_comment.id %>" class="border-bottom border-secondary background-hover mb-0">
+  <div class="comment d-flex">
+    <%= attachment_image_tag post_comment.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle"%>
+    <div>
+      <span class="user-name mx-3"><%= link_to post_comment.user.name, admin_user_path(post_comment.user) %></span>
+      <span class="small text-success"><% if post_comment.parent_id.present? %>(リプライ)<% end %></span>
+      <% text = safe_join(post_comment.comment.split("\n"),tag(:br)) %>
+      <div><p class="post pt-2 ml-2 mb-0 text-dark"><%= convert_url_into_a_tag(text).html_safe %></p></div>
+    </div>
+  </div>
+  <div class="text-right mr-4">
+      <i type="button" class="far fa-comment mr-3">
+        <span class="ml-1" id="post_comment_count<%= post_comment.id %>">
+          <% if post_comment.post_comments_count.nil? %>0<% end %><%= post_comment.post_comments_count %>
+        </span>
+      </i>
+
+    <span class="text-muted mr-2"><%= time_ago_in_words(post_comment.created_at) %>前</span>
+      <span class="post-delete">
+        <%= link_to "削除", admin_post_comment_path(post_comment), method: :delete, data: {confirm: "本当に削除しますか？"}, remote: true %>
+      </span>
+  </div>
+</li>
