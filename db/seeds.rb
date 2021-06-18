@@ -1,4 +1,6 @@
-ENV['ADMIN_SEED']
+Admin.create!(email: "admin@admin.com",
+              password:              "password",
+              password_confirmation: "password")
 
 User.create!(name:  "テストユーザー",
              email: "test@test.com",

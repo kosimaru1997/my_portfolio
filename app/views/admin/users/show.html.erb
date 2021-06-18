@@ -1,0 +1,32 @@
+<div class="row mt-3">
+  <div class="col-lg-5">
+    <div id="user-fixed">
+      <div class="userーimage d-flex align-items-center">
+        <%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpg', fallback: "no_image.jpg", size:'80x80', class: "rounded-circle" %>
+        <span class="mx-3"><h5><%= @user.name %></h5></span>
+      </div>
+      <div class="introduction">
+        <% if @user.introduction.present? %>
+          <% text = safe_join(@user.introduction.split("\n"),tag(:br)) %>
+          <%= convert_url_into_a_tag(text).html_safe %>
+        <% end %>
+      </div>
+      <div class="my-2 border-bottom border-secondary">
+        <%= link_to "ポスト", admin_user_path(@user), class: "mr-2" %>
+        <%= link_to "コメント", admin_user_path(@user, comment: true), class: "mr-1" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-7" id="user-detail">
+    <div class="scroll-list jscroll" id="user-about">
+    <% if @posts %>
+      <%= render @posts %>
+      <%= paginate @posts %>
+    <% else %>
+      <%= render @comments %>
+      <%= paginate @comments %>
+    <% end %>
+    </div>
+  </div>
+</div>

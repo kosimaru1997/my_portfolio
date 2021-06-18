@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-
-  end
   devise_for :admins, controllers: {
     sessions: 'users/sessions',
   }
@@ -11,8 +8,11 @@ Rails.application.routes.draw do
     authenticated :admin do
       root to: 'users#top'
     end
-    resources :users, only: [:destroy]
-    resources :posts,  only: [:index, :destroy]
+    resources :users, only: [:show]
+    delete 'user/:id/down' => 'users#down', as: 'user_down'
+    post 'user/:id/up' => 'users#up', as: 'user_up'
+    resources :posts,  only: [:index, :show, :destroy]
+    resources :post_comments, only: [:index, :show, :destroy]
   end
 
   devise_for :users, :controllers => {

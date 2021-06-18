@@ -9,8 +9,10 @@
         </div>
       </div>
       <div class="introduction">
-        <% text = safe_join(@user.introduction.split("\n"),tag(:br)) %>
-        <%= convert_url_into_a_tag(text).html_safe %>
+        <% if @user.introduction.present? %>
+          <% text = safe_join(@user.introduction.split("\n"),tag(:br)) %>
+          <%= convert_url_into_a_tag(text).html_safe %>
+        <% end %>
       </div>
       <div class="my-2 border-bottom border-secondary">
         <%= link_to "ポスト", user_path(@user), class: "mr-1" %>

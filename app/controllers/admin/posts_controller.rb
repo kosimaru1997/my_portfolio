@@ -14,4 +14,11 @@ class Admin::PostsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def show
+    @post = Post.find(params[:id])
+    @user = @post.user
+    @post_comment_count = @post.only_comment_count
+    @post_comments = @post.post_comments.includes(:user).where(parent_id: nil).page(params[:page]).per(10).reverse_order
+  end
+
 end

@@ -1,15 +1,15 @@
 <li id="post-<%= post.id %>" class="border-bottom border-secondary background-hover mb-0">
   <div class="post-section d-flex pt-3">
-    <%= link_to "#" do %>
+    <%= link_to admin_user_path(post.user) do %>
       <%= attachment_image_tag post.user, :image, :fill, 50, 50, format: 'jpg', fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" %>
     <% end %>
     <div class="content ml-2">
-      <span class="user-name mr-3"><%= link_to post.user.name, user_path(post.user) %></span>
+      <span class="user-name mr-3"><%= link_to post.user.name, admin_user_path(post.user) %></span>
       <span class="timestamp text-muted">
         <%= time_ago_in_words(post.created_at) %>前
       </span class="ml-3">
         <span class="post-delete ml-3"><%= link_to "削除", admin_post_path(post), method: :delete, data: {confirm: "本当に削除しますか？"} %></span>
-      <%= link_to post_path(post), class: "text-dark" do %>
+      <%= link_to admin_post_path(post), class: "text-dark" do %>
           <% text = safe_join(post.content.split("\n"),tag(:br)) %>
           <div><p class="post pt-2 ml-2 mb-0 text-dark text-break"><%= convert_url_into_a_tag(text).html_safe %></p></div>
       <% end %>
@@ -17,7 +17,7 @@
   </div>
   <div class="about text-right mr-5">
     <span class="mr-2">
-      <%= link_to post_path(post), class: "hover-grean" do %>
+      <%= link_to admin_post_path(post), class: "hover-grean" do %>
         <i class="far fa-comment mr-2">
           <% if post.post_comments_count.nil? %>0<% else %><%= post.post_comments_count %><% end %></i>
       <% end %>
