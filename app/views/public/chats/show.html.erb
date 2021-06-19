@@ -16,7 +16,7 @@
                 <span class="time_date"><%= chat.created_at %></span> </div>
             </div>
             <% else %>
-          <div class="incoming_msg">
+          <div class="incoming_msg d-flex">
             <div class="incoming_msg_img">
               <%= attachment_image_tag @user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle"%>
             </div>
@@ -31,7 +31,7 @@
       </div>
       <div class="type_msg">
           <%= form_with model: [@user, @chat] do |f| %>
-            <%= f.text_area :message, class: "chat-form", :size=>"35x3" %>
+            <%= f.text_area :message, class: "chat-form mt-3", :size=>"35x3" %>
             <%= f.hidden_field :room_id %>
             <div class="chatt-action">
               <%= f.submit "送信", class: "btn btn-dark-blues btn-rounded d-block ml-auto" %>
