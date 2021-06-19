@@ -20,7 +20,7 @@
     </div>
 
     <div id="sign-up" class="">
-      
+
        <!--<div class="back-color"></div>-->
        <%= render "devise/registrations/new" %>
       <!--</div>-->
@@ -34,13 +34,19 @@
          @posts = weekly_post.first(5) %>
 
     <div class="border p-3">
+      <h4 class="text-info border-bottom pb-2">~weekly post~</h4>
       <% @posts.each do |post| %>
+      <div class="background-hover">
         <div class="post-section d-flex">
-          <%= attachment_image_tag post.user, :image, :fill, 30, 30, format: 'jpg', fallback: "no_image.jpg", size:'30x30', class: "rounded-circle" %>
-          <%= post.user.name %>
+          <%= attachment_image_tag post.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle" %>
+          <span class="text-primary"><%= post.user.name %></span>
         </div>
           <p><%= post.content %></p>
+      </div>
       <% end %>
     </div>
 
+  <p class="mt-2">ログインするとポストの投稿やコメント、ユーザーとのチャットの機能を使うことができます。</br>
+     興味がありましたら、ぜひ新規登録をお願いします。
+  </p>
   <!--<div class="col-lg-5 ml-3 mt-5">-->

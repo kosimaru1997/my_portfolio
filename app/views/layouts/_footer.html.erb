@@ -17,9 +17,9 @@
           <i class="fas fa-home fa-lg fa-backcolor"></i>
         <% end %>
         <% if user_signed_in? %>
-        <%= link_to posts_path, class: 'nav-link text-dark' do %>
-          <i class="fas fa-comments fa-lg fa-backcolor"></i>
-        <% end %>
+          <%= link_to posts_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-comments fa-lg fa-backcolor"></i>
+          <% end %>
           <%= link_to notifications_path, class: 'nav-link text-dark notice' do %>
             <i class="far fa-bell fa-lg.fa-stack-2x fa-backcolor" style="font-size: 1.5em;" ></i>
             <% if current_user.unchecked_notifications? %>
@@ -32,9 +32,16 @@
               <i class="fa fa-circle fa-xs n-circle-chat" style="color: blue;"></i>
             <% end %>
           <% end %>
-         <% end %>
-       <% end %>
-       </div>
+        <% else %>
+          <%= link_to unlogin_posts_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-comments fa-lg fa-backcolor"></i>
+          <% end %>
+          <%= link_to unlogin_users_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-users fa-lg fa-backcolor"></i>
+          <% end %>
+        <% end %>
+      <% end %>
+      </div>
     </div>
   </div>
 </footer>

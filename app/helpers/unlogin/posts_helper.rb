@@ -1,0 +1,2 @@
+module Unlogin::PostsHelper
+end
