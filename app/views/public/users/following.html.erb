@@ -18,7 +18,7 @@
         <%= link_to "ポスト", user_path(@user), class: "mr-1" %>
         <%= link_to "いいね", favorites_user_path(@user), class: "mr-2" %>
         <span id="following-count"><%= @user.following.count %> </span>
-        <%= link_to "フォロー中", following_user_path(@user), class: "mr-3" %>
+        <%= link_to "フォロー中", following_user_path(@user), remote: true, class: "mr-3" %>
         <span id="following-count"><%= @user.followers.count %> </span>
         <%= link_to "フォロワー", followers_user_path(@user) %>
       </div>
@@ -37,11 +37,20 @@
     </div>
   </div>
 
-
   <div class="col-lg-7" id="user-detail">
-    <div class="scroll-list jscroll" id="user-about">
-      <%= render @posts %>
-      <%= paginate @posts %>
+      <div class="follow_user text-center d-flex mt-3">
+        <%= link_to following_user_path do %>
+          <h5 class="mr-3  <%= @follow %>">フォロー中</h5>
+        <% end %> |
+        <%= link_to followers_user_path do %>
+          <h5 class="ml-3 <%= @follower %>">フォロワー</h5>
+        <% end %>
+      </div>
+      <div class="scroll-list jscroll">
+        <%= render @users %>
+        <%= paginate @users %>
+      </div>
     </div>
   </div>
+
 </div>
