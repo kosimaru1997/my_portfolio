@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
+#ーーーーーーー管理者ーーーーーーーー
   devise_for :admins, controllers: {
-    sessions: 'users/sessions',
+    sessions: 'users/sessions'
   }
-
   namespace :admin do
     authenticated :admin do
       root to: 'users#top'
@@ -14,19 +14,26 @@ Rails.application.routes.draw do
     resources :posts,  only: [:index, :show, :destroy]
     resources :post_comments, only: [:index, :show, :destroy]
   end
+#ーーーーーーーーーーーーーーーーーー
 
-  devise_for :users, :controllers => {
-    :registrations => 'users/registrations',
-    :sessions      => 'users/sessions'
-  }
-
-  #未ログイン時のルート
+#ーーーーーー未ログイン時ーーーーーー
    devise_scope :user do
       unauthenticated :user do
         root :to => 'users/registrations#new', as: :unauthenticated_root
       end
     end
 
+  namespace :unlogin do
+    resources :users, only: [:index]
+    resources :posts, only: [:index]
+  end
+#ーーーーーーーーーーーーーーーーーーー
+
+#ーーーーーーログイン後ーーーーーー
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations',
+    :sessions      => 'users/sessions'
+  }
   scope module: :public do
     authenticated :user do
       root to: 'homes#top'
@@ -48,7 +55,9 @@ Rails.application.routes.draw do
     resources :notifications, only: [:index, :destroy]
     delete 'notifications_all' => 'notifications#destroy_all'
   end
+#ーーーーーーーーーーーーーーーーーーー
 
+#ーーーーお問い合わせーーーー
   get   'inquiry'         => 'inquiry#index'
   post  'inquiry'         => 'inquiry#index'
   post  'inquiry/confirm' => 'inquiry#confirm'
