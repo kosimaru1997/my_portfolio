@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_chats_on_room_id"
-    t.index ["user_id", "room_id"], name: "index_chats_on_user_id_and_room_id", unique: true
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
@@ -55,6 +54,9 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_comment_id"], name: "index_notifications_on_post_comment_id"
+    t.index ["post_id"], name: "index_notifications_on_post_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 

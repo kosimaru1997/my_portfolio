@@ -8,6 +8,5 @@ class CreateChats < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index :chats, [:user_id, :room_id], unique: true
   end
 end

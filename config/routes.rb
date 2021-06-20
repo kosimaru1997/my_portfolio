@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     end
     get 'chats/index' => 'chats#index', as: 'chats'
     get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'
+    resources :rooms, only: [:create, :index, :show]
     resources :users, except: [:new] do
       resource :relationships, only: [:create, :destroy]
       resource :chats, only: [:show, :create]

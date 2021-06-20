@@ -32,7 +32,7 @@
           <% end %>
         </div>
       <% else %>
-        <%= link_to 'chatを始める', user_chats_path(@user.id)%>
+        <%= link_to 'chatを始める', rooms_path(user_id: @user), method: :post %>
       <% end %>
     </div>
   </div>
