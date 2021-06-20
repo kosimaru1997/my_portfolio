@@ -1,2 +1,0 @@
-class AddParentToPostComment < ApplicationRecord
-end
