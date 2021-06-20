@@ -42,6 +42,7 @@ ja:
       user:
         name: "名前"
         email: "メールアドレス"
+        introduction: "自己紹介"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"

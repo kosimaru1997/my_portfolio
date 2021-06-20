@@ -9,6 +9,7 @@
       <% end %>
       </div>
       <%= link_to user_chats_path(room.user), class: "text-decoration-none" do %>
+      <div class=" chat-min-heiht">
         <% if room.chats != [] %>
           <p class="pt-3 ml-3 mb-0 text-dark text-break"><%= room.chats.last.message %></p>
           <div class="small text-muted text-right text-break">
@@ -20,6 +21,7 @@
             <%= (room.chats.last).created_at.strftime("%Y/%m/%d %H:%M") %>
           </div>
         <% end %>
+      </div>
       <% end %>
     </div>
   <% end %>

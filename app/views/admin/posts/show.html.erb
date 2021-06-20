@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-lg-4 ml-5 mt-5">
+    <section class="user_info">
+      <%= link_to admin_user_path(@post.user) do %>
+      <h4>
+      <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100', class: "rounded-circle"%>
+      <%= @user.name %>
+      <% end %>
+      </h4>
+    </section>
+  </div>
+
+  <div class="col-lg-7 mt-5">
+    <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <div class="post-show border-bottom border-secondary">
+      <% text = safe_join(@post.content.split("\n"),tag(:br)) %>
+      <li><h5 class="content"><%= convert_url_into_a_tag(text).html_safe %></li>
+      <li><p class="timestamp text-secondary text-right"><%= time_ago_in_words(@post.created_at) %>前</p></li>
+        <span class="post-delete ml-3"><%= link_to "削除", admin_post_path(@post), method: :delete, data: {confirm: "本当に削除しますか？"} %></span>
+    </div>
+    <div class="about border-bottom border-secondary pb-2 mb-2 mt-2">
+      <span id="comments-count"><%= @post_comment_count %>件のコメント</span>
+     </div>
+    <p class="text-center">コメント一覧</p>
+     <div class="scroll-list jscroll" id="post-comments">
+      <%= render @post_comments %>
+      <%= paginate @post_comments %>
+    </div>
+  </div>
+
+</div>

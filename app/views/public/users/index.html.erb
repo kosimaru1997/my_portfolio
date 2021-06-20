@@ -1,6 +1,20 @@
 <div class="row mt-3">
   <div class="col-lg-8 mx-auto">
-    <h4 class="text-center" style="font-family: Hiragino Maru Gothic Pro">ユーザー一覧</h4>
+    <div class="d-flex">
+      <button type="button" class="btn btn-outline-secondary btn-circle btn-circle-sm m-1 mt-2 mr-2" data-toggle="collapse" data-target="#collapseSearch"
+       aria-controls="collapseSearch">
+        <i class="fas fa-search fa-lg"></i>
+      </button>
+      <div class="collapse show my-2" id="collapseSearch">
+        <div class="search">
+          <%= form_with url: users_path, :method => 'get', local: true, class: "form-inline" do |f| %>
+            <%= f.search_field :search, class: "form-control pr-3", placeholder: "検索" %>
+            <%= f.submit '検索', name: nil, class: "btn btn-outline-secondary d-none" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <h4 class="text-center mt-2" style="font-family: Hiragino Maru Gothic Pro">ユーザー一覧</h4>
     <ol class="scroll-list jscroll">
       <%= render @users %>
     <%= paginate @users %>

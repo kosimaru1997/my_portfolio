@@ -3,7 +3,11 @@ class Public::UsersController < ApplicationController
   before_action :same_user!, only: [:edit, :update, :destroy]
 
   def index
-    @users = User.all.page(params[:page]).reverse_order
+    if params[:search].present?
+      @users = User.search(params[:search]).page(params[:page]).reverse_order
+    else
+      @users = User.all.page(params[:page]).reverse_order
+    end
     @login_user = User.includes(:following).find(current_user.id)
   end
 
@@ -17,8 +21,15 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    current_user.update(user_params)
-    redirect_to user_path(current_user)
+    if current_user.update(user_params)
+      redirect_to user_path(current_user)
+    else
+      render action: "edit"
+    end
+  end
+
+  def confirm
+    @user = User.find(params[:id])
   end
 
   def destroy
@@ -27,25 +38,24 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
-#ユーザー詳細画面から、Ajaxによりユーザーがフォローしているユーザーを表示
+#ユーザー詳細画面から、ユーザーがフォローしているユーザーを表示
   def following
     @follow = "follow" #cssスタイルを渡すための記述
     @user = User.find(params[:id])
     @users = @user.following.page(params[:page]).reverse_order
     @login_user = User.includes(:following).find(current_user.id)
-    render "follow"
   end
 
-#ユーザー詳細画面から、Ajaxによりユーザーにフォローされているユーザーを表示
+#ユーザー詳細画面から、ユーザーにフォローされているユーザーを表示
   def followers
     @follower = "follower" #CSSスタイルを渡すための
     @user = User.find(params[:id])
     @users = @user.followers.page(params[:page]).reverse_order
     @login_user = User.includes(:following).find(current_user.id)
-    render "follow"
+    render "following"
   end
 
-#ユーザー詳細画面から、Ajaxによりユーザーがいいねしているポストを表示
+#ユーザー詳細画面から、ユーザーがいいねしているポストを表示
   def favorites
     @user = User.find(params[:id])
     @posts = @user.favorites_posts.includes(:user, :favorited_users).page(params[:page]).reverse_order
@@ -57,12 +67,13 @@ class Public::UsersController < ApplicationController
 
     def same_user!
       unless User.find_by(id: params[:id]) == current_user
-        redirect_to request.referer
+        flash[:danger] = "ユーザーにはアクセスする権限がありません"
+        redirect_to root_path
       end
     end
 
     def user_params
-      params.require(:user).permit(:name, :image)
+      params.require(:user).permit(:name, :image, :introduction)
     end
 
 end

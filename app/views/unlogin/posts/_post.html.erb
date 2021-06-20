@@ -1,0 +1,19 @@
+<li id="post-<%= post.id %>" class="border-bottom border-secondary background-hover mb-0">
+  <div class="post-section d-flex pt-3">
+    <%= attachment_image_tag post.user, :image, :fill, 50, 50, format: 'jpg', fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" %>
+    <div class="content ml-2">
+      <span class="user-name text-primary mr-3"><%= post.user.name %></span>
+      <span class="timestamp text-muted">
+        <%= time_ago_in_words(post.created_at) %>前
+      </span class="ml-3">
+      <% text = safe_join(post.content.split("\n"),tag(:br)) %>
+      <div><p class="post pt-2 ml-2 mb-0 text-dark text-break"><%= convert_url_into_a_tag(text).html_safe %></p></div>
+    </div>
+  </div>
+  <div class="about text-right mr-5">
+    <span class="mr-2">
+        <i class="far fa-comment mr-2 hover-grean">
+        <% if post.post_comments_count.nil? %>0<% else %><%= post.post_comments_count %><% end %></i>
+    </span>
+  </div>
+</li>

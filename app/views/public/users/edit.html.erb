@@ -1,13 +1,18 @@
 <div class="row mt-3">
 
-  <div class="col-md-8 offset-2">
+  <div class="col-md-10 mx-auto">
     <%= form_with(model: current_user, local: true) do |f| %>
-      <!--</%= render 'shared/error_messages', object: f.object %>-->
+      <%= render 'shared/errors', object: f.object %>
       <%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpg', fallback: "no_image.jpg", size:'100x100' %>
       <%= f.attachment_field :image, class: "mb-3" %> </br>
 
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :introduction %>
+      <%= f.text_area :introduction, :size=>"30x4", class: 'form-control' %>
+
+      <%= f.submit :"保存", class: "btn btn-cool-blues btn-rounded d-block mt-3" %>
 
     <% end %>
   </div>
