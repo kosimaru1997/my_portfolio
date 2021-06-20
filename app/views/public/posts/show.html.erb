@@ -5,7 +5,7 @@
         <%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpg', fallback: "no_image.jpg", size:'80x80', class: "rounded-circle" %>
         <% end %>
         <%= link_to user_path(@user) do%>
-        <span class="mx-3"><h5><%= @user.name %></h5></span>
+        <span ><h5 class="mx-3"><%= @user.name %></h5></span>
         <% end %>
         <div id="follow_<%= @user.id %>">
           <%= render partial: "public/relationships/relationship", locals:{ user: @user} %>

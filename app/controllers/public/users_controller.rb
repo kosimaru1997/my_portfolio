@@ -67,7 +67,8 @@ class Public::UsersController < ApplicationController
 
     def same_user!
       unless User.find_by(id: params[:id]) == current_user
-        redirect_to request.referer
+        flash[:danger] = "ユーザーにはアクセスする権限がありません"
+        redirect_to root_path
       end
     end
 

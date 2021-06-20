@@ -26,6 +26,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    @login_user = current_user
     @post_comment = PostComment.new
     @post_comment_count = @post.only_comment_count
     @post_comments = @post.post_comments.includes(:user).where(parent_id: nil).page(params[:page]).per(10).reverse_order
@@ -42,7 +43,8 @@ class Public::PostsController < ApplicationController
 
     def same_user!
       unless Post.find_by(id: params[:id]).user == current_user
-        redirect_to request.referer
+        flash[:danger] = "ユーザーにはアクセスする権限がありません"
+        redirect_to root_path
       end
     end
 
