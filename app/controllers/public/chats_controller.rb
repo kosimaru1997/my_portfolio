@@ -1,5 +1,5 @@
 class Public::ChatsController < ApplicationController
- 
+ before_action :authenticate_user!
 #下記コメントアウトはエラーが発生した時のために、一時的に保存しておきます。
   # def index
   #   my_rooms = current_user.user_rooms.select(:room_id)

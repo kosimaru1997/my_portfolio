@@ -49,6 +49,11 @@ class User < ApplicationRecord
   def remove_favorite(post)
     favorites.find_by(post_id: post.id).destroy
   end
+  
+  #いいね済みか
+  def favorited?(post)
+    favorites.pluck(:post_id).include?(post.id)
+  end
 
   #フォローする
   def follow(other_user)
@@ -62,7 +67,7 @@ class User < ApplicationRecord
 
   #フォロー済みか確認
   def following?(other_user)
-    following.include?(other_user)
+    active_relationships.pluck(:followed_id).include?(other_user.id)
   end
 
   #フォロー済みユーザーのポストを取得

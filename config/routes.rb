@@ -17,12 +17,11 @@ Rails.application.routes.draw do
 #ーーーーーーーーーーーーーーーーーー
 
 #ーーーーーー未ログイン時ーーーーーー
-   devise_scope :user do
-      unauthenticated :user do
-        root :to => 'users/registrations#new', as: :unauthenticated_root
-      end
+ devise_scope :user do
+    unauthenticated :user do
+      root :to => 'users/registrations#new', as: :unauthenticated_root
     end
-
+  end
   namespace :unlogin do
     resources :users, only: [:index]
     resources :posts, only: [:index]

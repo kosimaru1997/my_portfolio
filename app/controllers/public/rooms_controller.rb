@@ -1,10 +1,10 @@
 class Public::RoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :room_user!, only: [:show]
+  before_action :same_room_user!, only: [:show]
 
   def index
     my_rooms_ids = current_user.user_rooms.select(:room_id)
-    @rooms = UserRoom.includes(:chats, :user).where(room_id: my_rooms_ids).where.not(user_id: current_user.id).reverse_order
+    @user_rooms = UserRoom.includes(:chats, :user).where(room_id: my_rooms_ids).where.not(user_id: current_user.id).reverse_order
   end
 
   def create
@@ -31,10 +31,11 @@ class Public::RoomsController < ApplicationController
 
   private
 
-   def room_user!
+   def same_room_user!
      unless Room.find(params[:id]).users.include?(current_user)
        flash[:danger] = "ユーザーにはアクセスする権限がありません"
        redirect_to root_path
      end
    end
+
 end
