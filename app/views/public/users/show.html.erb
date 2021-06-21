@@ -8,25 +8,31 @@
           <%= render partial: "public/relationships/relationship", locals:{ user: @user} %>
         </div>
       </div>
+      <div class="introduction">
+        <% if @user.introduction.present? %>
+          <% text = safe_join(@user.introduction.split("\n"),tag(:br)) %>
+          <%= convert_url_into_a_tag(text).html_safe %>
+        <% end %>
+      </div>
       <div class="my-2 border-bottom border-secondary">
         <%= link_to "ポスト", user_path(@user), class: "mr-1" %>
         <%= link_to "いいね", favorites_user_path(@user), class: "mr-2" %>
         <span id="following-count"><%= @user.following.count %> </span>
-        <%= link_to "フォロー中", following_user_path(@user), remote: true, class: "mr-3" %>
+        <%= link_to "フォロー中", following_user_path(@user), class: "mr-3" %>
         <span id="following-count"><%= @user.followers.count %> </span>
-        <%= link_to "フォロワー", followers_user_path(@user), remote: true %>
+        <%= link_to "フォロワー", followers_user_path(@user) %>
       </div>
       <% if current_user == @user %>
         <div class="edit mt-3">
           <%= link_to edit_user_path(current_user) do %>
             <buttun class="btn btn-outline-info mr-3">編集する</buttun>
           <% end %>
-          <%= link_to user_path, method: :delete, data: {confirm: "本当に退会してもよろしいですか？"} do %>
+          <%= link_to user_confirm_path do %>
             <buttun class="btn btn-outline-danger">退会する</buttun>
           <% end %>
         </div>
       <% else %>
-        <%= link_to 'chatを始める', user_chats_path(@user.id)%>
+        <%= link_to 'chatを始める', rooms_path(user_id: @user), method: :post %>
       <% end %>
     </div>
   </div>

@@ -9,11 +9,6 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
 
-  #favorite済みか確認
-  def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
-  end
-
   #リプライを除くコメント数を取得
   def only_comment_count
     post_comments.where(parent_id: nil).size

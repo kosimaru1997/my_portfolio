@@ -11,13 +11,13 @@ class Public::RelationshipsController < ApplicationController
       logger.error e.backtrace.join("\n")
     end
     #フォロー完了後のログインユーザーのフォロー情報を取得し条件分岐で使用。
-    @login_user = User.includes(:following).find(current_user.id)
+    @login_user = current_user
   end
 
   def destroy
     @user = User.find(params[:user_id])
     current_user.unfollow(@user)
-    @login_user = User.includes(:following).find(current_user.id)
+    @login_user = current_user
   end
 
 end

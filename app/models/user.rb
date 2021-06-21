@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
+  validates :introduction, length: { maximum: 100 }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   has_many :posts, dependent: :destroy
@@ -31,6 +32,11 @@ class User < ApplicationRecord
   has_many :repost_posts, through: :reposts, source: :post
   attachment :image
 
+  # 退会後のログインを禁止(deviseメソッド)
+  def active_for_authentication?
+    super && (self.activated == true)
+  end
+
 #ユーザー検索
   def self.search(search)
     User.where(['name LIKE ?', "%#{search}%"])
@@ -46,6 +52,11 @@ class User < ApplicationRecord
     favorites.find_by(post_id: post.id).destroy
   end
 
+  #いいね済みか確認
+  def favorited?(post)
+    favorites.pluck(:post_id).include?(post.id)
+  end
+
   #フォローする
   def follow(other_user)
     following << other_user
@@ -58,7 +69,7 @@ class User < ApplicationRecord
 
   #フォロー済みか確認
   def following?(other_user)
-    following.include?(other_user)
+    active_relationships.pluck(:followed_id).include?(other_user.id)
   end
 
   #リポスト
@@ -83,20 +94,23 @@ class User < ApplicationRecord
                  OR user_id = :user_id", following_ids: following_ids, user_id: id)
   end
 
-  def with
-    following_ids = self.following.select(:id)
-    Post.left_joins(:reposts).where(reposts: {user_id: following_ids})
-
+  def followings_posts_with_reposts
+    relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND (reposts.user_id = #{self.id}
+    OR reposts.user_id IN (#{self.active_relationships.pluck(:followed_id)}))")
+                   .select("posts.*, reposts.user_id AS repost_user_id, (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name")
+    relation.where(user_id: self.active_relationships.pluck(:followed_id))
+            .or(relation.where(id: Repost.where(user_id: self.active_relationships.pluck(:followed_id)).distinct.pluck(:post_id)))
+            .where("NOT EXISTS(SELECT 1 FROM reposts sub WHERE reposts.post_id = sub.post_id AND reposts.created_at < sub.created_at)")
+            .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
   end
 
-
-  def zenbu
-    follow_user_ids = self.following.select(:id)
-      repost_ids = Repost.where("user_id IN (:follow_user_ids) OR user_id = :user_id",
-                                 follow_user_ids: follow_user_ids, user_id: self.id).select(:post_id)
-      Post.where("id IN (:repost_ids) OR user_id IN (:follow_user_ids) OR user_id = :user_id",
-                  repost_ids: repost_ids, follow_user_ids: follow_user_ids, user_id: self.id)
-  end
+  # def zenbu
+  #   follow_user_ids = self.following.select(:id)
+  #     repost_ids = Repost.where("user_id IN (:follow_user_ids) OR user_id = :user_id",
+  #                               follow_user_ids: follow_user_ids, user_id: self.id).select(:post_id)
+  #     Post.where("id IN (:repost_ids) OR user_id IN (:follow_user_ids) OR user_id = :user_id",
+  #                 repost_ids: repost_ids, follow_user_ids: follow_user_ids, user_id: self.id)
+  # end
 
   #フォロー時の通知を作成
   def create_notification_follow!(current_user)
@@ -120,18 +134,6 @@ class User < ApplicationRecord
     Chat.where(user_id: other_user_ids, room_id: my_rooms_ids).where.not(checked: true).any?
   end
 
-
-  def posts_with_reposts
-  relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND reposts.user_id = #{self.id}")
-                 .select("posts.*, reposts.user_id, (SELECT name FROM users WHERE id = reposts.user_id) AS repost_user_name")
-  relation.where(user_id: self.id)
-          .or(relation.where("reposts.user_id = ?", self.id))
-          .preload(:user, :reposts)
-          .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
-  end
-
-# Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND reposts.user_id IN(1,2,3)")
-# User.first.following.pluck(:id)
 
   def followings_with_userself
     User.where(id: self.following.pluck(:id)).or(User.where(id: self.id))

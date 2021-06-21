@@ -7,4 +7,10 @@ class PostComment < ApplicationRecord
 
   validates :user_id, presence: true
   validates :comment, presence: true, length: { maximum: 140 }
+
+#コメント検索
+  def self.search(search)
+    PostComment.where(['comment LIKE ?', "%#{search}%"])
+  end
+
 end

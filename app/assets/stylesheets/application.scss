@@ -323,7 +323,7 @@ footer {
 
 .incoming_msg_img {
   display: inline-block;
-  width: 6%;
+  // width: 6%;
 }
 .received_msg {
   margin-top: 15px;
@@ -421,6 +421,10 @@ footer {
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.1rem rgba(0,0,0,0.2);
+}
+
+.chat-min-heiht {
+  min-height: 30px;
 }
 // ーーーーーーーーーーーーーーーーー
 

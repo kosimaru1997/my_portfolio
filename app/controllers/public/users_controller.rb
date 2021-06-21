@@ -8,21 +8,28 @@ class Public::UsersController < ApplicationController
     else
       @users = User.all.page(params[:page]).reverse_order
     end
-    @login_user = User.includes(:following).find(current_user.id)
+    @login_user = User.includes(:active_relationships).find(current_user.id)
   end
 
   def show
     @user = User.find(params[:id])
-    @login_user = User.includes(:following).find(current_user.id) unless @user == current_user
-    @posts = @user.posts.includes(:favorited_users).page(params[:page]).reverse_order
+    @login_user = User.includes(:favorites).find(current_user.id)
+    @posts = @user.posts.page(params[:page]).reverse_order
   end
 
   def edit
   end
 
   def update
-    current_user.update(user_params)
-    redirect_to user_path(current_user)
+    if current_user.update(user_params)
+      redirect_to user_path(current_user)
+    else
+      render action: "edit"
+    end
+  end
+
+  def confirm
+    @user = User.find(params[:id])
   end
 
   def destroy
@@ -31,29 +38,28 @@ class Public::UsersController < ApplicationController
     redirect_to root_path
   end
 
-#ユーザー詳細画面から、Ajaxによりユーザーがフォローしているユーザーを表示
+#ユーザー詳細画面から、ユーザーがフォローしているユーザーを表示
   def following
     @follow = "follow" #cssスタイルを渡すための記述
     @user = User.find(params[:id])
     @users = @user.following.page(params[:page]).reverse_order
-    @login_user = User.includes(:following).find(current_user.id)
-    render "follow"
+    @login_user = current_user
   end
 
-#ユーザー詳細画面から、Ajaxによりユーザーにフォローされているユーザーを表示
+#ユーザー詳細画面から、ユーザーにフォローされているユーザーを表示
   def followers
     @follower = "follower" #CSSスタイルを渡すための
     @user = User.find(params[:id])
     @users = @user.followers.page(params[:page]).reverse_order
-    @login_user = User.includes(:following).find(current_user.id)
-    render "follow"
+    @login_user = current_user
+    render "following"
   end
 
-#ユーザー詳細画面から、Ajaxによりユーザーがいいねしているポストを表示
+#ユーザー詳細画面から、ユーザーがいいねしているポストを表示
   def favorites
     @user = User.find(params[:id])
-    @posts = @user.favorites_posts.includes(:user, :favorited_users).page(params[:page]).reverse_order
-    @login_user = User.includes(:following).find(current_user.id) unless @user == current_user
+    @posts = @user.favorites_posts.includes(:user).page(params[:page]).reverse_order
+    @login_user = User.includes(:favorites).find(current_user.id)
     render "show"
   end
 
@@ -61,12 +67,13 @@ class Public::UsersController < ApplicationController
 
     def same_user!
       unless User.find_by(id: params[:id]) == current_user
-        redirect_to request.referer
+        flash[:danger] = "ユーザーにはアクセスする権限がありません"
+        redirect_to root_path
       end
     end
 
     def user_params
-      params.require(:user).permit(:name, :image)
+      params.require(:user).permit(:name, :image, :introduction)
     end
 
 end

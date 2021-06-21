@@ -2,27 +2,46 @@
   <div class="container-fulid">
     <div class="row">
       <div class="col-md-10 col-lg-8 mx-auto d-flex align-items-center justify-content-between" style="height: 60px;">
+      <% if admin_signed_in? %>
+        <%= link_to admin_root_path, class: 'nav-link text-dark' do %>
+          <i class="fas fa-home fa-lg fa-backcolor"></i>
+        <% end %>
+        <%= link_to admin_posts_path, class: 'nav-link text-dark' do %>
+          <i class="fas fa-comments fa-lg fa-backcolor"></i>
+        <% end %>
+        <%= link_to admin_post_comments_path, class: 'nav-link text-dark' do %>
+          <i type="button" class="fas fa-comment fa-lg fa-backcolor"></i>
+        <% end %>
+      <% else %>
         <%= link_to root_path, class: 'nav-link text-dark' do %>
           <i class="fas fa-home fa-lg fa-backcolor"></i>
         <% end %>
         <% if user_signed_in? %>
-        <%= link_to posts_path, class: 'nav-link text-dark' do %>
-          <i class="fas fa-comments fa-lg fa-backcolor"></i>
-        <% end %>
+          <%= link_to posts_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-comments fa-lg fa-backcolor"></i>
+          <% end %>
           <%= link_to notifications_path, class: 'nav-link text-dark notice' do %>
             <i class="far fa-bell fa-lg.fa-stack-2x fa-backcolor" style="font-size: 1.5em;" ></i>
             <% if current_user.unchecked_notifications? %>
               <i class="fa fa-circle fa-xs n-circle" style="color: blue;"></i>
             <% end %>
           <% end %>
-          <%= link_to chats_path, class: 'nav-link text-dark chat-notice' do %>
+          <%= link_to rooms_path, class: 'nav-link text-dark chat-notice' do %>
             <i class="far fa-envelope fa-lg.fa-stack-2x fa-backcolor" style="font-size: 1.5em;"></i>
             <% if current_user.unchecked_chats? %>
               <i class="fa fa-circle fa-xs n-circle-chat" style="color: blue;"></i>
             <% end %>
           <% end %>
+        <% else %>
+          <%= link_to unlogin_posts_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-comments fa-lg fa-backcolor"></i>
+          <% end %>
+          <%= link_to unlogin_users_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-users fa-lg fa-backcolor"></i>
+          <% end %>
         <% end %>
-       </div>
+      <% end %>
+      </div>
     </div>
   </div>
 </footer>

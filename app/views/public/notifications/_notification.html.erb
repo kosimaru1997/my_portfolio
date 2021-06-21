@@ -28,7 +28,7 @@
             <strong><%= notification.post.user.name %></strong><% end %>さんの投稿
           </span>
         <% end %>
-          <% if notification.post_comment.parent_id.nil? %>
+          <% if notification.post_comment.parent_id.present? %>
             <span>にリプライしました</span>
           <% else %>
             <span>にコメントしました</span>

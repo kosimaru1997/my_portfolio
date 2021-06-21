@@ -1,0 +1,5 @@
+<% if user.activated == true %>
+  <%= link_to "アカウントの凍結", admin_user_down_path(user), method: :delete, class: "text-danger" %>
+<% else %>
+  <%= link_to "凍結済みのアカウント", admin_user_up_path(user), method: :post, class: "" %>
+<% end %>
