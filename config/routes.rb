@@ -37,12 +37,11 @@ Rails.application.routes.draw do
     authenticated :user do
       root to: 'homes#top'
     end
-    get 'chats/index' => 'chats#index', as: 'chats'
     get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'
     resources :rooms, only: [:create, :index, :show]
     resources :users, except: [:new] do
       resource :relationships, only: [:create, :destroy]
-      resource :chats, only: [:show, :create]
+      resource :chats, only: [:create]
       get :following, on: :member
       get :followers, on: :member
       get :favorites, on: :member

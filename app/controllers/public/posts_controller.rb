@@ -7,6 +7,7 @@ class Public::PostsController < ApplicationController
     unless @post.save
       render "shared/error"
     end
+    @login_user = current_user
   end
 
   def destroy
