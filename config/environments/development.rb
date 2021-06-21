@@ -69,6 +69,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+
   config.after_initialize do
     Bullet.enable = true #Bullet gemを有効
     Bullet.alert = true #ブラウザにJavaScriptアラートをポップアップ
@@ -78,4 +79,5 @@ Rails.application.configure do
     # Bullet.add_whitelist :type => :unused_eager_loading, :class_name => "User", :association => :active_relationships
     # Bullet.add_whitelist :type => :unused_eager_loading, :class_name => "Post", :association => :favorites
   end
+
 end
