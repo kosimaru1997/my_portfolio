@@ -17,12 +17,11 @@ Rails.application.routes.draw do
 #ーーーーーーーーーーーーーーーーーー
 
 #ーーーーーー未ログイン時ーーーーーー
-   devise_scope :user do
-      unauthenticated :user do
-        root :to => 'users/registrations#new', as: :unauthenticated_root
-      end
+ devise_scope :user do
+    unauthenticated :user do
+      root :to => 'users/registrations#new', as: :unauthenticated_root
     end
-
+  end
   namespace :unlogin do
     resources :users, only: [:index]
     resources :posts, only: [:index]
@@ -40,6 +39,7 @@ Rails.application.routes.draw do
     end
     get 'chats/index' => 'chats#index', as: 'chats'
     get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'
+    resources :rooms, only: [:create, :index, :show]
     resources :users, except: [:new] do
       resource :relationships, only: [:create, :destroy]
       resource :chats, only: [:show, :create]

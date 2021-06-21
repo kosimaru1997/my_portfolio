@@ -25,17 +25,19 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
   end
 
   create_table "chats", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "room_id"
-    t.string "message"
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
+    t.string "message", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_chats_on_room_id"
+    t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_favorites_on_post_id"
@@ -59,9 +61,9 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
   end
 
   create_table "post_comments", force: :cascade do |t|
-    t.text "comment"
-    t.integer "user_id"
-    t.integer "post_id"
+    t.text "comment", null: false
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "parent_id"
@@ -73,7 +75,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content", null: false
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.integer "post_comments_count"
     t.integer "favorites_count"
     t.datetime "created_at", null: false
@@ -83,8 +85,8 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
@@ -98,8 +100,8 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
   end
 
   create_table "user_rooms", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "room_id"
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_user_rooms_on_room_id"
