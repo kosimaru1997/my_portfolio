@@ -2,6 +2,7 @@ class Public::RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :same_room_user!, only: [:show]
 
+#取得している情報はUserRoomsだが、実質Roomのother_userとのリレーションを取得しているためRoomのindexに記述
   def index
     my_rooms_ids = current_user.user_rooms.select(:room_id)
     @user_rooms = UserRoom.includes(:chats, :user).where(room_id: my_rooms_ids).where.not(user_id: current_user.id).reverse_order

@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_06_17_160307) do
 
-  create_table "admins", force: :cascade do |t|
+  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "chats", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "room_id", null: false
+  create_table "chats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
     t.string "message", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
-  create_table "favorites", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
+  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_favorites_on_post_id"
@@ -45,11 +45,11 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "notifications", force: :cascade do |t|
-    t.integer "visitor_id", null: false
-    t.integer "visited_id", null: false
-    t.integer "post_id"
-    t.integer "post_comment_id"
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "visitor_id", null: false
+    t.bigint "visited_id", null: false
+    t.bigint "post_id"
+    t.bigint "post_comment_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
@@ -60,22 +60,22 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
-  create_table "post_comments", force: :cascade do |t|
+  create_table "post_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "comment", null: false
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "parent_id"
+    t.bigint "parent_id"
     t.integer "post_comments_count"
     t.index ["parent_id"], name: "index_post_comments_on_parent_id"
     t.index ["post_id"], name: "index_post_comments_on_post_id"
     t.index ["user_id"], name: "index_post_comments_on_user_id"
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "content", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.integer "post_comments_count"
     t.integer "favorites_count"
     t.datetime "created_at", null: false
@@ -84,9 +84,9 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id", null: false
-    t.integer "followed_id", null: false
+  create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "follower_id", null: false
+    t.bigint "followed_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
@@ -94,14 +94,14 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "rooms", force: :cascade do |t|
+  create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_rooms", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "room_id", null: false
+  create_table "user_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_user_rooms_on_room_id"
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.index ["user_id"], name: "index_user_rooms_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -126,4 +126,20 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "chats", "rooms"
+  add_foreign_key "chats", "users"
+  add_foreign_key "favorites", "posts"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "notifications", "post_comments"
+  add_foreign_key "notifications", "posts"
+  add_foreign_key "notifications", "users", column: "visited_id"
+  add_foreign_key "notifications", "users", column: "visitor_id"
+  add_foreign_key "post_comments", "post_comments", column: "parent_id"
+  add_foreign_key "post_comments", "posts"
+  add_foreign_key "post_comments", "users"
+  add_foreign_key "posts", "users"
+  add_foreign_key "relationships", "users", column: "followed_id"
+  add_foreign_key "relationships", "users", column: "follower_id"
+  add_foreign_key "user_rooms", "rooms"
+  add_foreign_key "user_rooms", "users"
 end

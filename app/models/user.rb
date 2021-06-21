@@ -50,7 +50,7 @@ class User < ApplicationRecord
     favorites.find_by(post_id: post.id).destroy
   end
   
-  #いいね済みか
+  #いいね済みか確認
   def favorited?(post)
     favorites.pluck(:post_id).include?(post.id)
   end
