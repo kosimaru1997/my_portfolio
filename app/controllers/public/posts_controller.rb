@@ -7,6 +7,7 @@ class Public::PostsController < ApplicationController
     unless @post.save
       render "shared/error"
     end
+    @login_user = current_user
   end
 
   def destroy
@@ -18,9 +19,11 @@ class Public::PostsController < ApplicationController
   def index
     @post = current_user.posts.build
     if params[:search].present?
-      return  @posts = Post.search(params[:search]).includes(:user, :favorited_users).page(params[:page]).reverse_order
+      @posts = Post.search(params[:search]).includes(:user).page(params[:page]).reverse_order
+    else
+      @posts = Post.all.includes(:user).page(params[:page]).reverse_order
     end
-    @posts = Post.all.includes(:user, :favorited_users).page(params[:page]).reverse_order
+    @login_user = User.includes(:favorites).find(current_user.id)
   end
 
   def show
@@ -35,8 +38,8 @@ class Public::PostsController < ApplicationController
 #投稿に対していいねしたユーザーの一覧を取得、モーダルで(format js)"posts/_favorited_users"を表示。
   def favorited
     @post = Post.find(params[:id])
-    @users = @post.favorited_users.page(params[:page]).reverse_order
-    @login_user = User.includes(:following).find(current_user.id)
+    @users = @post.favorited_users.reverse_order
+    @login_user = User.includes(:active_relationships).find(current_user.id)
   end
 
   private

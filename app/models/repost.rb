@@ -1,4 +1,4 @@
-class Favorite < ApplicationRecord
+class Repost < ApplicationRecord
   belongs_to :user
   belongs_to :post
   counter_culture :post

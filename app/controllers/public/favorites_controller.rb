@@ -10,12 +10,15 @@ class Public::FavoritesController < ApplicationController
         logger.error e.backtrace.join("\n")
       end
     end
+    @post.reload
+    @login_user = User.includes(:favorites).find(current_user.id)
   end
 
   def destroy
     @post = Post.find(params[:post_id])
     current_user.remove_favorite(@post)
     @post.reload
+    @login_user = User.includes(:favorites).find(current_user.id)
   end
 
 end

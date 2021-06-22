@@ -23,7 +23,7 @@
         <%= link_to "フォロワー", followers_user_path(@user) %>
       </div>
       <% if current_user == @user %>
-        <div class="edit mt-3">
+        <div class="edit my-3">
           <%= link_to edit_user_path(current_user) do %>
             <buttun class="btn btn-outline-info mr-3">編集する</buttun>
           <% end %>
@@ -32,7 +32,7 @@
           <% end %>
         </div>
       <% else %>
-        <%= link_to 'chatを始める', user_chats_path(@user.id)%>
+        <%= link_to 'chatを始める', rooms_path(user_id: @user), method: :post %>
       <% end %>
     </div>
   </div>
@@ -40,7 +40,11 @@
 
   <div class="col-lg-7" id="user-detail">
     <div class="scroll-list jscroll" id="user-about">
-      <%= render @posts %>
+      <% unless @favorites_posts == true %>
+        <%= render "public/posts/post_with_reposts" %>
+      <% else %>
+        <% render @posts %>
+      <% end %>
       <%= paginate @posts %>
     </div>
   </div>

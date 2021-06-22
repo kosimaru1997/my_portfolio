@@ -12,20 +12,21 @@
         <span class="post-delete ml-3"><%= link_to "削除", post_path(post), method: :delete, data: {confirm: "本当に削除しますか？"} %></span>
       <% end %>
       <%= link_to post_path(post), class: "text-dark" do %>
-          <% text = safe_join(post.content.split("\n"),tag(:br)) %>
-          <div><p class="post pt-2 ml-2 mb-0 text-dark text-break"><%= convert_url_into_a_tag(text).html_safe %></p></div>
+          <div><p class="post pt-2 ml-2 mb-0 text-dark text-break"><%= safe_join(post.content.split("\n"),tag(:br)).html_safe %></p></div>
       <% end %>
     </div>
   </div>
   <div class="about text-right mr-5">
     <span class="mr-2">
       <%= link_to post_path(post), class: "hover-grean" do %>
-        <i class="far fa-comment mr-2">
-          <% if post.post_comments_count.nil? %>0<% else %><%= post.post_comments_count %><% end %></i>
+        <i class="far fa-comment mr-2"><%= post.post_comments_count %></i>
       <% end %>
     </span>
-      <span id="favorites_<%= post.id %>">
-        <%= render partial: "public/favorites/favorite", locals:{ post: post} %>
-      </span>
+    <span class="mr-2" id="reposts_<%= post.id %>">
+      <%= render partial: "public/reposts/repost", locals:{ post: post} %>
+    </span>
+    <span id="favorites_<%= post.id %>">
+      <%= render partial: "public/favorites/favorite", locals:{ post: post} %>
+    </span>
   </div>
 </li>

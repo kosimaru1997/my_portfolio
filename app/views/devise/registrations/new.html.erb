@@ -28,10 +28,10 @@
   </div>
 </div>
 
-    <!--  </% to = Time.current.at_beginning_of_day #１週間の投稿をランダムに並び替え-->
-    <!--     from = (to - 6.day).at_end_of_day-->
-    <!--     weekly_post = Post.includes(:user).where(created_at: from...to).shuffle-->
-    <!--     @posts = weekly_post.first(5) %>-->
+      <% to = Time.current.at_beginning_of_day #１週間の投稿をランダムに並び替え
+         from = (to - 6.day).at_end_of_day
+         weekly_post = Post.includes(:user).where(created_at: from...to).shuffle
+         @posts = weekly_post.first(5) %>
 
 
     <div class="border p-3">

@@ -17,12 +17,11 @@ Rails.application.routes.draw do
 #ーーーーーーーーーーーーーーーーーー
 
 #ーーーーーー未ログイン時ーーーーーー
-   devise_scope :user do
-      unauthenticated :user do
-        root :to => 'users/registrations#new', as: :unauthenticated_root
-      end
+ devise_scope :user do
+    unauthenticated :user do
+      root :to => 'users/registrations#new', as: :unauthenticated_root
     end
-
+  end
   namespace :unlogin do
     resources :users, only: [:index]
     resources :posts, only: [:index]
@@ -38,18 +37,20 @@ Rails.application.routes.draw do
     authenticated :user do
       root to: 'homes#top'
     end
-    get 'chats/index' => 'chats#index', as: 'chats'
     get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'
+    resources :rooms, only: [:create, :index, :show]
     resources :users, except: [:new] do
       resource :relationships, only: [:create, :destroy]
-      resource :chats, only: [:show, :create]
+      resource :chats, only: [:create]
       get :following, on: :member
       get :followers, on: :member
       get :favorites, on: :member
     end
     resources :posts, except: [:edit, :new] do
       resource :favorites, only: [:create, :destroy]
-      resources :post_comments, only: [:create, :destroy, :show] #showはAjaxによりリプライ一覧を表示するために使用
+      resources :post_comments, only: [:create, :destroy, :show]
+      resource :reposts, only: [:create, :destroy]
+
       get :favorited, on: :member
     end
     resources :notifications, only: [:index, :destroy]
