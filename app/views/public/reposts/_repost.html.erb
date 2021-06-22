@@ -1,0 +1,16 @@
+<% if @login_user.reposted?(post) %>
+  <%= link_to post_reposts_path(post), method: :delete, remote: :true do %>
+  <span class="reposted-coler" style="font-family: 'Font Awesome 5 Free';">
+    <i class="fas fa-retweet"></i>
+    <%= post.reposts_count %>
+  </span>
+  <% end %>
+
+<% else %>
+  <%= link_to post_reposts_path(post), method: :post, remote: :true do %>
+  <span class="reposted" style="font-family: 'Font Awesome 5 Free';">
+    <i class="fas fa-retweet"></i>
+    <%= post.reposts_count %>
+  </span>
+  <% end %>
+<% end %>

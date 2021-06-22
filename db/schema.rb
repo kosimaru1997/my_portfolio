@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "parent_id"
-    t.integer "post_comments_count"
+    t.integer "post_comments_count", default: 0, null: false
     t.index ["parent_id"], name: "index_post_comments_on_parent_id"
     t.index ["post_id"], name: "index_post_comments_on_post_id"
     t.index ["user_id"], name: "index_post_comments_on_user_id"
@@ -76,8 +76,9 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "content", null: false
     t.bigint "user_id", null: false
-    t.integer "post_comments_count"
-    t.integer "favorites_count"
+    t.integer "post_comments_count", default: 0, null: false
+    t.integer "favorites_count", default: 0, null: false
+    t.integer "reposts_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
@@ -92,6 +93,16 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "reposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_reposts_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_reposts_on_user_id_and_post_id", unique: true
+    t.index ["user_id"], name: "index_reposts_on_user_id"
   end
 
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -140,6 +151,8 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
   add_foreign_key "posts", "users"
   add_foreign_key "relationships", "users", column: "followed_id"
   add_foreign_key "relationships", "users", column: "follower_id"
+  add_foreign_key "reposts", "posts"
+  add_foreign_key "reposts", "users"
   add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"
 end

@@ -11,7 +11,7 @@
     <%= link_to post_post_comment_path(@post, post_comment), remote: :true, class: "hover-grean" do %>
       <i type="button" class="far fa-comment mr-3">
         <span class="ml-1" id="post_comment_count<%= post_comment.id %>">
-          <% if post_comment.post_comments_count.nil? %>0<% end %><%= post_comment.post_comments_count %>
+          <%= post_comment.post_comments_count %>
         </span>
       </i>
     <% end %>

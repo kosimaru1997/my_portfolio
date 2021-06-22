@@ -1,4 +1,11 @@
-<li id="post-<%= post.id %>" class="border-bottom border-secondary background-hover mb-0">
+<% @posts.each do |post| %>
+  <li id="post-<%= post.id %>" class="border-bottom border-secondary background-hover mb-0">
+    <% if post.repost_user_id.present? %>
+      <span class="text-secondary">
+        <i class="fas fa-retweet"></i>
+        <%= link_to post.repost_user_name, user_path(post.repost_user_id), class: "text-reposted" %>さんがリポストしました
+      </span>
+    <% end %>
   <div class="post-section d-flex pt-3">
     <%= link_to user_path(post.user) do %>
       <%= attachment_image_tag post.user, :image, :fill, 50, 50, format: 'jpg', fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" %>
@@ -19,7 +26,8 @@
   <div class="about text-right mr-5">
     <span class="mr-2">
       <%= link_to post_path(post), class: "hover-grean" do %>
-        <i class="far fa-comment mr-2"><%= post.post_comments_count %></i>
+        <i class="far fa-comment mr-2">
+          <% if post.post_comments_count.nil? %>0<% else %><%= post.post_comments_count %><% end %></i>
       <% end %>
     </span>
     <span class="mr-2" id="reposts_<%= post.id %>">
@@ -29,4 +37,5 @@
       <%= render partial: "public/favorites/favorite", locals:{ post: post} %>
     </span>
   </div>
-</li>
+  </li>
+<% end %>

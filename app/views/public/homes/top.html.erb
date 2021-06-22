@@ -23,7 +23,7 @@
           </div>
         </div>
         <ol class="posts scroll-list jscroll" id="post-all">
-          <%= render @posts %>
+          <%= render "public/posts/post_with_reposts" %>
           <%= paginate @posts %>
         </ol>
       </div>

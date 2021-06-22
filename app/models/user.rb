@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 30 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
@@ -28,6 +28,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  has_many :reposts, dependent: :destroy
+  has_many :repost_posts, through: :reposts, source: :post
   attachment :image
 
   # 退会後のログインを禁止(deviseメソッド)
@@ -49,7 +51,7 @@ class User < ApplicationRecord
   def remove_favorite(post)
     favorites.find_by(post_id: post.id).destroy
   end
-  
+
   #いいね済みか確認
   def favorited?(post)
     favorites.pluck(:post_id).include?(post.id)
@@ -70,12 +72,60 @@ class User < ApplicationRecord
     active_relationships.pluck(:followed_id).include?(other_user.id)
   end
 
-  #フォロー済みユーザーのポストを取得
-  def feed
-    following_ids = self.following.select(:id)
-    Post.where("user_id IN (:following_ids)
-                 OR user_id = :user_id", following_ids: following_ids, user_id: id)
+  #リポスト
+  def repost(post)
+    repost_posts << post
   end
+
+  #リポストを解除
+  def remove_repost(post)
+    reposts.find_by(post_id: post.id).destroy
+  end
+
+  #リポスト済みか確認
+  def reposted?(post)
+    reposts.pluck(:post_id).include?(post.id)
+  end
+
+  #フォロー済みユーザーのポストを取得
+  # def feed
+  #   following_ids = self.following.select(:id)
+  #   Post.where("user_id IN (:following_ids)
+  #               OR user_id = :user_id", following_ids: following_ids, user_id: id)
+  # end
+
+  def posts_with_reposts
+    relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND reposts.user_id = #{self.id}")
+                   .select("posts.*, reposts.user_id AS repost_user_id, (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name")
+    relation.where(user_id: self.id)
+            .or(relation.where("reposts.user_id = ?", self.id))
+            .preload(:user)
+            .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
+  end
+
+  def followings_posts_with_reposts
+    relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND (reposts.user_id = #{self.id}
+    OR reposts.user_id IN (SELECT followed_id FROM relationships WHERE follower_id = #{self.id}))")
+                   .select("posts.*, reposts.user_id AS repost_user_id, (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name")
+    relation.where(user_id: self.followings_with_userself_ids )
+            .or(relation.where(id: Repost.where(user_id: self.followings_with_userself_ids).pluck(:post_id)))
+            .where("NOT EXISTS(SELECT 1 FROM reposts sub WHERE reposts.post_id = sub.post_id AND reposts.created_at < sub.created_at)")
+            .preload(:user)
+            .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
+  end
+
+  def followings_with_userself_ids
+    ids = []
+    ids = active_relationships.pluck(:followed_id)
+    ids << id
+  end
+  # def zenbu
+  #   follow_user_ids = self.following.select(:id)
+  #     repost_ids = Repost.where("user_id IN (:follow_user_ids) OR user_id = :user_id",
+  #                               follow_user_ids: follow_user_ids, user_id: self.id).select(:post_id)
+  #     Post.where("id IN (:repost_ids) OR user_id IN (:follow_user_ids) OR user_id = :user_id",
+  #                 repost_ids: repost_ids, follow_user_ids: follow_user_ids, user_id: self.id)
+  # end
 
   #フォロー時の通知を作成
   def create_notification_follow!(current_user)

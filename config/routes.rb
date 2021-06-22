@@ -46,9 +46,11 @@ Rails.application.routes.draw do
       get :followers, on: :member
       get :favorites, on: :member
     end
-    resources :posts, except: [:edit, :new] do
+    resources :posts, except: [:edit, :update, :new] do
       resource :favorites, only: [:create, :destroy]
-      resources :post_comments, only: [:create, :destroy, :show] #showはAjaxによりリプライ一覧を表示するために使用
+      resources :post_comments, only: [:create, :destroy, :show]
+      resource :reposts, only: [:create, :destroy]
+
       get :favorited, on: :member
     end
     resources :notifications, only: [:index, :destroy]

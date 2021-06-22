@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
   has_many :notifications, dependent: :destroy
+  has_many :reposts, dependent: :destroy
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
 
@@ -26,6 +27,21 @@ class Post < ApplicationRecord
     if temp.blank?
       notification = current_user.active_notifications.new(post_id: id, visited_id: user_id, action: 'favorite')
       # 自分の投稿に対するいいねの場合は、通知済みとする
+      if notification.visitor_id == notification.visited_id
+        notification.checked = true
+      end
+      notification.save if notification.valid?
+    end
+  end
+
+  def create_notification_repost!(current_user)
+    # すでに「リポスト」されているか検索
+    # temp = Notification.where("visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite')
+      temp =  Notification.where(visitor_id: current_user.id, visited_id: user_id, action: 'repost')
+    # リポストされていない場合のみ、通知レコードを作成
+    if temp.blank?
+      notification = current_user.active_notifications.new(post_id: id, visited_id: user_id, action: 'repost')
+      # 自分の投稿に対するリポストの場合は、通知済みとする
       if notification.visitor_id == notification.visited_id
         notification.checked = true
       end
