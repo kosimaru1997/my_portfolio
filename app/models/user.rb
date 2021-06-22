@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 30 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
@@ -83,8 +83,8 @@ class User < ApplicationRecord
   end
 
   #リポスト済みか確認
-  def reposted?(post_id)
-    reposts.where(post_id: post_id).exists?
+  def reposted?(post)
+    reposts.pluck(:post_id).include?(post.id)
   end
 
   #フォロー済みユーザーのポストを取得
@@ -94,13 +94,23 @@ class User < ApplicationRecord
                  OR user_id = :user_id", following_ids: following_ids, user_id: id)
   end
 
+  def posts_with_reposts
+    relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND reposts.user_id = #{self.id}")
+                   .select("posts.*, reposts.user_id AS repost_user_id, (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name")
+    relation.where(user_id: self.id)
+            .or(relation.where("reposts.user_id = ?", self.id))
+            .preload(:user)
+            .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
+  end
+
   def followings_posts_with_reposts
     relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND (reposts.user_id = #{self.id}
-    OR reposts.user_id IN (#{self.active_relationships.pluck(:followed_id)}))")
+    OR reposts.user_id IN (SELECT followed_id FROM relationships WHERE follower_id = #{self.id}))")
                    .select("posts.*, reposts.user_id AS repost_user_id, (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name")
     relation.where(user_id: self.active_relationships.pluck(:followed_id))
             .or(relation.where(id: Repost.where(user_id: self.active_relationships.pluck(:followed_id)).distinct.pluck(:post_id)))
             .where("NOT EXISTS(SELECT 1 FROM reposts sub WHERE reposts.post_id = sub.post_id AND reposts.created_at < sub.created_at)")
+            .preload(:user)
             .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
   end
 
@@ -135,8 +145,8 @@ class User < ApplicationRecord
   end
 
 
-  def followings_with_userself
-    User.where(id: self.following.pluck(:id)).or(User.where(id: self.id))
-  end
+  # def followings_with_userself
+  #   User.where(id: self.following.pluck(:id)).or(User.where(id: self.id))
+  # end
 
 end

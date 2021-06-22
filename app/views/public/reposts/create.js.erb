@@ -1,0 +1,1 @@
+$('#reposts_<%= @post.id %>').html("<%= j(render partial: 'public/reposts/repost', locals:{ post: @post}) %>");

@@ -18,6 +18,9 @@
       <% when "favorite" then %>
         <%= link_to "あなたの投稿", post_path(notification.post), style: "font-weight: bold;" %>
         <span>にいいねしました</span>
+      <% when "repost" then %>
+        <%= link_to "あなたの投稿", post_path(notification.post), style: "font-weight: bold;" %>
+        <span>をリポストしました</span>
       <% when "comment" then %>
         <% if notification.post.user_id == visited.id %>
           <%= link_to "あなたの投稿", post_path(notification.post), style: "font-weight: bold;" %>

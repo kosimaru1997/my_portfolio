@@ -34,6 +34,21 @@ class Post < ApplicationRecord
     end
   end
 
+  def create_notification_repost!(current_user)
+    # すでに「リポスト」されているか検索
+    # temp = Notification.where("visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite')
+      temp =  Notification.where(visitor_id: current_user.id, visited_id: user_id, action: 'repost')
+    # リポストされていない場合のみ、通知レコードを作成
+    if temp.blank?
+      notification = current_user.active_notifications.new(post_id: id, visited_id: user_id, action: 'repost')
+      # 自分の投稿に対するリポストの場合は、通知済みとする
+      if notification.visitor_id == notification.visited_id
+        notification.checked = true
+      end
+      notification.save if notification.valid?
+    end
+  end
+
   def save_notification_comment!(current_user, post_comment_id, visited_id)
     # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
     notification = current_user.active_notifications.new(post_id: id, post_comment_id: post_comment_id, visited_id: visited_id, action: 'comment')

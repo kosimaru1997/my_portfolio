@@ -40,7 +40,11 @@
 
   <div class="col-lg-7" id="user-detail">
     <div class="scroll-list jscroll" id="user-about">
-      <%= render @posts %>
+      <% unless @favorites_posts == true %>
+        <%= render "public/posts/post_with_reposts" %>
+      <% else %>
+        <% render @posts %>
+      <% end %>
       <%= paginate @posts %>
     </div>
   </div>

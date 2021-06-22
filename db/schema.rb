@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "parent_id"
-    t.integer "post_comments_count"
+    t.integer "post_comments_count", default: 0, null: false
     t.index ["parent_id"], name: "index_post_comments_on_parent_id"
     t.index ["post_id"], name: "index_post_comments_on_post_id"
     t.index ["user_id"], name: "index_post_comments_on_user_id"
@@ -76,8 +76,9 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.text "content", null: false
     t.bigint "user_id", null: false
-    t.integer "post_comments_count"
-    t.integer "favorites_count"
+    t.integer "post_comments_count", default: 0, null: false
+    t.integer "favorites_count", default: 0, null: false
+    t.integer "reposts_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
@@ -100,6 +101,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_reposts_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_reposts_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_reposts_on_user_id"
   end
 

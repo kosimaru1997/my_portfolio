@@ -10,6 +10,7 @@ class Public::FavoritesController < ApplicationController
         logger.error e.backtrace.join("\n")
       end
     end
+    @post.reload
     @login_user = User.includes(:favorites).find(current_user.id)
   end
 
