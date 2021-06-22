@@ -1,11 +1,11 @@
 <% @posts.each do |post| %>
   <li id="post-<%= post.id %>" class="border-bottom border-secondary background-hover mb-0">
-      <% if post.repost_user_id.present? %>
-        <span class="text-secondary">
-          <i class="fas fa-retweet"></i>
-          <%= link_to post.repost_user_name, user_path(post.repost_user_id), class: "text-secondary" %>さんがリポストしました
-        </span>
-      <% end %>
+    <% if post.repost_user_id.present? %>
+      <span class="text-secondary">
+        <i class="fas fa-retweet"></i>
+        <%= link_to post.repost_user_name, user_path(post.repost_user_id), class: "text-reposted" %>さんがリポストしました
+      </span>
+    <% end %>
   <div class="post-section d-flex pt-3">
     <%= link_to user_path(post.user) do %>
       <%= attachment_image_tag post.user, :image, :fill, 50, 50, format: 'jpg', fallback: "no_image.jpg", size:'50x50', class: "rounded-circle" %>
@@ -19,8 +19,7 @@
         <span class="post-delete ml-3"><%= link_to "削除", post_path(post), method: :delete, data: {confirm: "本当に削除しますか？"} %></span>
       <% end %>
       <%= link_to post_path(post), class: "text-dark" do %>
-          <% text = safe_join(post.content.split("\n"),tag(:br)) %>
-          <div><p class="post pt-2 ml-2 mb-0 text-dark text-break"><%= convert_url_into_a_tag(text).html_safe %></p></div>
+          <div><p class="post pt-2 ml-2 mb-0 text-dark text-break"><%= safe_join(post.content.split("\n"),tag(:br)).html_safe %></p></div>
       <% end %>
     </div>
   </div>
@@ -38,5 +37,5 @@
       <%= render partial: "public/favorites/favorite", locals:{ post: post} %>
     </span>
   </div>
-</li>
+  </li>
 <% end %>

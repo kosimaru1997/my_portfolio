@@ -23,7 +23,7 @@
         <%= link_to "フォロワー", followers_user_path(@user) %>
       </div>
       <% if current_user == @user %>
-        <div class="edit mt-3">
+        <div class="edit my-3">
           <%= link_to edit_user_path(current_user) do %>
             <buttun class="btn btn-outline-info mr-3">編集する</buttun>
           <% end %>

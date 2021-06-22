@@ -88,11 +88,11 @@ class User < ApplicationRecord
   end
 
   #フォロー済みユーザーのポストを取得
-  def feed
-    following_ids = self.following.select(:id)
-    Post.where("user_id IN (:following_ids)
-                 OR user_id = :user_id", following_ids: following_ids, user_id: id)
-  end
+  # def feed
+  #   following_ids = self.following.select(:id)
+  #   Post.where("user_id IN (:following_ids)
+  #               OR user_id = :user_id", following_ids: following_ids, user_id: id)
+  # end
 
   def posts_with_reposts
     relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND reposts.user_id = #{self.id}")
@@ -107,13 +107,18 @@ class User < ApplicationRecord
     relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND (reposts.user_id = #{self.id}
     OR reposts.user_id IN (SELECT followed_id FROM relationships WHERE follower_id = #{self.id}))")
                    .select("posts.*, reposts.user_id AS repost_user_id, (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name")
-    relation.where(user_id: self.active_relationships.pluck(:followed_id))
-            .or(relation.where(id: Repost.where(user_id: self.active_relationships.pluck(:followed_id)).distinct.pluck(:post_id)))
+    relation.where(user_id: self.followings_with_userself_ids )
+            .or(relation.where(id: Repost.where(user_id: self.followings_with_userself_ids).pluck(:post_id)))
             .where("NOT EXISTS(SELECT 1 FROM reposts sub WHERE reposts.post_id = sub.post_id AND reposts.created_at < sub.created_at)")
             .preload(:user)
             .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
   end
 
+  def followings_with_userself_ids
+    ids = []
+    ids = active_relationships.pluck(:followed_id)
+    ids << id
+  end
   # def zenbu
   #   follow_user_ids = self.following.select(:id)
   #     repost_ids = Repost.where("user_id IN (:follow_user_ids) OR user_id = :user_id",
@@ -143,10 +148,5 @@ class User < ApplicationRecord
     other_user_ids = UserRoom.select(:user_id).where(room_id: my_rooms_ids).where.not(user_id: id)
     Chat.where(user_id: other_user_ids, room_id: my_rooms_ids).where.not(checked: true).any?
   end
-
-
-  # def followings_with_userself
-  #   User.where(id: self.following.pluck(:id)).or(User.where(id: self.id))
-  # end
 
 end
