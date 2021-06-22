@@ -1,9 +1,9 @@
 <% @posts.each do |post| %>
   <li id="post-<%= post.id %>" class="border-bottom border-secondary background-hover mb-0">
     <% if post.repost_user_id.present? %>
-      <span class="text-secondary">
+      <span class="text-reposted">
         <i class="fas fa-retweet"></i>
-        <%= link_to post.repost_user_name, user_path(post.repost_user_id), class: "text-reposted" %>さんがリポストしました
+        <%= link_to "#{post.repost_user_name}さんがリポストしました", user_path(post.repost_user_id), class: "text-reposted" %>
       </span>
     <% end %>
   <div class="post-section d-flex pt-3">
