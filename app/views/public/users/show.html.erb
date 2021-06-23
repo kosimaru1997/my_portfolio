@@ -43,7 +43,7 @@
       <% unless @favorites_posts == true %>
         <%= render "public/posts/post_with_reposts" %>
       <% else %>
-        <% render @posts %>
+        <%= render @posts %>
       <% end %>
       <%= paginate @posts %>
     </div>
