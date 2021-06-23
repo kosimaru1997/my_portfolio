@@ -39,3 +39,7 @@ $(document).on('turbolinks:load',function scrollToEnd() {
     messagesArea = document.getElementById('scroll-inner');
     messagesArea.scrollTop = messagesArea.scrollHeight;
  }});
+
+// $(function(){
+//   $('.alert').fadeOut(4000);  //４秒かけて消えていく
+// });
