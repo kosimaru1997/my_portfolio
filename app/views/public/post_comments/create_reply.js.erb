@@ -1,5 +1,5 @@
 $("#post_comment_count<%= @comment.parent_id %>").html("<%= PostComment.find_by(id: @comment.parent_id).replies.count %>");
 $("#replies-page-<%= @comment.parent_id %>").append("<%= j(render "public/post_comments/reply", { reply: @comment } ) %>");
 $("#new_reply_<%= @comment.parent_id %>").val("");
-$("#flash_messages").html('<p class="alert alert-success">リプライしました</p>')
+$("#flash_messages").html('')
 $("#no-reply").remove();

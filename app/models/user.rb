@@ -9,13 +9,13 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: true
-  validates :introduction, length: { maximum: 100 }
+  validates :introduction, length: { maximum: 140 }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
-  has_many :user_rooms
-  has_many :chats
+  has_many :user_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorites_posts, through: :favorites, source: :post
   has_many :active_relationships, class_name:  "Relationship",
@@ -77,7 +77,7 @@ class User < ApplicationRecord
     repost_posts << post
   end
 
-  #リポストを解除
+  #リポストを解除する
   def remove_repost(post)
     reposts.find_by(post_id: post.id).destroy
   end
