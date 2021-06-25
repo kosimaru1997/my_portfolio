@@ -3,7 +3,12 @@ class Public::RelationshipsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    current_user.follow(@user)   #active_relationships.create(followed_id: params[:user_id])
+    begin
+      current_user.follow(@user)   #active_relationships.create(followed_id: params[:user_id])
+    rescue ActiveRecord::RecordInvalid => e
+      logger.error e
+      logger.error e.backtrace.join("\n")
+    end
     begin
       @user.create_notification_follow!(current_user)
     rescue => e
@@ -16,7 +21,12 @@ class Public::RelationshipsController < ApplicationController
 
   def destroy
     @user = User.find(params[:user_id])
-    current_user.unfollow(@user)
+    begin
+      current_user.unfollow(@user)
+    rescue NoMethodError => e
+      logger.error e
+      logger.error e.backtrace.join("\n")
+    end
     @login_user = current_user
   end
 
