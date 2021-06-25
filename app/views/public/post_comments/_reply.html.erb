@@ -11,7 +11,8 @@
     <span class="text-muted mr-2"><%= time_ago_in_words(reply.created_at) %>前</span>
     <% if current_user == reply.user %>
       <span class="post-delete">
-        <%= link_to "削除", post_post_comment_path(reply.post, reply), method: :delete, data: {confirm: "本当に削除しますか？"}, remote: true %>
+        <%= link_to "削除", post_post_comment_path(reply.post, reply), method: :delete,
+        data: {confirm: "本当に削除しますか？"}, remote: true, class: "delete_reply" %>
       </span>
     <% end %>
   </div>
