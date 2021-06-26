@@ -1,7 +1,7 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
 
-<div class="col-md-10 mx-auto  mb-3">
+<div class="col-md-10 mx-auto mt-2 mb-3">
   <div class="form-inline border border-secondary rounded pt-2 px-2">
     <div class="w-100">
     <span>
@@ -18,25 +18,35 @@
       <% when "favorite" then %>
         <%= link_to "あなたの投稿", post_path(notification.post), style: "font-weight: bold;" %>
         <span>にいいねしました</span>
+        <%= render "post_content", { notification: notification } %>
       <% when "repost" then %>
         <%= link_to "あなたの投稿", post_path(notification.post), style: "font-weight: bold;" %>
         <span>をリポストしました</span>
+        <%= render "post_content", { notification: notification } %>
       <% when "comment" then %>
-        <% if notification.post.user_id == visited.id %>
-          <%= link_to "あなたの投稿", post_path(notification.post), style: "font-weight: bold;" %>
-        <% else %>
-          <span>
-          <%= link_to post_path(notification.post) do %>
-            <%= attachment_image_tag visited, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle" %>
-            <strong><%= notification.post.user.name %></strong><% end %>さんの投稿
-          </span>
-        <% end %>
-          <% if notification.post_comment.parent_id.present? %>
+        <% if notification.post_comment.parent_id.present? %>
+        <% parent_comment = PostComment.find_by(id: notification.post_comment.parent_id)
+           comment_user = User.find_by(id: parent_comment.user_id) %>
+          <%= link_to "#{comment_user.name}さんのコメント", post_path(notification.post), style: "font-weight: bold;" %>
             <span>にリプライしました</span>
+            <div><p class="text-muted mb-1"><%= notification.post_comment.comment %></p></div>
+            <%= link_to post_path(notification.post) do %>
+              <div class="border text-muted p-1 ml-1">
+                コメント内容: <%= parent_comment.comment %>
+              </div>
+            <% end %>
+        <% else %>
+          <% if notification.post.user_id == visited.id %>
+            <%= link_to "あなたの投稿", post_path(notification.post), style: "font-weight: bold;" %>
           <% else %>
-            <span>にコメントしました</span>
+            <%= link_to post_path(notification.post) do %>
+              <%= attachment_image_tag notification.post.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle" %>
+              <strong><%= notification.post.user.name %>さんの投稿</strong><% end %>
           <% end %>
-         <div><p class="text-muted ml-3 mb-0"><%= notification.post_comment.comment %></p></div>
+            <span>にコメントしました</span>
+            <div><p class="text-muted mb-1"><%= notification.post_comment.comment %></p></div>
+            <%= render "post_content", { notification: notification } %>
+        <% end %>
     <% end %>
           </div>
       <div class="ml-auto d-flex" style="height: 25px">
