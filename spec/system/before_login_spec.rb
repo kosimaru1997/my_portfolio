@@ -28,7 +28,6 @@ describe "Users sign_up log_in log_out test" do
       expect(current_path).to eq "/"
       expect(page).to have_content "テスト"
     end
-
     it "user failure sign_up", js: true do
         within("#sign-up") do
         expect {
