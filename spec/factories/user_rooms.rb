@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :post do
+  factory :user_room do
     user_id
-    content
+    room_id
   end
 end

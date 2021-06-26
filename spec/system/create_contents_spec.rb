@@ -6,12 +6,8 @@ describe "Create Post PostComent replies" do
   describe "create posts", type: :system do
 
     before do
+      sign_in user
       visit root_path
-      within("#login") do
-        fill_in "user[email]", with: user.email
-        fill_in "user[password]", with: user.password
-        click_button "Log in"
-      end
     end
 
     it "create posts successfully and destroy post", js: true do
@@ -48,12 +44,7 @@ describe "Create Post PostComent replies" do
     describe "create post_comments" do
 
     before do
-      visit root_path
-      within("#login") do
-        fill_in "user[email]", with: user2.email
-        fill_in "user[password]", with: user2.password
-        click_button "Log in"
-      end
+      sign_in user2
       visit post_path(post.id)
     end
 
@@ -93,12 +84,7 @@ describe "Create Post PostComent replies" do
       let!(:post_comment) { user2.post_comments.create(post_id: post.id, comment: "テストコメント")}
 
       before do
-        visit root_path
-        within("#login") do
-          fill_in "user[email]", with: user3.email
-          fill_in "user[password]", with: user3.password
-          click_button "Log in"
-        end
+        sign_in user3
         visit post_path(post.id)
       end
 
