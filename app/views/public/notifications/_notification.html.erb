@@ -7,7 +7,7 @@
     <span>
       <%= link_to user_path(visitor) do %>
         <%= attachment_image_tag visitor, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle" %>
-        <strong><%= visitor.name %></strong>
+        <%= visitor.name %>
       <% end %>
       <span>さんが</span>
     </span>
@@ -27,8 +27,11 @@
         <% if notification.post_comment.parent_id.present? %>
         <% parent_comment = PostComment.find_by(id: notification.post_comment.parent_id)
            comment_user = User.find_by(id: parent_comment.user_id) %>
-          <%= link_to "#{comment_user.name}さんのコメント", post_path(notification.post), style: "font-weight: bold;" %>
-            <span>にリプライしました</span>
+          <%= link_to user_path(comment_user) do %>
+          <%= attachment_image_tag comment_user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle" %>
+          <%= comment_user.name %>
+          <%end %>
+            <span>さんのコメントにリプライしました</span>
             <div><p class="text-muted mb-1"><%= notification.post_comment.comment %></p></div>
             <%= link_to post_path(notification.post) do %>
               <div class="border text-muted p-1 ml-1">
@@ -39,9 +42,9 @@
           <% if notification.post.user_id == visited.id %>
             <%= link_to "あなたの投稿", post_path(notification.post), style: "font-weight: bold;" %>
           <% else %>
-            <%= link_to post_path(notification.post) do %>
+            <%= link_to user_path(notification.post.user) do %>
               <%= attachment_image_tag notification.post.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle" %>
-              <strong><%= notification.post.user.name %>さんの投稿</strong><% end %>
+              <%= notification.post.user.name %><% end %>さんの投稿に
           <% end %>
             <span>にコメントしました</span>
             <div><p class="text-muted mb-1"><%= notification.post_comment.comment %></p></div>
