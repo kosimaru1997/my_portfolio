@@ -3,17 +3,15 @@ class Public::RelationshipsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    begin
-      current_user.follow(@user)   #active_relationships.create(followed_id: params[:user_id])
-    rescue ActiveRecord::RecordInvalid => e
-      logger.error e
-      logger.error e.backtrace.join("\n")
-    end
-    begin
-      @user.create_notification_follow!(current_user)
-    rescue => e
-      logger.error e
-      logger.error e.backtrace.join("\n")
+    unless current_user.following?(@user)
+      if current_user.follow(@user)   #active_relationships.create(followed_id: params[:user_id])
+        begin
+          @user.create_notification_follow!(current_user)
+        rescue => e
+          logger.error e
+          logger.error e.backtrace.join("\n")
+        end
+      end
     end
     #フォロー完了後のログインユーザーのフォロー情報を取得し条件分岐で使用。
     @login_user = current_user
@@ -21,12 +19,7 @@ class Public::RelationshipsController < ApplicationController
 
   def destroy
     @user = User.find(params[:user_id])
-    begin
-      current_user.unfollow(@user)
-    rescue NoMethodError => e
-      logger.error e
-      logger.error e.backtrace.join("\n")
-    end
+    current_user.unfollow(@user) if current_user.following?(@user)
     @login_user = current_user
   end
 
