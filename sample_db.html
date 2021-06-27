@@ -1,0 +1,1384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+
+<html xmlns:s="http://sqlfairy.sourceforge.net/sqlfairy.xml" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<meta charset="utf-8">
+<title>テーブル定義</title>
+<style>
+					.page {
+						width:960px;
+						margin:0 auto 100px auto;
+					}
+					table {
+						width:100%;
+						table-layout:fixed;
+						border-collapse:collapse;
+					}
+					th, td {
+						word-wrap:break-word;
+						border:1px solid #999;
+					}
+
+					@media print {
+						.page {
+							width:100%;
+							margin:0;
+							page-break-after:always;
+						}
+					}
+				</style>
+</head>
+<body>
+<div class="page" style="text-align:center;">
+<h1 style="padding:30mm 0;">テーブル定義書</h1>
+<p>株式会社ソフテル</p>
+<p>作成: 2015/07/01</p>
+</div>
+<div class="page">
+<table class="table table-bordered htable" style="margin-bottom:1em;">
+<colgroup>
+<col style="width:30%;">
+<col style="">
+</colgroup>
+<tbody>
+<tr>
+<th>テーブル名</th>
+<td>admins</td>
+</tr>
+<tr>
+<th>備考</th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed">
+<colgroup>
+<col style="width:3em;">
+<col style="max-width:50%;">
+<col style="max-width:50%;">
+<col style="width:4em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="">
+</colgroup>
+<thead><tr style="white-space:nowrap;">
+<th class="text-right">#</th>
+<th>物理名</th>
+<th>型</th>
+<th>NULL</th>
+<th>初期値</th>
+<th>主キー</th>
+<th>ユニーク</th>
+<th>備考</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="text-right">1</td>
+<td>id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;">○</td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">2</td>
+<td>email</td>
+<td>varchar(255)</td>
+<td style="text-align:center;"></td>
+<td>''</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">○</td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">3</td>
+<td>encrypted_password</td>
+<td>varchar(255)</td>
+<td style="text-align:center;"></td>
+<td>''</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">4</td>
+<td>reset_password_token</td>
+<td>varchar(255)</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">○</td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">5</td>
+<td>reset_password_sent_at</td>
+<td>datetime</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">6</td>
+<td>remember_created_at</td>
+<td>datetime</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">7</td>
+<td>created_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">8</td>
+<td>updated_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page">
+<table class="table table-bordered htable" style="margin-bottom:1em;">
+<colgroup>
+<col style="width:30%;">
+<col style="">
+</colgroup>
+<tbody>
+<tr>
+<th>テーブル名</th>
+<td>ar_internal_metadata</td>
+</tr>
+<tr>
+<th>備考</th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed">
+<colgroup>
+<col style="width:3em;">
+<col style="max-width:50%;">
+<col style="max-width:50%;">
+<col style="width:4em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="">
+</colgroup>
+<thead><tr style="white-space:nowrap;">
+<th class="text-right">#</th>
+<th>物理名</th>
+<th>型</th>
+<th>NULL</th>
+<th>初期値</th>
+<th>主キー</th>
+<th>ユニーク</th>
+<th>備考</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="text-right">1</td>
+<td>key</td>
+<td>varchar(255)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;">○</td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">2</td>
+<td>value</td>
+<td>varchar(255)</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">3</td>
+<td>created_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">4</td>
+<td>updated_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page">
+<table class="table table-bordered htable" style="margin-bottom:1em;">
+<colgroup>
+<col style="width:30%;">
+<col style="">
+</colgroup>
+<tbody>
+<tr>
+<th>テーブル名</th>
+<td>chats</td>
+</tr>
+<tr>
+<th>備考</th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed">
+<colgroup>
+<col style="width:3em;">
+<col style="max-width:50%;">
+<col style="max-width:50%;">
+<col style="width:4em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="">
+</colgroup>
+<thead><tr style="white-space:nowrap;">
+<th class="text-right">#</th>
+<th>物理名</th>
+<th>型</th>
+<th>NULL</th>
+<th>初期値</th>
+<th>主キー</th>
+<th>ユニーク</th>
+<th>備考</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="text-right">1</td>
+<td>id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;">○</td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">2</td>
+<td>user_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">3</td>
+<td>room_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">4</td>
+<td>message</td>
+<td>varchar(255)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">5</td>
+<td>checked</td>
+<td>tinyint(1)</td>
+<td style="text-align:center;"></td>
+<td>0</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">6</td>
+<td>created_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">7</td>
+<td>updated_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page">
+<table class="table table-bordered htable" style="margin-bottom:1em;">
+<colgroup>
+<col style="width:30%;">
+<col style="">
+</colgroup>
+<tbody>
+<tr>
+<th>テーブル名</th>
+<td>favorites</td>
+</tr>
+<tr>
+<th>備考</th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed">
+<colgroup>
+<col style="width:3em;">
+<col style="max-width:50%;">
+<col style="max-width:50%;">
+<col style="width:4em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="">
+</colgroup>
+<thead><tr style="white-space:nowrap;">
+<th class="text-right">#</th>
+<th>物理名</th>
+<th>型</th>
+<th>NULL</th>
+<th>初期値</th>
+<th>主キー</th>
+<th>ユニーク</th>
+<th>備考</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="text-right">1</td>
+<td>id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;">○</td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">2</td>
+<td>user_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">3</td>
+<td>post_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">4</td>
+<td>created_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">5</td>
+<td>updated_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page">
+<table class="table table-bordered htable" style="margin-bottom:1em;">
+<colgroup>
+<col style="width:30%;">
+<col style="">
+</colgroup>
+<tbody>
+<tr>
+<th>テーブル名</th>
+<td>notifications</td>
+</tr>
+<tr>
+<th>備考</th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed">
+<colgroup>
+<col style="width:3em;">
+<col style="max-width:50%;">
+<col style="max-width:50%;">
+<col style="width:4em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="">
+</colgroup>
+<thead><tr style="white-space:nowrap;">
+<th class="text-right">#</th>
+<th>物理名</th>
+<th>型</th>
+<th>NULL</th>
+<th>初期値</th>
+<th>主キー</th>
+<th>ユニーク</th>
+<th>備考</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="text-right">1</td>
+<td>id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;">○</td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">2</td>
+<td>visitor_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">3</td>
+<td>visited_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">4</td>
+<td>post_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">5</td>
+<td>post_comment_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">6</td>
+<td>action</td>
+<td>varchar(255)</td>
+<td style="text-align:center;"></td>
+<td>''</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">7</td>
+<td>checked</td>
+<td>tinyint(1)</td>
+<td style="text-align:center;"></td>
+<td>0</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">8</td>
+<td>created_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">9</td>
+<td>updated_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page">
+<table class="table table-bordered htable" style="margin-bottom:1em;">
+<colgroup>
+<col style="width:30%;">
+<col style="">
+</colgroup>
+<tbody>
+<tr>
+<th>テーブル名</th>
+<td>post_comments</td>
+</tr>
+<tr>
+<th>備考</th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed">
+<colgroup>
+<col style="width:3em;">
+<col style="max-width:50%;">
+<col style="max-width:50%;">
+<col style="width:4em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="">
+</colgroup>
+<thead><tr style="white-space:nowrap;">
+<th class="text-right">#</th>
+<th>物理名</th>
+<th>型</th>
+<th>NULL</th>
+<th>初期値</th>
+<th>主キー</th>
+<th>ユニーク</th>
+<th>備考</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="text-right">1</td>
+<td>id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;">○</td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">2</td>
+<td>comment</td>
+<td>text</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">3</td>
+<td>user_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">4</td>
+<td>post_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">5</td>
+<td>created_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">6</td>
+<td>updated_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">7</td>
+<td>parent_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">8</td>
+<td>post_comments_count</td>
+<td>int(11)</td>
+<td style="text-align:center;"></td>
+<td>0</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page">
+<table class="table table-bordered htable" style="margin-bottom:1em;">
+<colgroup>
+<col style="width:30%;">
+<col style="">
+</colgroup>
+<tbody>
+<tr>
+<th>テーブル名</th>
+<td>posts</td>
+</tr>
+<tr>
+<th>備考</th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed">
+<colgroup>
+<col style="width:3em;">
+<col style="max-width:50%;">
+<col style="max-width:50%;">
+<col style="width:4em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="">
+</colgroup>
+<thead><tr style="white-space:nowrap;">
+<th class="text-right">#</th>
+<th>物理名</th>
+<th>型</th>
+<th>NULL</th>
+<th>初期値</th>
+<th>主キー</th>
+<th>ユニーク</th>
+<th>備考</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="text-right">1</td>
+<td>id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;">○</td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">2</td>
+<td>content</td>
+<td>text</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">3</td>
+<td>user_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">4</td>
+<td>post_comments_count</td>
+<td>int(11)</td>
+<td style="text-align:center;"></td>
+<td>0</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">5</td>
+<td>favorites_count</td>
+<td>int(11)</td>
+<td style="text-align:center;"></td>
+<td>0</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">6</td>
+<td>reposts_count</td>
+<td>int(11)</td>
+<td style="text-align:center;"></td>
+<td>0</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">7</td>
+<td>created_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">8</td>
+<td>updated_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page">
+<table class="table table-bordered htable" style="margin-bottom:1em;">
+<colgroup>
+<col style="width:30%;">
+<col style="">
+</colgroup>
+<tbody>
+<tr>
+<th>テーブル名</th>
+<td>relationships</td>
+</tr>
+<tr>
+<th>備考</th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed">
+<colgroup>
+<col style="width:3em;">
+<col style="max-width:50%;">
+<col style="max-width:50%;">
+<col style="width:4em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="">
+</colgroup>
+<thead><tr style="white-space:nowrap;">
+<th class="text-right">#</th>
+<th>物理名</th>
+<th>型</th>
+<th>NULL</th>
+<th>初期値</th>
+<th>主キー</th>
+<th>ユニーク</th>
+<th>備考</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="text-right">1</td>
+<td>id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;">○</td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">2</td>
+<td>follower_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">3</td>
+<td>followed_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">4</td>
+<td>created_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">5</td>
+<td>updated_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page">
+<table class="table table-bordered htable" style="margin-bottom:1em;">
+<colgroup>
+<col style="width:30%;">
+<col style="">
+</colgroup>
+<tbody>
+<tr>
+<th>テーブル名</th>
+<td>reposts</td>
+</tr>
+<tr>
+<th>備考</th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed">
+<colgroup>
+<col style="width:3em;">
+<col style="max-width:50%;">
+<col style="max-width:50%;">
+<col style="width:4em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="">
+</colgroup>
+<thead><tr style="white-space:nowrap;">
+<th class="text-right">#</th>
+<th>物理名</th>
+<th>型</th>
+<th>NULL</th>
+<th>初期値</th>
+<th>主キー</th>
+<th>ユニーク</th>
+<th>備考</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="text-right">1</td>
+<td>id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;">○</td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">2</td>
+<td>user_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">3</td>
+<td>post_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">4</td>
+<td>created_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">5</td>
+<td>updated_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page">
+<table class="table table-bordered htable" style="margin-bottom:1em;">
+<colgroup>
+<col style="width:30%;">
+<col style="">
+</colgroup>
+<tbody>
+<tr>
+<th>テーブル名</th>
+<td>rooms</td>
+</tr>
+<tr>
+<th>備考</th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed">
+<colgroup>
+<col style="width:3em;">
+<col style="max-width:50%;">
+<col style="max-width:50%;">
+<col style="width:4em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="">
+</colgroup>
+<thead><tr style="white-space:nowrap;">
+<th class="text-right">#</th>
+<th>物理名</th>
+<th>型</th>
+<th>NULL</th>
+<th>初期値</th>
+<th>主キー</th>
+<th>ユニーク</th>
+<th>備考</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="text-right">1</td>
+<td>id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;">○</td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">2</td>
+<td>created_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">3</td>
+<td>updated_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page">
+<table class="table table-bordered htable" style="margin-bottom:1em;">
+<colgroup>
+<col style="width:30%;">
+<col style="">
+</colgroup>
+<tbody>
+<tr>
+<th>テーブル名</th>
+<td>schema_migrations</td>
+</tr>
+<tr>
+<th>備考</th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed">
+<colgroup>
+<col style="width:3em;">
+<col style="max-width:50%;">
+<col style="max-width:50%;">
+<col style="width:4em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="">
+</colgroup>
+<thead><tr style="white-space:nowrap;">
+<th class="text-right">#</th>
+<th>物理名</th>
+<th>型</th>
+<th>NULL</th>
+<th>初期値</th>
+<th>主キー</th>
+<th>ユニーク</th>
+<th>備考</th>
+</tr></thead>
+<tbody><tr>
+<td class="text-right">1</td>
+<td>version</td>
+<td>varchar(255)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;">○</td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr></tbody>
+</table>
+</div>
+<div class="page">
+<table class="table table-bordered htable" style="margin-bottom:1em;">
+<colgroup>
+<col style="width:30%;">
+<col style="">
+</colgroup>
+<tbody>
+<tr>
+<th>テーブル名</th>
+<td>user_rooms</td>
+</tr>
+<tr>
+<th>備考</th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed">
+<colgroup>
+<col style="width:3em;">
+<col style="max-width:50%;">
+<col style="max-width:50%;">
+<col style="width:4em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="">
+</colgroup>
+<thead><tr style="white-space:nowrap;">
+<th class="text-right">#</th>
+<th>物理名</th>
+<th>型</th>
+<th>NULL</th>
+<th>初期値</th>
+<th>主キー</th>
+<th>ユニーク</th>
+<th>備考</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="text-right">1</td>
+<td>id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;">○</td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">2</td>
+<td>user_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">3</td>
+<td>room_id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">4</td>
+<td>created_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">5</td>
+<td>updated_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="page">
+<table class="table table-bordered htable" style="margin-bottom:1em;">
+<colgroup>
+<col style="width:30%;">
+<col style="">
+</colgroup>
+<tbody>
+<tr>
+<th>テーブル名</th>
+<td>users</td>
+</tr>
+<tr>
+<th>備考</th>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table class="table table-condensed">
+<colgroup>
+<col style="width:3em;">
+<col style="max-width:50%;">
+<col style="max-width:50%;">
+<col style="width:4em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="width:5em;">
+<col style="">
+</colgroup>
+<thead><tr style="white-space:nowrap;">
+<th class="text-right">#</th>
+<th>物理名</th>
+<th>型</th>
+<th>NULL</th>
+<th>初期値</th>
+<th>主キー</th>
+<th>ユニーク</th>
+<th>備考</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="text-right">1</td>
+<td>id</td>
+<td>bigint(20)</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;">○</td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">2</td>
+<td>name</td>
+<td>varchar(255)</td>
+<td style="text-align:center;"></td>
+<td>''</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">3</td>
+<td>email</td>
+<td>varchar(255)</td>
+<td style="text-align:center;"></td>
+<td>''</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">○</td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">4</td>
+<td>encrypted_password</td>
+<td>varchar(255)</td>
+<td style="text-align:center;"></td>
+<td>''</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">5</td>
+<td>image_id</td>
+<td>varchar(255)</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">6</td>
+<td>introduction</td>
+<td>varchar(255)</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">7</td>
+<td>activated</td>
+<td>tinyint(1)</td>
+<td style="text-align:center;"></td>
+<td>1</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">8</td>
+<td>reset_password_token</td>
+<td>varchar(255)</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;">○</td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">9</td>
+<td>reset_password_sent_at</td>
+<td>datetime</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">10</td>
+<td>remember_created_at</td>
+<td>datetime</td>
+<td style="text-align:center;">○</td>
+<td>NULL</td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">11</td>
+<td>created_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+<tr>
+<td class="text-right">12</td>
+<td>updated_at</td>
+<td>datetime</td>
+<td style="text-align:center;"></td>
+<td></td>
+<td style="text-align:center;"></td>
+<td style="text-align:center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>
+
