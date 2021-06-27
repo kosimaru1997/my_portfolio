@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<mysqldump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<database name="portfolio_development">
+	<table_structure name="admins">
+		<field Field="id" Type="bigint(20)" Null="NO" Key="PRI" Extra="auto_increment" Comment="" />
+		<field Field="email" Type="varchar(255)" Null="NO" Key="UNI" Default="''" Extra="" Comment="" />
+		<field Field="encrypted_password" Type="varchar(255)" Null="NO" Key="" Default="''" Extra="" Comment="" />
+		<field Field="reset_password_token" Type="varchar(255)" Null="YES" Key="UNI" Default="NULL" Extra="" Comment="" />
+		<field Field="reset_password_sent_at" Type="datetime" Null="YES" Key="" Default="NULL" Extra="" Comment="" />
+		<field Field="remember_created_at" Type="datetime" Null="YES" Key="" Default="NULL" Extra="" Comment="" />
+		<field Field="created_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="updated_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<key Table="admins" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="id" Collation="A" Cardinality="0" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="admins" Non_unique="0" Key_name="index_admins_on_email" Seq_in_index="1" Column_name="email" Collation="A" Cardinality="0" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="admins" Non_unique="0" Key_name="index_admins_on_reset_password_token" Seq_in_index="1" Column_name="reset_password_token" Collation="A" Cardinality="0" Null="YES" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="admins" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="0" Avg_row_length="0" Data_length="16384" Max_data_length="0" Index_length="32768" Data_free="0" Auto_increment="1" Create_time="2021-06-22 17:30:27" Collation="utf8mb4_general_ci" Create_options="" Comment="" />
+	</table_structure>
+	<table_structure name="ar_internal_metadata">
+		<field Field="key" Type="varchar(255)" Null="NO" Key="PRI" Extra="" Comment="" />
+		<field Field="value" Type="varchar(255)" Null="YES" Key="" Default="NULL" Extra="" Comment="" />
+		<field Field="created_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="updated_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<key Table="ar_internal_metadata" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="key" Collation="A" Cardinality="0" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="ar_internal_metadata" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="0" Avg_row_length="0" Data_length="16384" Max_data_length="0" Index_length="0" Data_free="0" Create_time="2021-06-22 17:30:27" Collation="utf8mb4_general_ci" Create_options="" Comment="" />
+	</table_structure>
+	<table_structure name="chats">
+		<field Field="id" Type="bigint(20)" Null="NO" Key="PRI" Extra="auto_increment" Comment="" />
+		<field Field="user_id" Type="bigint(20)" Null="NO" Key="MUL" Extra="" Comment="" />
+		<field Field="room_id" Type="bigint(20)" Null="NO" Key="MUL" Extra="" Comment="" />
+		<field Field="message" Type="varchar(255)" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="checked" Type="tinyint(1)" Null="NO" Key="" Default="0" Extra="" Comment="" />
+		<field Field="created_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="updated_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<key Table="chats" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="id" Collation="A" Cardinality="2" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="chats" Non_unique="1" Key_name="index_chats_on_user_id" Seq_in_index="1" Column_name="user_id" Collation="A" Cardinality="2" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="chats" Non_unique="1" Key_name="index_chats_on_room_id" Seq_in_index="1" Column_name="room_id" Collation="A" Cardinality="2" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="chats" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="2" Avg_row_length="8192" Data_length="16384" Max_data_length="0" Index_length="32768" Data_free="0" Auto_increment="4" Create_time="2021-06-22 17:30:27" Collation="utf8mb4_general_ci" Create_options="" Comment="" />
+	</table_structure>
+	<table_structure name="favorites">
+		<field Field="id" Type="bigint(20)" Null="NO" Key="PRI" Extra="auto_increment" Comment="" />
+		<field Field="user_id" Type="bigint(20)" Null="NO" Key="MUL" Extra="" Comment="" />
+		<field Field="post_id" Type="bigint(20)" Null="NO" Key="MUL" Extra="" Comment="" />
+		<field Field="created_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="updated_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<key Table="favorites" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="id" Collation="A" Cardinality="8" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="favorites" Non_unique="0" Key_name="index_favorites_on_user_id_and_post_id" Seq_in_index="1" Column_name="user_id" Collation="A" Cardinality="8" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="favorites" Non_unique="0" Key_name="index_favorites_on_user_id_and_post_id" Seq_in_index="2" Column_name="post_id" Collation="A" Cardinality="8" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="favorites" Non_unique="1" Key_name="index_favorites_on_user_id" Seq_in_index="1" Column_name="user_id" Collation="A" Cardinality="8" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="favorites" Non_unique="1" Key_name="index_favorites_on_post_id" Seq_in_index="1" Column_name="post_id" Collation="A" Cardinality="8" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="favorites" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="8" Avg_row_length="2048" Data_length="16384" Max_data_length="0" Index_length="49152" Data_free="0" Auto_increment="22" Create_time="2021-06-22 17:30:27" Collation="utf8mb4_general_ci" Create_options="" Comment="" />
+	</table_structure>
+	<table_structure name="notifications">
+		<field Field="id" Type="bigint(20)" Null="NO" Key="PRI" Extra="auto_increment" Comment="" />
+		<field Field="visitor_id" Type="bigint(20)" Null="NO" Key="MUL" Extra="" Comment="" />
+		<field Field="visited_id" Type="bigint(20)" Null="NO" Key="MUL" Extra="" Comment="" />
+		<field Field="post_id" Type="bigint(20)" Null="YES" Key="MUL" Default="NULL" Extra="" Comment="" />
+		<field Field="post_comment_id" Type="bigint(20)" Null="YES" Key="MUL" Default="NULL" Extra="" Comment="" />
+		<field Field="action" Type="varchar(255)" Null="NO" Key="" Default="''" Extra="" Comment="" />
+		<field Field="checked" Type="tinyint(1)" Null="NO" Key="" Default="0" Extra="" Comment="" />
+		<field Field="created_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="updated_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<key Table="notifications" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="id" Collation="A" Cardinality="33" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="notifications" Non_unique="1" Key_name="index_notifications_on_visitor_id" Seq_in_index="1" Column_name="visitor_id" Collation="A" Cardinality="8" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="notifications" Non_unique="1" Key_name="index_notifications_on_visited_id" Seq_in_index="1" Column_name="visited_id" Collation="A" Cardinality="6" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="notifications" Non_unique="1" Key_name="index_notifications_on_post_id" Seq_in_index="1" Column_name="post_id" Collation="A" Cardinality="16" Null="YES" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="notifications" Non_unique="1" Key_name="index_notifications_on_post_comment_id" Seq_in_index="1" Column_name="post_comment_id" Collation="A" Cardinality="33" Null="YES" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="notifications" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="33" Avg_row_length="496" Data_length="16384" Max_data_length="0" Index_length="65536" Data_free="0" Auto_increment="66" Create_time="2021-06-22 17:30:27" Collation="utf8mb4_general_ci" Create_options="" Comment="" />
+	</table_structure>
+	<table_structure name="post_comments">
+		<field Field="id" Type="bigint(20)" Null="NO" Key="PRI" Extra="auto_increment" Comment="" />
+		<field Field="comment" Type="text" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="user_id" Type="bigint(20)" Null="NO" Key="MUL" Extra="" Comment="" />
+		<field Field="post_id" Type="bigint(20)" Null="NO" Key="MUL" Extra="" Comment="" />
+		<field Field="created_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="updated_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="parent_id" Type="bigint(20)" Null="YES" Key="MUL" Default="NULL" Extra="" Comment="" />
+		<field Field="post_comments_count" Type="int(11)" Null="NO" Key="" Default="0" Extra="" Comment="" />
+		<key Table="post_comments" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="id" Collation="A" Cardinality="28" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="post_comments" Non_unique="1" Key_name="index_post_comments_on_user_id" Seq_in_index="1" Column_name="user_id" Collation="A" Cardinality="7" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="post_comments" Non_unique="1" Key_name="index_post_comments_on_post_id" Seq_in_index="1" Column_name="post_id" Collation="A" Cardinality="14" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="post_comments" Non_unique="1" Key_name="index_post_comments_on_parent_id" Seq_in_index="1" Column_name="parent_id" Collation="A" Cardinality="28" Null="YES" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="post_comments" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="28" Avg_row_length="585" Data_length="16384" Max_data_length="0" Index_length="49152" Data_free="0" Auto_increment="40" Create_time="2021-06-22 17:30:27" Collation="utf8mb4_general_ci" Create_options="" Comment="" />
+	</table_structure>
+	<table_structure name="posts">
+		<field Field="id" Type="bigint(20)" Null="NO" Key="PRI" Extra="auto_increment" Comment="" />
+		<field Field="content" Type="text" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="user_id" Type="bigint(20)" Null="NO" Key="MUL" Extra="" Comment="" />
+		<field Field="post_comments_count" Type="int(11)" Null="NO" Key="" Default="0" Extra="" Comment="" />
+		<field Field="favorites_count" Type="int(11)" Null="NO" Key="" Default="0" Extra="" Comment="" />
+		<field Field="reposts_count" Type="int(11)" Null="NO" Key="" Default="0" Extra="" Comment="" />
+		<field Field="created_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="updated_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<key Table="posts" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="id" Collation="A" Cardinality="7" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="posts" Non_unique="1" Key_name="index_posts_on_user_id" Seq_in_index="1" Column_name="user_id" Collation="A" Cardinality="7" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="posts" Non_unique="1" Key_name="index_posts_on_user_id_and_created_at" Seq_in_index="1" Column_name="user_id" Collation="A" Cardinality="7" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="posts" Non_unique="1" Key_name="index_posts_on_user_id_and_created_at" Seq_in_index="2" Column_name="created_at" Collation="A" Cardinality="7" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="posts" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="7" Avg_row_length="2340" Data_length="16384" Max_data_length="0" Index_length="32768" Data_free="0" Auto_increment="56" Create_time="2021-06-22 17:30:27" Collation="utf8mb4_general_ci" Create_options="" Comment="" />
+	</table_structure>
+	<table_structure name="relationships">
+		<field Field="id" Type="bigint(20)" Null="NO" Key="PRI" Extra="auto_increment" Comment="" />
+		<field Field="follower_id" Type="bigint(20)" Null="NO" Key="MUL" Extra="" Comment="" />
+		<field Field="followed_id" Type="bigint(20)" Null="NO" Key="MUL" Extra="" Comment="" />
+		<field Field="created_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="updated_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<key Table="relationships" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="id" Collation="A" Cardinality="3" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="relationships" Non_unique="0" Key_name="index_relationships_on_follower_id_and_followed_id" Seq_in_index="1" Column_name="follower_id" Collation="A" Cardinality="3" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="relationships" Non_unique="0" Key_name="index_relationships_on_follower_id_and_followed_id" Seq_in_index="2" Column_name="followed_id" Collation="A" Cardinality="3" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="relationships" Non_unique="1" Key_name="index_relationships_on_follower_id" Seq_in_index="1" Column_name="follower_id" Collation="A" Cardinality="3" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="relationships" Non_unique="1" Key_name="index_relationships_on_followed_id" Seq_in_index="1" Column_name="followed_id" Collation="A" Cardinality="3" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="relationships" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="3" Avg_row_length="5461" Data_length="16384" Max_data_length="0" Index_length="49152" Data_free="0" Auto_increment="24" Create_time="2021-06-22 17:30:27" Collation="utf8mb4_general_ci" Create_options="" Comment="" />
+	</table_structure>
+	<table_structure name="reposts">
+		<field Field="id" Type="bigint(20)" Null="NO" Key="PRI" Extra="auto_increment" Comment="" />
+		<field Field="user_id" Type="bigint(20)" Null="YES" Key="MUL" Default="NULL" Extra="" Comment="" />
+		<field Field="post_id" Type="bigint(20)" Null="YES" Key="MUL" Default="NULL" Extra="" Comment="" />
+		<field Field="created_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="updated_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<key Table="reposts" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="id" Collation="A" Cardinality="6" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="reposts" Non_unique="0" Key_name="index_reposts_on_user_id_and_post_id" Seq_in_index="1" Column_name="user_id" Collation="A" Cardinality="6" Null="YES" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="reposts" Non_unique="0" Key_name="index_reposts_on_user_id_and_post_id" Seq_in_index="2" Column_name="post_id" Collation="A" Cardinality="6" Null="YES" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="reposts" Non_unique="1" Key_name="index_reposts_on_user_id" Seq_in_index="1" Column_name="user_id" Collation="A" Cardinality="6" Null="YES" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="reposts" Non_unique="1" Key_name="index_reposts_on_post_id" Seq_in_index="1" Column_name="post_id" Collation="A" Cardinality="6" Null="YES" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="reposts" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="6" Avg_row_length="2730" Data_length="16384" Max_data_length="0" Index_length="49152" Data_free="0" Auto_increment="8" Create_time="2021-06-22 17:30:27" Collation="utf8mb4_general_ci" Create_options="" Comment="" />
+	</table_structure>
+	<table_structure name="rooms">
+		<field Field="id" Type="bigint(20)" Null="NO" Key="PRI" Extra="auto_increment" Comment="" />
+		<field Field="created_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="updated_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<key Table="rooms" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="id" Collation="A" Cardinality="0" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="rooms" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="0" Avg_row_length="0" Data_length="16384" Max_data_length="0" Index_length="0" Data_free="0" Auto_increment="2" Create_time="2021-06-22 17:30:27" Collation="utf8mb4_general_ci" Create_options="" Comment="" />
+	</table_structure>
+	<table_structure name="schema_migrations">
+		<field Field="version" Type="varchar(255)" Null="NO" Key="PRI" Extra="" Comment="" />
+		<key Table="schema_migrations" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="version" Collation="A" Cardinality="12" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="schema_migrations" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="12" Avg_row_length="1365" Data_length="16384" Max_data_length="0" Index_length="0" Data_free="0" Create_time="2021-06-22 17:30:27" Collation="utf8mb4_general_ci" Create_options="" Comment="" />
+	</table_structure>
+	<table_structure name="user_rooms">
+		<field Field="id" Type="bigint(20)" Null="NO" Key="PRI" Extra="auto_increment" Comment="" />
+		<field Field="user_id" Type="bigint(20)" Null="NO" Key="MUL" Extra="" Comment="" />
+		<field Field="room_id" Type="bigint(20)" Null="NO" Key="MUL" Extra="" Comment="" />
+		<field Field="created_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="updated_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<key Table="user_rooms" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="id" Collation="A" Cardinality="2" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="user_rooms" Non_unique="0" Key_name="index_user_rooms_on_user_id_and_room_id" Seq_in_index="1" Column_name="user_id" Collation="A" Cardinality="2" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="user_rooms" Non_unique="0" Key_name="index_user_rooms_on_user_id_and_room_id" Seq_in_index="2" Column_name="room_id" Collation="A" Cardinality="2" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="user_rooms" Non_unique="1" Key_name="index_user_rooms_on_user_id" Seq_in_index="1" Column_name="user_id" Collation="A" Cardinality="2" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="user_rooms" Non_unique="1" Key_name="index_user_rooms_on_room_id" Seq_in_index="1" Column_name="room_id" Collation="A" Cardinality="2" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="user_rooms" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="2" Avg_row_length="8192" Data_length="16384" Max_data_length="0" Index_length="49152" Data_free="0" Auto_increment="3" Create_time="2021-06-22 17:30:27" Collation="utf8mb4_general_ci" Create_options="" Comment="" />
+	</table_structure>
+	<table_structure name="users">
+		<field Field="id" Type="bigint(20)" Null="NO" Key="PRI" Extra="auto_increment" Comment="" />
+		<field Field="name" Type="varchar(255)" Null="NO" Key="MUL" Default="''" Extra="" Comment="" />
+		<field Field="email" Type="varchar(255)" Null="NO" Key="UNI" Default="''" Extra="" Comment="" />
+		<field Field="encrypted_password" Type="varchar(255)" Null="NO" Key="" Default="''" Extra="" Comment="" />
+		<field Field="image_id" Type="varchar(255)" Null="YES" Key="" Default="NULL" Extra="" Comment="" />
+		<field Field="introduction" Type="varchar(255)" Null="YES" Key="" Default="NULL" Extra="" Comment="" />
+		<field Field="activated" Type="tinyint(1)" Null="NO" Key="" Default="1" Extra="" Comment="" />
+		<field Field="reset_password_token" Type="varchar(255)" Null="YES" Key="UNI" Default="NULL" Extra="" Comment="" />
+		<field Field="reset_password_sent_at" Type="datetime" Null="YES" Key="" Default="NULL" Extra="" Comment="" />
+		<field Field="remember_created_at" Type="datetime" Null="YES" Key="" Default="NULL" Extra="" Comment="" />
+		<field Field="created_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="updated_at" Type="datetime" Null="NO" Key="" Extra="" Comment="" />
+		<key Table="users" Non_unique="0" Key_name="PRIMARY" Seq_in_index="1" Column_name="id" Collation="A" Cardinality="6" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="users" Non_unique="0" Key_name="index_users_on_email" Seq_in_index="1" Column_name="email" Collation="A" Cardinality="6" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="users" Non_unique="0" Key_name="index_users_on_reset_password_token" Seq_in_index="1" Column_name="reset_password_token" Collation="A" Cardinality="2" Null="YES" Index_type="BTREE" Comment="" Index_comment="" />
+		<key Table="users" Non_unique="1" Key_name="index_users_on_name" Seq_in_index="1" Column_name="name" Collation="A" Cardinality="6" Null="" Index_type="BTREE" Comment="" Index_comment="" />
+		<options Name="users" Engine="InnoDB" Version="10" Row_format="Dynamic" Rows="6" Avg_row_length="2730" Data_length="16384" Max_data_length="0" Index_length="49152" Data_free="0" Auto_increment="154" Create_time="2021-06-22 17:30:27" Collation="utf8mb4_general_ci" Create_options="" Comment="" />
+	</table_structure>
+</database>
+</mysqldump>
