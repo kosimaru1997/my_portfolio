@@ -24,7 +24,7 @@ describe "Notification" do
           sleep 0.5
           expect(page).to have_no_css(".n-circle")
         end
-        
+
         expect(page).to have_content "フォローしました"
       end
     end
@@ -83,6 +83,19 @@ describe "Notification" do
         expect(form_inline_0).to have_content "あなたの投稿"
         expect(form_inline_1).to have_content user3.name
         expect(form_inline_1).to have_content "#{user2.name}さんの投稿"
+      end
+
+      describe "show notification_replies", type: :system do
+        let!(:comment_reply_1) {user2.post_comments.create(post_id: post1.id, parent_id: post_comment1.id, comment: Faker::Lorem.characters(number: 20))}
+        let!(:notification_replay) { Notification.create(visitor_id: user2.id, visited_id: user1.id, post_id: post1.id,
+                                                         post_comment_id: comment_reply_1.id, action: "comment") }
+
+        it "show notification_replies successfully" do
+          visit notifications_path
+          form_inlines = all(".form-inline")
+          form_inline_2 = form_inlines[2]
+          expect(form_inline_2).to have_content "#{user2.name} さんが #{user1.name} さんのコメントにリプライしました"
+        end
       end
     end
 

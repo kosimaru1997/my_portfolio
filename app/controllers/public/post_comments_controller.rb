@@ -10,7 +10,7 @@ class Public::PostCommentsController < ApplicationController
     if @comment.save
       #ここで例外が発生した場合、コメントのセーブができていないと勘違いしたユーザーがcreateを連続で行うことを回避し、エラーログの出力に留める。
       begin
-        @post.create_notification_comment!(current_user, @comment.id)
+        @post.create_notification_!(current_user, @comment.id)
       rescue => e
         logger.error e
         logger.error e.backtrace.join("\n")
