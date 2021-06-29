@@ -32,10 +32,10 @@
 ・自分以外のエンジニア初学者の情報を知りたい時  
 ・エンジニア初学者としての近況を発信したい時  
 
-## 設計書
+## ER図
 
-ER図  
-https://app.diagrams.net/#G19MSTgCaf3ddilD5w0r2Ofhu3RYUa9_LC  
+![スクリーンショット 2021-06-29 18 48 31](https://user-images.githubusercontent.com/79825084/123777270-ff3cb100-d90a-11eb-9ccc-23f727fbdf6d.png)
+<!-- https://app.diagrams.net/#G19MSTgCaf3ddilD5w0r2Ofhu3RYUa9_LC   -->
 <!-- テーブル定義書  
 https://docs.google.com/spreadsheets/d/1d5gmjA4eFFvZiRHlB6r5tNswYaAGzvUiuPYxAmBsEDs/edit#gid=1427335530  
 詳細設計書  
