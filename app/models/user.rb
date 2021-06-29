@@ -87,13 +87,7 @@ class User < ApplicationRecord
     reposts.pluck(:post_id).include?(post.id)
   end
 
-  #フォロー済みユーザーのポストを取得
-  # def feed
-  #   following_ids = self.following.select(:id)
-  #   Post.where("user_id IN (:following_ids)
-  #               OR user_id = :user_id", following_ids: following_ids, user_id: id)
-  # end
-
+#自身のポスト、リポストを取得
   def posts_with_reposts
     relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND reposts.user_id = #{self.id}")
                    .select("posts.*, reposts.user_id AS repost_user_id, (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name")
@@ -103,6 +97,7 @@ class User < ApplicationRecord
             .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
   end
 
+#フォローしているユーザー、及び自身のポスト、リポストを取得
   def followings_posts_with_reposts
     relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND (reposts.user_id = #{self.id}
     OR reposts.user_id IN (SELECT followed_id FROM relationships WHERE follower_id = #{self.id}))")
@@ -114,22 +109,23 @@ class User < ApplicationRecord
             .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
   end
 
+#フォロワー、及び自身のIDを
   def followings_with_userself_ids
-    ids = []
     ids = active_relationships.pluck(:followed_id)
     ids << id
   end
-  # def zenbu
+  
+#フォロー済みのユーザーおよび自分のポスト、リポストを簡易的に取得するコード
+#（post_idをdistinctしてしまうため未使用だが、より効率の良いコード記述のためのヒントとなるかもしれないので、コメントアウトして保存）
   #   follow_user_ids = self.following.select(:id)
   #     repost_ids = Repost.where("user_id IN (:follow_user_ids) OR user_id = :user_id",
   #                               follow_user_ids: follow_user_ids, user_id: self.id).select(:post_id)
   #     Post.where("id IN (:repost_ids) OR user_id IN (:follow_user_ids) OR user_id = :user_id",
   #                 repost_ids: repost_ids, follow_user_ids: follow_user_ids, user_id: self.id)
-  # end
+
 
   #フォロー時の通知を作成
   def create_notification_follow!(current_user)
-    # temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
       temp = Notification.where(visitor_id: current_user.id, visited_id: id, action: 'follow')
     if temp.blank?
       notification = current_user.active_notifications.new(visited_id: id, action: 'follow')

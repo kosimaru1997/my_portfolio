@@ -36,7 +36,6 @@ class Post < ApplicationRecord
 
   def create_notification_repost!(current_user)
     # すでに「リポスト」されているか検索
-    # temp = Notification.where("visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite')
       temp =  Notification.where(visitor_id: current_user.id, visited_id: user_id, action: 'repost')
     # リポストされていない場合のみ、通知レコードを作成
     if temp.blank?
@@ -60,7 +59,7 @@ class Post < ApplicationRecord
   end
   
 #リプライ用の通知。こちらの方が精度が高い（リプライしたコメントに紐ずくユーザーとポストの投稿者にのみ通知する）が,
-#利用者が少ない段階では、幅広いユーザー（ポストに紐ずくユーザー）に通知を送り、アプリに触れる機会を増やす方が重要と思い使用していない。
+#利用者が少ない段階では、幅広いユーザー（ポストに紐ずくユーザー全て）に通知を送り、アプリに触れる機会を増やす方が重要と思い使用していない。
   # def create_notification_replay!(current_user, replay)
   #   #自分以外にリプライしているユーザーを取得し、全員に通知を送る
   #   replies_ids = PostComment.select(:user_id).where(id: replay.parent_id).where.not(user_id: current_user.id).distinct
