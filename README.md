@@ -57,14 +57,14 @@ https://docs.google.com/spreadsheets/d/1_HPNzhP4DSkcBaBIqMjc8MeEn3_E1-fHyP7tUgCb
 
 ## 使用技術
 
-- 言語：Ruby 2.6.3
+- バックエンド言語：Ruby 2.6.3
 - フレームワーク：Ruby on Rails 5.2.6  
 - データベース ：MySql 5.7  
-- JavaScript
+- フロント言語：JavaScript
 - JSライブラリ：jQuery
 - IDE：Cloud9  
 
-##　本番環境
+## 本番環境
 
 - AWS (EC2、RDS、Route53)
 - Nginx、 Puma
