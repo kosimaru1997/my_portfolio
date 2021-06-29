@@ -1,7 +1,10 @@
 サイトURL：　https://xn--n9jfc1f0c1grbyi7gxp.com/ (エンジニアになるまで.com)  
-<img src="https://user-images.githubusercontent.com/79825084/123763362-a8c97580-d8fe-11eb-96c9-c7601426390d.png" width="50%">
-<!-- ![スクリーンショット 2021-06-29 16 47 00](https://user-images.githubusercontent.com/79825084/123763362-a8c97580-d8fe-11eb-96c9-c7601426390d.png) -->
+
 # エンジニアになるまで
+<div>
+<img src="https://user-images.githubusercontent.com/79825084/123763362-a8c97580-d8fe-11eb-96c9-c7601426390d.png" width="75%">
+<img src="https://user-images.githubusercontent.com/79825084/123766396-9ef54180-d901-11eb-9f8b-c4416e7b0188.png" width="20%">
+</div>
 
 ## サイト概要
 エンジニア初学者が情報を共有するためのアプリです。
