@@ -44,7 +44,7 @@
           <% else %>
             <%= link_to user_path(notification.post.user) do %>
               <%= attachment_image_tag notification.post.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle" %>
-              <%= notification.post.user.name %><% end %>さんの投稿に
+              <%= notification.post.user.name %><% end %>さんの投稿
           <% end %>
             <span>にコメントしました</span>
             <div><p class="text-muted mb-1"><%= notification.post_comment.comment %></p></div>
