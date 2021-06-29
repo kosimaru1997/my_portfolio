@@ -1,10 +1,12 @@
+サイトURL：　https://xn--n9jfc1f0c1grbyi7gxp.com/ (エンジニアになるまで.com)
+
 # エンジニアになるまで
 
 ## サイト概要
 エンジニア初学者が情報を共有するためのアプリです。
 ユーザーの投稿一覧を閲覧したり、コメントを残すことができます。  
 また、自身の悩みや、学習過程を呟いたり、  
-参考にしたサイトを登録し、学習記録を残すこともできます。  
+エンジニア初学者として近況を共有することができます。  
 
 ### サイトテーマ
 「エンジニアになるまで」  
@@ -39,9 +41,11 @@ https://docs.google.com/spreadsheets/d/1Qb4WOSmpRb9nLdiNKu54Ly3G1wDO0JN3PgWfEfZb
 https://docs.google.com/spreadsheets/d/1_HPNzhP4DSkcBaBIqMjc8MeEn3_E1-fHyP7tUgCb5Tc/edit#gid=0
 
 ## 開発環境
-- OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
+・バックエンド
+- 言語：Ruby
 - フレームワーク：Ruby on Rails
+- データベース ：MySql　
+- JavaScript
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
