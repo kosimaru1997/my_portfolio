@@ -35,7 +35,7 @@ $(window).on('scroll', function() {
 
 // チャットページのみスクロール位置の固定
 $(document).on('turbolinks:load',function scrollToEnd() {
-  if(document.URL.match(/\d+\/chats/)){
+  if(document.URL.match(/rooms\/\d+/)){
     messagesArea = document.getElementById('scroll-inner');
     messagesArea.scrollTop = messagesArea.scrollHeight;
  }});
