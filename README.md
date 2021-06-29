@@ -36,22 +36,39 @@
 
 ER図  
 https://app.diagrams.net/#G19MSTgCaf3ddilD5w0r2Ofhu3RYUa9_LC  
-テーブル定義書  
+<!-- テーブル定義書  
 https://docs.google.com/spreadsheets/d/1d5gmjA4eFFvZiRHlB6r5tNswYaAGzvUiuPYxAmBsEDs/edit#gid=1427335530  
 詳細設計書  
-https://docs.google.com/spreadsheets/d/1Qb4WOSmpRb9nLdiNKu54Ly3G1wDO0JN3PgWfEfZb4H4/edit#gid=0
+https://docs.google.com/spreadsheets/d/1Qb4WOSmpRb9nLdiNKu54Ly3G1wDO0JN3PgWfEfZb4H4/edit#gid=0 -->
 
-## チャレンジ要素一覧
+## 機能・実装一覧
+・ポストの投稿、ポストへのコメント、コメントへの返信（リプライ）機能  
+・リポスト（リツイート）機能  
+・RSpec(System Spec)を用いたE2Eテスト  
+・お問い合わせ機能（Actionmailerを使用）  
+・N+1問題への対応（gem'bullet'、gem'counter_culture'を使用）  
+・非同期通信  
+・通知機能(2種類)  
+　　１　フォローされた時、投稿に対してコメント、リプライを受けた時  
+　　2　DMを受けた時  
+
+＊その他、機能・実装の詳細は下記URLをご確認願います  
 https://docs.google.com/spreadsheets/d/1_HPNzhP4DSkcBaBIqMjc8MeEn3_E1-fHyP7tUgCb5Tc/edit#gid=0
 
-## 開発環境
-・バックエンド
-- 言語：Ruby
-- フレームワーク：Ruby on Rails
-- データベース ：MySql　
+## 使用技術
+
+- 言語：Ruby 2.6.3
+- フレームワーク：Ruby on Rails 5.2.6  
+- データベース ：MySql 5.7  
 - JavaScript
 - JSライブラリ：jQuery
-- IDE：Cloud9
+- IDE：Cloud9  
+
+##　本番環境
+
+- AWS (EC2、RDS、Route53)
+- Nginx、 Puma
+- Github actionを用いた自動デプロイ
 
 <!--## 使用素材-->
 <!--- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。-->
