@@ -34,7 +34,7 @@
 
 ## ER図
 
-![スクリーンショット 2021-06-29 18 48 31](https://user-images.githubusercontent.com/79825084/123777270-ff3cb100-d90a-11eb-9ccc-23f727fbdf6d.png)
+![スクリーンショット 2021-06-30 3 13 03](https://user-images.githubusercontent.com/79825084/123847267-5c5b5580-d951-11eb-8bad-fed787b749f1.png)
 <!-- https://app.diagrams.net/#G19MSTgCaf3ddilD5w0r2Ofhu3RYUa9_LC   -->
 <!-- テーブル定義書  
 https://docs.google.com/spreadsheets/d/1d5gmjA4eFFvZiRHlB6r5tNswYaAGzvUiuPYxAmBsEDs/edit#gid=1427335530  
@@ -49,7 +49,7 @@ https://docs.google.com/spreadsheets/d/1Qb4WOSmpRb9nLdiNKu54Ly3G1wDO0JN3PgWfEfZb
 ・N+1問題への対応（gem'bullet'、gem'counter_culture'を使用）  
 ・非同期通信  
 ・通知機能(2種類)  
-　　１　フォローされた時、投稿に対してコメント、リプライを受けた時  
+　　1　フォローされた時、投稿に対してコメント、リプライを受けた時  
 　　2　DMを受けた時  
 
 ＊その他、機能・実装の詳細は下記URLをご確認願います  
@@ -61,7 +61,7 @@ https://docs.google.com/spreadsheets/d/1_HPNzhP4DSkcBaBIqMjc8MeEn3_E1-fHyP7tUgCb
 - フレームワーク：Ruby on Rails 5.2.6  
 - データベース ：MySql 5.7  
 - フロント言語：JavaScript
-- JSライブラリ：jQuery
+- JSフレームワーク：jQuery
 - IDE：Cloud9  
 
 ## 本番環境
