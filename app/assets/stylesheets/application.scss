@@ -237,9 +237,9 @@ footer {
 .scroll {
   overflow-y: scroll;
 }
-#scroll-inner{
-  height: 370px;
-}
+// #scroll-inner{
+//   height: 380px;
+// }
 
 .inbox_msg {
   border: 1px solid #c4c4c4;
@@ -288,7 +288,8 @@ footer {
 }
 .received_withd_msg { width: 57%;}
 .mesgs {
-  min-height: 370px;
+  height: 90%;
+  min-height: 380px;
   width: 100%;
   float: left;
   padding: 0 15px;
