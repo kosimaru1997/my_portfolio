@@ -58,6 +58,7 @@ https://docs.google.com/spreadsheets/d/1_HPNzhP4DSkcBaBIqMjc8MeEn3_E1-fHyP7tUgCb
 ## 使用技術
 
 - バックエンド言語：Ruby 2.6.3
+- テストフレームワーク：Rspec
 - フレームワーク：Ruby on Rails 5.2.6  
 - データベース ：MySql 5.7  
 - フロント言語：JavaScript
