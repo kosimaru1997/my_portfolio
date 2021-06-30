@@ -55,9 +55,9 @@ class Post < ApplicationRecord
       save_notification_comment!(current_user, post_comment_id, temp_id[:user_id])
     end
     #投稿者に通知を送る
-    save_notification_comment!(current_user, post_comment_id, user_id)
+    save_notification_comment!(current_user, post_comment_id, user_id) unless temp_ids.pluck(:user_id).include?(user_id)
   end
-  
+
 #リプライ用の通知。こちらの方が精度が高い（リプライしたコメントに紐ずくユーザーとポストの投稿者にのみ通知する）が,
 #利用者が少ない段階では、幅広いユーザー（ポストに紐ずくユーザー全て）に通知を送り、アプリに触れる機会を増やす方が重要と思い使用していない。
   # def create_notification_replay!(current_user, replay)
@@ -67,7 +67,7 @@ class Post < ApplicationRecord
   #     save_notification_comment!(current_user, replay.id, temp_id[:user_id])
   #   end
   #   #投稿者に通知を送る
-  #   save_notification_comment!(current_user, replay.id, user_id)
+  #   save_notification_comment!(current_user, replay.id, user_id) unless temp_ids.pluck(:user_id).include?(user_id)
   # end
 
   def save_notification_comment!(current_user, post_comment_id, visited_id)

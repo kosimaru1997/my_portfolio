@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     unauthenticated :user do
       root :to => 'users/registrations#new', as: :unauthenticated_root
     end
+      post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
   namespace :unlogin do
     resources :users, only: [:index]

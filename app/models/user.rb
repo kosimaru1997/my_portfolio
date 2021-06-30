@@ -109,7 +109,7 @@ class User < ApplicationRecord
             .order(Arel.sql("CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END"))
   end
 
-#フォロワー、及び自身のIDを
+#フォロワー、及び自身のIDを取得
   def followings_with_userself_ids
     ids = active_relationships.pluck(:followed_id)
     ids << id
@@ -143,6 +143,13 @@ class User < ApplicationRecord
     my_rooms_ids = UserRoom.select(:room_id).where(user_id: id)
     other_user_ids = UserRoom.select(:user_id).where(room_id: my_rooms_ids).where.not(user_id: id)
     Chat.where(user_id: other_user_ids, room_id: my_rooms_ids).where.not(checked: true).any?
+  end
+
+
+  def self.guest
+    find_or_create_by!(name: 'ゲストユーザー', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
   end
 
 end
