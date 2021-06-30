@@ -42,7 +42,7 @@ class Public::UsersController < ApplicationController
   def following
     @follow = "follow" #cssスタイルを渡すための記述
     @user = User.find(params[:id])
-    @users = @user.following.page(params[:page]).reverse_order
+    @users = @user.following.page(params[:page]).order("relationships.created_at DESC")
     @login_user = current_user
   end
 
@@ -50,7 +50,7 @@ class Public::UsersController < ApplicationController
   def followers
     @follower = "follower" #CSSスタイルを渡すための
     @user = User.find(params[:id])
-    @users = @user.followers.page(params[:page]).reverse_order
+    @users = @user.followers.page(params[:page]).order("relationships.created_at DESC")
     @login_user = current_user
     render "following"
   end
