@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :same_user!, only: [:edit, :update, :destroy]
+  before_action :ensure_normal_user, only: [:confirm, :destroy]
 
   def index
     if params[:search].present?
@@ -42,7 +43,7 @@ class Public::UsersController < ApplicationController
   def following
     @follow = "follow" #cssスタイルを渡すための記述
     @user = User.find(params[:id])
-    @users = @user.following.page(params[:page]).reverse_order
+    @users = @user.following.page(params[:page]).order("relationships.created_at DESC")
     @login_user = current_user
   end
 
@@ -50,7 +51,7 @@ class Public::UsersController < ApplicationController
   def followers
     @follower = "follower" #CSSスタイルを渡すための
     @user = User.find(params[:id])
-    @users = @user.followers.page(params[:page]).reverse_order
+    @users = @user.followers.page(params[:page]).order("relationships.created_at DESC")
     @login_user = current_user
     render "following"
   end
@@ -65,6 +66,12 @@ class Public::UsersController < ApplicationController
   end
 
   private
+      
+    def ensure_normal_user
+      if User.find_by(id: params[:id]).email == 'guest@example.com'
+        redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
+      end
+    end
 
     def same_user!
       unless User.find_by(id: params[:id]) == current_user

@@ -3,7 +3,7 @@ require 'uri'
 
 def convert_url_into_a_tag(text)
   text.gsub(URI.regexp(['http', 'https'])) do |text|
-    "<a href='#{text}'>#{text}</a>"
+    "<object><a href='#{text}'>#{text}</a></object>"
   end
 end
 
