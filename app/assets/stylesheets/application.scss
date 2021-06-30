@@ -38,30 +38,6 @@ a:hover {
   text-decoration: none;
 }
 
-.pagination {
-  display: none;
-}
-.scroll-list {
-  padding: 0;
-}
-
-.new-replies {
-  overflow: auto;
-  max-height: 430px;
-}
-
-
-#sign-up .field_with_errors input {
-  border-color: #ff9c62;
-}
-
-#sign-up .field_with_errors input:focus {
-  box-shadow: 0 0 0 0.2rem #ffdba6;
-}
-// #sign-up .field_with_errors input:focus {
-//   box-shadow: 0 0 0 0.2rem rgb(255 153 0 / 25%);
-// }
-
 .border-secondary {
     border-color: #ccd5dc !important;
 }
@@ -69,14 +45,16 @@ a:hover {
   border-color: #edf5fd !important;
 }
 
-.background-hover:hover {
-  background-color: #f6f8fd;
+// ーーー無限スクロールーーー
+.pagination {
+  display: none;
 }
-
-.post-delete a {
-  color:#ff5824;
+.scroll-list {
+  padding: 0;
 }
+// ーーーーーーーーーーーーーー
 
+// ーーーいいね、リポストのレイアウトーーー
 .favorited:hover {
   color: #ff78af;
 }
@@ -92,9 +70,33 @@ a:hover {
 .text-reposted {
   color: #a0a0a0 !important;
 }
-
 .hover-grean:hover {
   color: #6fcc80;
+}
+// ーーーーーーーーーーーーーーーーーーーー
+
+// ーーーエラー表示ーーーー
+#sign-up .field_with_errors input {
+  border-color: #ff9c62;
+}
+#sign-up .field_with_errors input:focus {
+  box-shadow: 0 0 0 0.2rem #ffdba6;
+}
+.field_with_errors {
+  width: 100%;
+}
+// ーーーーーーーーーーーーーーーーーー
+
+.new-replies {
+  overflow: auto;
+  max-height: 430px;
+}
+.background-hover:hover {
+  background-color: #f6f8fd;
+}
+
+.post-delete a {
+  color:#ff5824;
 }
 
 // ーーーーーーヘッダーーーーーー
@@ -107,9 +109,6 @@ a:hover {
   opacity: 0.9;
 }
 // ーーーーーーーーーーーーーーー
-.field_with_errors {
-  width: 100%;
-}
 
 // ーーーーー投稿ボタンーーーーーーー
 .btn-cool-blues {
@@ -203,58 +202,7 @@ footer {
     top: 25px;
     left: 35px;
 }
-// ーーーーーーーーーーーーーーーー
-// .top-page {
-//   background-image: image-url('paint.jpg');
-//   background-size: cover;
-//   height: 600px;
-// }
 
-//ーーーー ログインーーーー
-// div#login {
-//     height: 230px;
-//     margin-top: 30px;
-// }
-
-// .top-form {
-//   width: 320px;
-//   height: 210px;
-//   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2),
-//                 0 1px 1px rgba(0, 0, 0, .2),
-//                 0 3px 0 #fff,
-//                 0 4px 0 rgba(0, 0, 0, .2),
-//                 0 6px 0 #fff,
-//                 0 7px 0 rgba(0, 0, 0, .2);
-//   position: absolute;
-//   z-index: 0;
-// }
-
-// .top-form:before {
-//   content: '';
-//   position: absolute;
-//   z-index: -1;
-//   border: 1px dashed #ccc;
-//   top: 5px;
-//   bottom: 5px;
-//   left: 5px;
-//   right: 5px;
-//   box-shadow: 0 0 0 1px #fff;
-// }
-
-// .top-form h4 {
-//   text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
-//   text-transform: uppercase;
-//   text-align: center;
-//   color: #666;
-//   margin: 10px 0;
-//   letter-spacing: 4px;
-//   font: normal 26px/1 Verdana, Helvetica;
-//   position: relative;
-// }
-
-// .top-form input {
-//   margin: 0 auto;
-// }
 
 .form-control {
   width: 90%;
@@ -262,21 +210,6 @@ footer {
   margin: 0 auto;
 }
 
-// .btn-outline-secondary {
-//   padding: 1px 12px;
-// }
-// ーーーーーーーーーーーー
-
-// ーーーー新規登録ーーーー
-// #sign-up {
-//   margin-left: 160px;
-//   height: 280px;
-// }
-
-// #sign-up form#signup_new_user {
-//   width: 370px;
-//   height: 250px;
-// }
 
 .errors li {
   list-style: disc;
@@ -288,7 +221,7 @@ footer {
 // ーーーーーーーーーーーー
 
 
-// フォローフォロワーの切り替えーー
+//ーー フォローフォロワーの切り替えーー
 .follow {
   color: blue;
 
@@ -297,10 +230,7 @@ footer {
   color: blue;
 }
 
-.modal.in {
-  transition-duration: 0s;
-}
-// ーーーーーーーーーーーーーーー
+// ーーーーーーーーーーーーーーーーーー
 
 
 // ーーーーーチャットルームーーーーー
@@ -308,7 +238,7 @@ footer {
   overflow-y: scroll;
 }
 #scroll-inner{
-  height: 500px;
+  height: 350px;
 }
 
 .inbox_msg {
@@ -358,7 +288,7 @@ footer {
 }
 .received_withd_msg { width: 57%;}
 .mesgs {
-  min-height: 600px;
+  min-height: 350px;
   width: 100%;
   float: left;
   padding: 0 15px;
@@ -437,7 +367,7 @@ footer {
 }
 // ーーーーーーーーーーーーーーーーー
 
-// ーーーレスポンシブーーーーー
+// ーーーーレスポンシブーーーーー
 
  @media (min-width: 768px) {
 
@@ -486,3 +416,4 @@ footer {
   }
 
 }
+// ーーーーーーーーーーーーーーー
