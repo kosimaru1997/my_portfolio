@@ -31,7 +31,7 @@
       </div>
       <div class="type_msg">
           <%= form_with model: [@user, @chat] do |f| %>
-            <%= f.text_area :message, class: "chat-form mt-3", :size=>"35x3" %>
+            <%= f.text_area :message, class: "chat-form mt-3 mx-auto", :size=>"35x3" %>
             <%= f.hidden_field :room_id %>
             <div class="chatt-action">
               <%= f.submit "送信", class: "btn btn-dark-blues btn-rounded d-block ml-auto" %>

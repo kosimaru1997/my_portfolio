@@ -238,7 +238,7 @@ footer {
   overflow-y: scroll;
 }
 #scroll-inner{
-  height: 350px;
+  height: 370px;
 }
 
 .inbox_msg {
@@ -288,7 +288,7 @@ footer {
 }
 .received_withd_msg { width: 57%;}
 .mesgs {
-  min-height: 350px;
+  min-height: 370px;
   width: 100%;
   float: left;
   padding: 0 15px;
@@ -339,6 +339,7 @@ footer {
 
 .chat-form {
   display: block;
+  width: 90%;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
