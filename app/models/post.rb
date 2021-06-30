@@ -67,7 +67,7 @@ class Post < ApplicationRecord
   #     save_notification_comment!(current_user, replay.id, temp_id[:user_id])
   #   end
   #   #投稿者に通知を送る
-  #   save_notification_comment!(current_user, replay.id, user_id)
+  #   save_notification_comment!(current_user, replay.id, user_id) unless temp_ids.pluck(:user_id).include?(user_id)
   # end
 
   def save_notification_comment!(current_user, post_comment_id, visited_id)

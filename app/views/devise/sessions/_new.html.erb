@@ -22,7 +22,8 @@
     </div>
   <% end %>
   <!--</%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>-->
-    <%= link_to "Forgot your password?", new_password_path(resource_name), class: "ml-3" %><br />
+    <!--</%= link_to "Forgot your password?", new_password_path(resource_name), class: "ml-3" %><br />-->
+    <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post %>
   <!--<_% end %>-->
 
   <div class="actions w-25 ml-auto">
