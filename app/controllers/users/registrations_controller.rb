@@ -6,9 +6,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    to = Time.current.at_beginning_of_day #１週間の投稿をランダムに並び替え
+    from = (to - 6.day).at_end_of_day
+    weekly_post = Post.includes(:user).where(created_at: from...to).shuffle
+    @posts = weekly_post.first(5)
+    super
+  end
 
   # POST /resource
   def create
