@@ -1,6 +1,7 @@
 class Public::RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :same_room_user!, only: [:show]
+  before_action :ensure_normal_user, only: [:create]
 
 #取得している情報はUserRoomsだが、実質Roomのother_userとのリレーションを取得しているためRoomのindexに記述
   def index
@@ -32,11 +33,17 @@ class Public::RoomsController < ApplicationController
 
   private
 
-   def same_room_user!
-     unless Room.find(params[:id]).users.include?(current_user)
-       flash[:danger] = "ユーザーにはアクセスする権限がありません"
-       redirect_to root_path
-     end
-   end
+    def same_room_user!
+      unless Room.find(params[:id]).users.include?(current_user)
+        flash[:danger] = "ユーザーにはアクセスする権限がありません"
+        redirect_to root_path
+      end
+    end
+     
+    def ensure_normal_user
+      if current_user.email == 'guest@example.com'
+        redirect_to root_path, alert: 'ゲストユーザーには権限がありません。'
+      end
+    end
 
 end

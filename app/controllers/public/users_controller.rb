@@ -68,7 +68,7 @@ class Public::UsersController < ApplicationController
   private
       
     def ensure_normal_user
-      if User.find_by(id: params[:id]).email == 'guest@example.com'
+      if current_user.email == 'guest@example.com'
         redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
       end
     end
