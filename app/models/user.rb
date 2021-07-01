@@ -114,7 +114,7 @@ class User < ApplicationRecord
     ids = active_relationships.pluck(:followed_id)
     ids << id
   end
-  
+
 #フォロー済みのユーザーおよび自分のポスト、リポストを簡易的に取得するコード
 #（post_idをdistinctしてしまうため未使用だが、より効率の良いコード記述のためのヒントとなるかもしれないので、コメントアウトして保存）
   #   follow_user_ids = self.following.select(:id)
@@ -145,11 +145,19 @@ class User < ApplicationRecord
     Chat.where(user_id: other_user_ids, room_id: my_rooms_ids).where.not(checked: true).any?
   end
 
-
   def self.guest
     find_or_create_by!(name: 'ゲストユーザー', email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
     end
+  end
+
+  def guest_follow_notification
+    sample_users = User.where(name: "キータ").or(User.where(name: "Zenn").or(User.where(name: "railsエンジニア")))
+    sample_users.each {|sample_user| self.follow(sample_user) unless following?(sample_user)}
+    passive_notifications.last.update(checked: false)
+    my_rooms_ids = UserRoom.select(:room_id).where(user_id: id)
+    other_user_ids = UserRoom.select(:user_id).where(room_id: my_rooms_ids).where.not(user_id: id)
+    Chat.where(user_id: other_user_ids, room_id: my_rooms_ids).update_all(checked: false)
   end
 
 end

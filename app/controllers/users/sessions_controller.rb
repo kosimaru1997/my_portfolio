@@ -6,6 +6,7 @@ class Users::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
+    user.guest_follow_notification
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 

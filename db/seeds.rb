@@ -6,6 +6,10 @@ User.create!(name:  "テストユーザー",
              email: "test@test.com",
              password:              "aaaaaa",
              password_confirmation: "aaaaaa")
+             
+User.create(name: "キータ", email:"sample@sample.com", password:"aaaaaa")
+User.create(name: "Zenn", email:"sample2@sample.com", password:"aaaaaa")
+User.create(name: "railsエンジニア", email:"sample3@sample.com", password:"aaaaaa")
 
 # 追加のユーザーをまとめて生成する
 99.times do |n|
