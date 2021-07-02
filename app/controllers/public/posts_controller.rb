@@ -18,10 +18,10 @@ class Public::PostsController < ApplicationController
 
   def index
     @post = current_user.posts.build
-    if params[:search].present?
-      @posts = Post.search(params[:search]).includes(:user).page(params[:page]).reverse_order
-    else
+    if params[:search].nil?
       @posts = Post.all.includes(:user).page(params[:page]).reverse_order
+    else
+      @posts = Post.search(params[:search]).includes(:user).page(params[:page]).reverse_order
     end
     @login_user = User.includes(:favorites).find(current_user.id)
   end
