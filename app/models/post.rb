@@ -21,7 +21,6 @@ class Post < ApplicationRecord
 
   def create_notification_favorite!(current_user)
     # すでに「いいね」されているか検索
-    # temp = Notification.where("visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'favorite')
       temp =  Notification.where(visitor_id: current_user.id, visited_id: user_id, action: 'favorite')
     # いいねされていない場合のみ、通知レコードを作成
     if temp.blank?
