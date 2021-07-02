@@ -4,10 +4,10 @@ class Public::UsersController < ApplicationController
   before_action :ensure_normal_user, only: [:confirm, :destroy]
 
   def index
-    if params[:search].present?
-      @users = User.search(params[:search]).page(params[:page]).reverse_order
-    else
+    if params[:search].nil?
       @users = User.all.page(params[:page]).reverse_order
+    else
+      @users = User.search(params[:search]).page(params[:page]).reverse_order
     end
     @login_user = User.includes(:active_relationships).find(current_user.id)
   end
@@ -69,7 +69,7 @@ class Public::UsersController < ApplicationController
       
     def ensure_normal_user
       if current_user.email == 'guest@example.com'
-        redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
+        redirect_to root_path, alert: 'ゲストユーザーの編集・削除はできません。'
       end
     end
 
