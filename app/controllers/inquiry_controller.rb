@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InquiryController < ApplicationController
   def index
     # 入力画面を表示
@@ -34,7 +36,8 @@ class InquiryController < ApplicationController
   end
 
   private
-    def inquiry_params
-      params.require(:inquiry).permit(:name, :email, :message)
-    end
+
+  def inquiry_params
+    params.require(:inquiry).permit(:name, :email, :message)
+  end
 end

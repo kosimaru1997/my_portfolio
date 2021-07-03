@@ -34,8 +34,7 @@
           <%= attachment_image_tag post.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle" %>
           <span class="text-primary"><%= post.user.name %></span>
         </div>
-          <% text = safe_join(post.content.split("\n"),tag(:br)) %>
-          <p class="text-break"><%= convert_url_into_a_tag(text).html_safe %></p>
+          <p class="text-break"><%= show_contents_with_uri(post.content).html_safe %></p>
       </div>
       <% end %>
     </div>

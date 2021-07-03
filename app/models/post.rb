@@ -1,5 +1,6 @@
-class Post < ApplicationRecord
+# frozen_string_literal: true
 
+class Post < ApplicationRecord
   belongs_to :user
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -9,19 +10,19 @@ class Post < ApplicationRecord
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 140 }
 
-  #リプライを除くコメント数を取得
+  # リプライを除くコメント数を取得
   def only_comment_count
     post_comments.where(parent_id: nil).size
   end
 
-  #検索機能
+  # 検索機能
   def self.search(search)
     Post.where(['content LIKE ?', "%#{search}%"])
   end
 
   def create_notification_favorite!(current_user)
     # すでに「いいね」されているか検索
-      temp =  Notification.where(visitor_id: current_user.id, visited_id: user_id, action: 'favorite')
+    temp = Notification.where(visitor_id: current_user.id, visited_id: user_id, action: 'favorite')
     # いいねされていない場合のみ、通知レコードを作成
     if temp.blank?
       notification = current_user.active_notifications.new(post_id: id, visited_id: user_id, action: 'favorite')
@@ -35,7 +36,7 @@ class Post < ApplicationRecord
 
   def create_notification_repost!(current_user)
     # すでに「リポスト」されているか検索
-      temp =  Notification.where(visitor_id: current_user.id, visited_id: user_id, action: 'repost')
+    temp = Notification.where(visitor_id: current_user.id, visited_id: user_id, action: 'repost')
     # リポストされていない場合のみ、通知レコードを作成
     if temp.blank?
       notification = current_user.active_notifications.new(post_id: id, visited_id: user_id, action: 'repost')
@@ -53,12 +54,14 @@ class Post < ApplicationRecord
     temp_ids.each do |temp_id|
       save_notification_comment!(current_user, post_comment_id, temp_id[:user_id])
     end
-    #投稿者に通知を送る
-    save_notification_comment!(current_user, post_comment_id, user_id) unless temp_ids.pluck(:user_id).include?(user_id)
+    # 投稿者に通知を送る
+    unless temp_ids.pluck(:user_id).include?(user_id)
+      save_notification_comment!(current_user, post_comment_id, user_id)
+    end
   end
 
-#リプライ用の通知。こちらの方が精度が高い（リプライしたコメントに紐ずくユーザーとポストの投稿者にのみ通知する）が,
-#利用者が少ない段階では、幅広いユーザー（ポストに紐ずくユーザー全て）に通知を送り、アプリに触れる機会を増やす方が重要と思い使用していない。
+  # リプライ用の通知。こちらの方が精度が高い（リプライしたコメントに紐ずくユーザーとポストの投稿者にのみ通知する）が,
+  # 利用者が少ない段階では、幅広いユーザー（ポストに紐ずくユーザー全て）に通知を送り、アプリに触れる機会を増やす方が重要と思い使用していない。
   # def create_notification_replay!(current_user, replay)
   #   #自分以外にリプライしているユーザーを取得し、全員に通知を送る
   #   replies_ids = PostComment.select(:user_id).where(id: replay.parent_id).where.not(user_id: current_user.id).distinct
@@ -78,5 +81,4 @@ class Post < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-
 end
