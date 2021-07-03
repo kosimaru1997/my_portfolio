@@ -6,8 +6,7 @@
           <%= attachment_image_tag reply.user, :image, :fill, 40, 40, format: 'jpg', fallback: "no_image.jpg", size:'40x40', class: "rounded-circle"%>
           <div class="content">
             <span class="user-name mr-3"><%= link_to reply.user.name, user_path(reply.user) %></span>
-            <% text = safe_join(reply.comment.split("\n"),tag(:br)) %>
-            <div><p class="post pt-2 ml-2 mb-0 text-dark"><%= convert_url_into_a_tag(text).html_safe %></p></div>
+            <div><p class="post pt-2 ml-2 mb-0 text-dark text-break"><%= show_contents_with_uri(reply.comment).html_safe %></p></div>
           </div>
         </div>
         <div class="text-right mr-4">

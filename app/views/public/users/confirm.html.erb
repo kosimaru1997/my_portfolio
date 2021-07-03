@@ -4,7 +4,7 @@
     <p class="mt-4">退会すると、過去の投稿、コメント等、ユーザーの持つ全ての情報が削除されます。</p>
     <div class="quit">
       <%= link_to user_path, method: :delete, data: {confirm: "本当に退会してもよろしいですか？"} do %>
-        <buttun class="btn btn-outline-danger">退会する</buttun>
+        <button class="btn btn-outline-danger">退会する</button>
       <% end %>
       <%= link_to :back do%>
         <button class="btn btn-outline-primary px-4 ml-4">戻る</button>
