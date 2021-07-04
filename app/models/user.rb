@@ -112,7 +112,8 @@ class User < ApplicationRecord
                    (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name')
     relation.where(user_id: followings_with_userself_ids)
             .or(relation.where(id: Repost.where(user_id: followings_with_userself_ids).pluck(:post_id)))
-            .where('NOT EXISTS(SELECT 1 FROM reposts sub WHERE reposts.post_id = sub.post_id AND reposts.created_at < sub.created_at)')
+            .where('NOT EXISTS(SELECT 1 FROM reposts sub WHERE reposts.post_id = sub.post_id
+                    AND reposts.created_at < sub.created_at)')
             .preload(:user)
             .order(Arel.sql('CASE WHEN reposts.created_at IS NULL THEN posts.created_at ELSE reposts.created_at END'))
   end

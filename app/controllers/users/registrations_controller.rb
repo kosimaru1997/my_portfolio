@@ -18,10 +18,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     # ここでUser.new（と同等の操作）を行う
     build_resource(sign_up_params)
-
     # ここでUser.save（と同等の操作）を行う
     resource.save
-
     # ブロックが与えられたらresource(=User)を呼ぶ
     yield resource if block_given?
     if resource.persisted?
@@ -47,7 +45,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       clean_up_passwords resource
       # validatable有効時に、パスワードの最小値を設定する
       set_minimum_password_length
-      render 'error' # エラー時ののformatはJSを指定
+      render 'error' # エラー時のformatはJSを想定
       # respond_with resource
     end
   end

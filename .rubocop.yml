@@ -1,7 +1,6 @@
 inherit_from:
   - .rubocop_airbnb.yml
 
-#ここにはrubocopでコード解析したくないファイルやフォルダを指定します
 AllCops:
   Exclude:
     - 'db/**/*'
@@ -15,6 +14,31 @@ AllCops:
     - 'path/ruby'
     - 'spec/**/*'
 
+Rails/FilePath:
+  Exclude:
+    - 'config/puma.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/routes.rb'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'app/models/user.rb'
+
+Metrics/AbcSize:
+  Exclude:
+   - 'app/controllers/users/registrations_controller.rb'
+  Max: 25
+
+MethodLength:
+  Exclude:
+   - 'app/controllers/users/registrations_controller.rb'
+  Max: 15
+
+LineLength:
+  Max: 125
+
 AsciiComments:
   Enabled: false
 
@@ -23,14 +47,3 @@ Documentation:
 
 ClassAndModuleChildren:
   Enabled: false
-
-LineLength:
-  Max: 120
-
-Metrics/AbcSize:
-  # The ABC size is a calculated magnitude, so this number can be a Fixnum or
-  # a Float.
-  Max: 20
-
-MethodLength:
-  Max: 15
