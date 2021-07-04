@@ -1,14 +1,15 @@
-class Admin::PostCommentsController < ApplicationController
+# frozen_string_literal: true
 
+class Admin::PostCommentsController < ApplicationController
   def index
-    if params[:search].nil?
-      @comments = PostComment.includes(:user).page(params[:page]).reverse_order
-    else
-      @comments = PostComment.search(params[:search]).includes(:user).page(params[:page]).reverse_order
-    end
+    @comments = if params[:search].nil?
+                  PostComment.includes(:user).page(params[:page]).reverse_order
+                else
+                  PostComment.search(params[:search]).includes(:user).page(params[:page]).reverse_order
+                end
   end
 
-#リプライを表示するためのページ
+  # リプライを表示するためのページ
   def show
     @post_comment = PostComment.find(params[:id])
     @user = @post_comment.user
@@ -19,5 +20,4 @@ class Admin::PostCommentsController < ApplicationController
     PostComment.find(params[:id]).destroy
     redirect_back(fallback_location: root_path)
   end
-
 end

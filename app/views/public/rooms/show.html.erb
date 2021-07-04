@@ -12,7 +12,7 @@
             <% if chat.user == current_user %>
             <div class="outgoing_msg">
               <div class="sent_msg">
-                <p><%= safe_join(chat.message.split("\n"),tag(:br)) %></p>
+                <p><%= show_contents_with_uri(chat.message).html_safe %></p>
                 <span class="time_date"><%= chat.created_at %></span></div>
             </div>
             <% else %>

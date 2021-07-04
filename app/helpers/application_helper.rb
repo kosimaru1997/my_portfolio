@@ -1,15 +1,16 @@
-module ApplicationHelper
-require 'uri'
+# frozen_string_literal: true
 
-def convert_url_into_a_tag(text)
-  text.gsub(URI.regexp(['http', 'https'])) do |text|
-    "<object><a href='#{text}'>#{text}</a></object>"
+module ApplicationHelper
+  require 'uri'
+
+  def show_contents_with_uri(contents)
+    texts = safe_join(contents.split("\n"), tag(:br))
+    texts.gsub(URI.regexp(%w[http https])) do |text|
+      "<object><a href='#{text}'>#{text}</a></object>"
+    end
   end
-end
 
   def date_format(datetime)
     time_ago_in_words(datetime) + '前'
   end
-
-
 end

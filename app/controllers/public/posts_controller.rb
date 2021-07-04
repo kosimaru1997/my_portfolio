@@ -1,12 +1,12 @@
+# frozen_string_literal: true
+
 class Public::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :same_user!, only: [:destroy]
 
   def create
     @post = current_user.posts.build(post_params)
-    unless @post.save
-      render "shared/error"
-    end
+    render 'shared/error' unless @post.save
     @login_user = current_user
   end
 
@@ -18,11 +18,11 @@ class Public::PostsController < ApplicationController
 
   def index
     @post = current_user.posts.build
-    if params[:search].nil?
-      @posts = Post.all.includes(:user).page(params[:page]).reverse_order
-    else
-      @posts = Post.search(params[:search]).includes(:user).page(params[:page]).reverse_order
-    end
+    @posts = if params[:search].nil?
+               Post.all.includes(:user).page(params[:page]).reverse_order
+             else
+               Post.search(params[:search]).includes(:user).page(params[:page]).reverse_order
+             end
     @login_user = User.includes(:favorites).find(current_user.id)
   end
 
@@ -35,7 +35,7 @@ class Public::PostsController < ApplicationController
     @post_comments = @post.post_comments.includes(:user).where(parent_id: nil).page(params[:page]).per(10).reverse_order
   end
 
-#投稿に対していいねしたユーザーの一覧を取得、モーダルで(format js)"posts/_favorited_users"を表示。
+  # 投稿に対していいねしたユーザーの一覧を取得、モーダルで(format js)"posts/_favorited_users"を表示。
   def favorited
     @post = Post.find(params[:id])
     @users = @post.favorited_users.reverse_order
@@ -44,15 +44,14 @@ class Public::PostsController < ApplicationController
 
   private
 
-    def same_user!
-      unless Post.find_by(id: params[:id]).user == current_user
-        flash[:danger] = "ユーザーにはアクセスする権限がありません"
-        redirect_to root_path
-      end
-    end
+  def same_user!
+    return if Post.find_by(id: params[:id]).user == current_user
 
-    def post_params
-      params.require(:post).permit(:content)
-    end
+    flash[:danger] = 'ユーザーにはアクセスする権限がありません'
+    redirect_to root_path
+  end
 
+  def post_params
+    params.require(:post).permit(:content)
+  end
 end

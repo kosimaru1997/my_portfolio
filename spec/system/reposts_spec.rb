@@ -13,7 +13,7 @@ describe "Repost" do
 
     describe "create reposts in post_show", type: :system do
 
-      it "create favorites and notification successfully", js: true do
+      it "create reposts and notification successfully", js: true do
         visit post_path(post)
         within(".reposts_link") do
           expect(page).to have_content 0

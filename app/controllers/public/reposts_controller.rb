@@ -1,12 +1,13 @@
-class Public::RepostsController < ApplicationController
+# frozen_string_literal: true
 
+class Public::RepostsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     unless current_user.reposted?(@post)
       if current_user.repost(@post)
         begin
           @post.create_notification_repost!(current_user)
-        rescue => e
+        rescue StandardError => e
           logger.error e
           logger.error e.backtrace.join("\n")
         end
@@ -22,5 +23,4 @@ class Public::RepostsController < ApplicationController
     @post.reload
     @login_user = current_user
   end
-
 end
