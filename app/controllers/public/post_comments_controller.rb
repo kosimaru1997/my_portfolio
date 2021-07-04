@@ -27,10 +27,10 @@ class Public::PostCommentsController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     @comment = PostComment.find_by(id: params[:id])
-    if @comment
-      @comment.destroy
-      render 'destroy_reply' unless @comment.parent_id.nil?
-    end
+    return unless @comment
+
+    @comment.destroy
+    render 'destroy_reply' unless @comment.parent_id.nil?
   end
 
   # N+１問題に対応するため、repliesをポスト詳細ページにてAjaxで表示するメソッド
@@ -48,19 +48,15 @@ class Public::PostCommentsController < ApplicationController
   end
 
   def same_user!
-    unless PostComment.find_by(id: params[:id]).user == current_user
-      redirect_to request.referer
-    end
+    redirect_to request.referer unless PostComment.find_by(id: params[:id]).user == current_user
   end
 
   def ensure_normal_user
-    if current_user.email == 'guest@example.com'
-      sample_user_ids = User.where(name: 'キータ').or(User.where(name: 'Zenn').or(User.where(name: 'railsエンジニア'))
-      .or(User.where(email: 'guest@example.com'))).pluck(:id)
-      post_user_id = Post.find(params[:post_id]).user_id
-      unless sample_user_ids.include?(post_user_id)
-        redirect_to request.referer, alert: 'ゲストユーザーは特定のユーザーにしかコメントできません。'
-      end
-    end
+    return unless current_user.email == 'guest@example.com'
+
+    sample_user_ids = User.where(name: 'キータ').or(User.where(name: 'Zenn').or(User.where(name: 'railsエンジニア'))
+    .or(User.where(email: 'guest@example.com'))).pluck(:id)
+    post_user_id = Post.find(params[:post_id]).user_id
+    redirect_to request.referer, alert: 'ゲストユーザーは特定のユーザーにしかコメントできません。' unless sample_user_ids.include?(post_user_id)
   end
 end

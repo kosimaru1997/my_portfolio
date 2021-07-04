@@ -7,7 +7,7 @@ class PostComment < ApplicationRecord
   has_many :notifications, dependent: :destroy
   belongs_to :parent, class_name: 'PostComment', optional: true
   counter_culture :parent
-  has_many :replies, class_name: 'PostComment', foreign_key: :parent_id, dependent: :destroy
+  has_many :replies, class_name: 'PostComment', foreign_key: :parent_id, dependent: :destroy, inverse_of: :parent
 
   validates :user_id, presence: true
   validates :comment, presence: true, length: { maximum: 140 }

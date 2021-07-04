@@ -18,11 +18,11 @@ class Public::PostsController < ApplicationController
 
   def index
     @post = current_user.posts.build
-    if params[:search].nil?
-      @posts = Post.all.includes(:user).page(params[:page]).reverse_order
-    else
-      @posts = Post.search(params[:search]).includes(:user).page(params[:page]).reverse_order
-    end
+    @posts = if params[:search].nil?
+               Post.all.includes(:user).page(params[:page]).reverse_order
+             else
+               Post.search(params[:search]).includes(:user).page(params[:page]).reverse_order
+             end
     @login_user = User.includes(:favorites).find(current_user.id)
   end
 
@@ -45,10 +45,10 @@ class Public::PostsController < ApplicationController
   private
 
   def same_user!
-    unless Post.find_by(id: params[:id]).user == current_user
-      flash[:danger] = 'ユーザーにはアクセスする権限がありません'
-      redirect_to root_path
-    end
+    return if Post.find_by(id: params[:id]).user == current_user
+
+    flash[:danger] = 'ユーザーにはアクセスする権限がありません'
+    redirect_to root_path
   end
 
   def post_params

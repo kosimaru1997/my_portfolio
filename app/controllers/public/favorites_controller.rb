@@ -14,13 +14,13 @@ class Public::FavoritesController < ApplicationController
         @post.reload
       end
     end
-    @login_user = User.includes(:favorites).find(current_user.id)
+    @login_user = User.find(current_user.id)
   end
 
   def destroy
     @post = Post.find(params[:post_id])
     current_user.remove_favorite(@post) if current_user.favorited?(@post)
     @post.reload
-    @login_user = User.includes(:favorites).find(current_user.id)
+    @login_user = User.find(current_user.id)
   end
 end

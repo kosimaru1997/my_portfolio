@@ -69,16 +69,14 @@ class Public::UsersController < ApplicationController
   private
 
   def ensure_normal_user
-    if current_user.email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーの編集・削除はできません。'
-    end
+    redirect_to root_path, alert: 'ゲストユーザーの編集・削除はできません。' if current_user.email == 'guest@example.com'
   end
 
   def same_user!
-    unless User.find_by(id: params[:id]) == current_user
-      flash[:danger] = 'ユーザーにはアクセスする権限がありません'
-      redirect_to root_path
-    end
+    return if User.find_by(id: params[:id]) == current_user
+
+    flash[:danger] = 'ユーザーにはアクセスする権限がありません'
+    redirect_to root_path
   end
 
   def user_params

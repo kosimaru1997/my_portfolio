@@ -2,11 +2,11 @@
 
 class Admin::PostCommentsController < ApplicationController
   def index
-    if params[:search].nil?
-      @comments = PostComment.includes(:user).page(params[:page]).reverse_order
-    else
-      @comments = PostComment.search(params[:search]).includes(:user).page(params[:page]).reverse_order
-    end
+    @comments = if params[:search].nil?
+                  PostComment.includes(:user).page(params[:page]).reverse_order
+                else
+                  PostComment.search(params[:search]).includes(:user).page(params[:page]).reverse_order
+                end
   end
 
   # リプライを表示するためのページ

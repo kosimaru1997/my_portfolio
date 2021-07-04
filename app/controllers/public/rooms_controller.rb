@@ -36,15 +36,13 @@ class Public::RoomsController < ApplicationController
   private
 
   def same_room_user!
-    unless Room.find(params[:id]).users.include?(current_user)
-      flash[:danger] = 'ユーザーにはアクセスする権限がありません'
-      redirect_to root_path
-    end
+    return if Room.find(params[:id]).users.include?(current_user)
+
+    flash[:danger] = 'ユーザーにはアクセスする権限がありません'
+    redirect_to root_path
   end
 
   def ensure_normal_user
-    if current_user.email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーには権限がありません。'
-    end
+    redirect_to root_path, alert: 'ゲストユーザーには権限がありません。' if current_user.email == 'guest@example.com'
   end
 end

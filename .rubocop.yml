@@ -13,3 +13,24 @@ AllCops:
     - 'lib/tasks/*'
     - 'vendor/**/*'
     - 'path/ruby'
+    - 'spec/**/*'
+
+AsciiComments:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: false
+
+LineLength:
+  Max: 120
+
+Metrics/AbcSize:
+  # The ABC size is a calculated magnitude, so this number can be a Fixnum or
+  # a Float.
+  Max: 20
+
+MethodLength:
+  Max: 15

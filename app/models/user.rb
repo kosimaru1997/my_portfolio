@@ -22,14 +22,18 @@ class User < ApplicationRecord
   has_many :favorites_posts, through: :favorites, source: :post
   has_many :active_relationships, class_name: 'Relationship',
                                   foreign_key: 'follower_id', # followerがフォローする側
-                                  dependent: :destroy
+                                  dependent: :destroy, inverse_of: :follower
   has_many :passive_relationships, class_name: 'Relationship',
                                    foreign_key: 'followed_id', # followedがフォローされる側
-                                   dependent: :destroy
+                                   dependent: :destroy, inverse_of: :followed
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
-  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification',
+                                  foreign_key: 'visitor_id',
+                                  dependent: :destroy, inverse_of: :visitor
+  has_many :passive_notifications, class_name: 'Notification',
+                                   foreign_key: 'visited_id',
+                                   dependent: :destroy, inverse_of: :visited
   has_many :reposts, dependent: :destroy
   has_many :repost_posts, through: :reposts, source: :post
   attachment :image
@@ -92,7 +96,8 @@ class User < ApplicationRecord
   # 自身のポスト、リポストを取得
   def posts_with_reposts
     relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND reposts.user_id = #{id}")
-                   .select('posts.*, reposts.user_id AS repost_user_id, (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name')
+                   .select('posts.*, reposts.user_id AS repost_user_id,
+                   (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name')
     relation.where(user_id: id)
             .or(relation.where('reposts.user_id = ?', id))
             .preload(:user)
@@ -103,7 +108,8 @@ class User < ApplicationRecord
   def followings_posts_with_reposts
     relation = Post.joins("LEFT OUTER JOIN reposts ON posts.id = reposts.post_id AND (reposts.user_id = #{id}
     OR reposts.user_id IN (SELECT followed_id FROM relationships WHERE follower_id = #{id}))")
-                   .select('posts.*, reposts.user_id AS repost_user_id, (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name')
+                   .select('posts.*, reposts.user_id AS repost_user_id,
+                   (SELECT name FROM users WHERE id = repost_user_id) AS repost_user_name')
     relation.where(user_id: followings_with_userself_ids)
             .or(relation.where(id: Repost.where(user_id: followings_with_userself_ids).pluck(:post_id)))
             .where('NOT EXISTS(SELECT 1 FROM reposts sub WHERE reposts.post_id = sub.post_id AND reposts.created_at < sub.created_at)')
@@ -128,10 +134,10 @@ class User < ApplicationRecord
   # フォロー時の通知を作成
   def create_notification_follow!(current_user)
     temp = Notification.where(visitor_id: current_user.id, visited_id: id, action: 'follow')
-    if temp.blank?
-      notification = current_user.active_notifications.new(visited_id: id, action: 'follow')
-      notification.save if notification.valid?
-    end
+    return if temp.present?
+
+    notification = current_user.active_notifications.new(visited_id: id, action: 'follow')
+    notification.save if notification.valid?
   end
 
   # 未読の通知が存在するか確認(いいね、フォロー、コメント)
@@ -160,6 +166,8 @@ class User < ApplicationRecord
     passive_notifications.last.update(checked: false)
     my_rooms_ids = UserRoom.select(:room_id).where(user_id: id)
     other_user_ids = UserRoom.select(:user_id).where(room_id: my_rooms_ids).where.not(user_id: id)
-    Chat.where(user_id: other_user_ids, room_id: my_rooms_ids).update_all(checked: false)
+    Chat.where(user_id: other_user_ids, room_id: my_rooms_ids).find_each do |chat|
+      chat.update(checked: false)
+    end
   end
 end
