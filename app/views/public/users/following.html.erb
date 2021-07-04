@@ -25,10 +25,10 @@
       <% if current_user == @user %>
         <div class="edit mt-3">
           <%= link_to edit_user_path(current_user) do %>
-            <buttun class="btn btn-outline-info mr-3">編集する</buttun>
+            <button class="btn btn-outline-info mr-3">編集する</button>
           <% end %>
           <%= link_to user_confirm_path do %>
-            <buttun class="btn btn-outline-danger">退会する</buttun>
+            <button class="btn btn-outline-danger">退会する</button>
           <% end %>
         </div>
       <% else %>
