@@ -4,8 +4,7 @@
     <div>
       <span class="user-name mx-3"><%= link_to post_comment.user.name, admin_user_path(post_comment.user) %></span>
       <span class="small text-success"><% if post_comment.parent_id.present? %>(リプライ)<% end %></span>
-      <% text = safe_join(post_comment.comment.split("\n"),tag(:br)) %>
-      <div><p class="post pt-2 ml-2 mb-0 text-dark"><%= convert_url_into_a_tag(text).html_safe %></p></div>
+      <div><p class="post pt-2 ml-2 mb-0 text-dark"><%= show_contents_with_uri(post_comment.comment).html_safe %></p></div>
     </div>
   </div>
   <div class="text-right mr-4">
