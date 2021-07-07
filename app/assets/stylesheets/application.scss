@@ -45,6 +45,10 @@ a:hover {
   border-color: #edf5fd !important;
 }
 
+.linkpreview_img {
+  max-width: 90%;
+}
+
 // ーーー無限スクロールーーー
 .pagination {
   display: none;
@@ -414,6 +418,10 @@ footer {
 
   textarea#chat_message {
     width: 90%;
+  }
+
+  .linkpreview_img {
+  max-width: 70%;
   }
 
 }

@@ -16,7 +16,12 @@
   <div class="col-lg-7 mt-5">
     <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     <div class="post-show border-bottom border-secondary">
-      <li><h5 class="content"><%= show_contents_with_uri(@post.content).html_safe %></li>
+      <li>
+        <h5 class="content"><%= show_contents_with_link_preview(@post).html_safe %>
+        <p id="h_<%= @post.id%>" class="text-muted mb-0 mt-2"></p>
+        <a id="a_<%= @post.id %>" href="">
+        <img id= "img_<%= @post.id %>" src="" class="linkpreview_img"/></a>
+      </li>
       <li><p class="timestamp text-secondary text-right"><%= time_ago_in_words(@post.created_at) %>前</p></li>
       <% if current_user == @post.user %>
         <span class="post-delete ml-3"><%= link_to "削除", post_path(@post), method: :delete, data: {confirm: "本当に削除しますか？"} %></span>
@@ -46,3 +51,26 @@
     </div>
   </div>
 </div>
+
+<script>
+    document.addEventListener("turbolinks:load", function () {
+    const SITE_URL = document.getElementById("url_<%= @post.id %>");
+    console.log(SITE_URL);
+
+  if (SITE_URL != null) {
+    const data = { key: 'f53cb9eed3ed4cebbaeb983ad7e3decb', q: SITE_URL.href };
+    fetch('https://api.linkpreview.net', {
+      method: 'POST',
+      mode: 'cors',
+      body: JSON.stringify(data),
+    })
+    .then(data => data.json())
+    .then(json => {
+      console.log(json);
+      document.getElementById("h_<%= @post.id%>").innerHTML = json.title;
+      document.getElementById("img_<%= @post.id %>").src = json.image
+      document.getElementById("a_<%= @post.id %>").href = json.url
+    })
+  }
+  })
+</script>
