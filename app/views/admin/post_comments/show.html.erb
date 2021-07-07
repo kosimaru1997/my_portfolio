@@ -9,8 +9,7 @@
       </h4>
     </section>
     <div class="post-show border-bottom border-secondary">
-      <% text = safe_join(@post_comment.comment.split("\n"),tag(:br)) %>
-      <li><h5 class="content ml-5"><%= convert_url_into_a_tag(text).html_safe %></li>
+      <li><h5 class="content ml-5"><%= show_contents_with_uri(@post_comment.comment).html_safe %></li>
       <li><p class="timestamp text-secondary text-right"><%= time_ago_in_words(@post_comment.created_at) %>前</p></li>
         <span class="post-delete ml-3"><%= link_to "削除", admin_post_comment_path(@post_comment), method: :delete, data: {confirm: "本当に削除しますか？"} %></span>
     </div>

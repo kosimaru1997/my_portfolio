@@ -17,7 +17,7 @@
     <div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     <div class="post-show border-bottom border-secondary">
       <li>
-        <h5 class="content"><%= show_contents_with_link_preview(@post).html_safe %>
+        <h5 class="content text-break"><%= show_contents_with_link_preview(@post).html_safe %></h5>
         <p id="h_<%= @post.id%>" class="text-muted mb-0 mt-2"></p>
         <a id="a_<%= @post.id %>" href="">
         <img id= "img_<%= @post.id %>" src="" class="linkpreview_img"/></a>
