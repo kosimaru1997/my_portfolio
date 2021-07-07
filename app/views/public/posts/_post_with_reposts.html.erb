@@ -19,7 +19,12 @@
           <span class="post-delete ml-3"><%= link_to "削除", post_path(post), method: :delete, data: {confirm: "本当に削除しますか？"} %></span>
         <% end %>
         <%= link_to post_path(post), class: "text-dark" do %>
-          <div><p class="post pt-2 ml-2 mb-0 text-dark text-break"><%= show_contents_with_uri(post.content).html_safe %></p></div>
+          <div>
+            <p class="post pt-2 ml-2 mb-0 text-dark text-break"><%= show_contents_with_link_preview(post).html_safe %></p>
+            <p id="h_<%= post.id%>" class="text-muted mb-0 mt-2"></p>
+            <a id="a_<%= post.id %>" href="">
+            <img id= "img_<%= post.id %>" src="" class="linkpreview_img"/></a>
+          </div>
         <% end %>
       </div>
     </div>
@@ -38,4 +43,5 @@
       </span>
     </div>
   </li>
+  <%= render partial: "shared/link_preview", locals:{ post: post } %>
 <% end %>

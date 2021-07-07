@@ -6,8 +6,13 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    render 'shared/error' unless @post.save
-    @login_user = current_user
+    if  @post.save
+      flash[:success] = 'ポストを投稿しました'
+      redirect_to root_path
+    else
+    # @login_user = current_user
+      render 'shared/error'
+    end
   end
 
   def destroy
