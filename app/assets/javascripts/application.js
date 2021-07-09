@@ -46,7 +46,7 @@ document.addEventListener("turbolinks:load", function () {
 
   if (SITE_URL != null) {
     console.log(SITE_URL);
-    const data = { key: 'f53cb9eed3ed4cebbaeb983ad7e3decb', q: SITE_URL.href };
+    data = { key: 'f53cb9eed3ed4cebbaeb983ad7e3decb', q: SITE_URL.href };
     fetch('https://api.linkpreview.net', {
       method: 'POST',
       mode: 'cors',
