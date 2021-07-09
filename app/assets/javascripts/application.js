@@ -42,10 +42,10 @@ $(document).on('turbolinks:load',function scrollToEnd() {
 
 
 document.addEventListener("turbolinks:load", function () {
-const SITE_URL = document.getElementById("url");
+  SITE_URL = document.getElementById("url");
 
   if (SITE_URL != null) {
-    
+    console.log(SITE_URL);
     const data = { key: 'f53cb9eed3ed4cebbaeb983ad7e3decb', q: SITE_URL.href };
     fetch('https://api.linkpreview.net', {
       method: 'POST',
