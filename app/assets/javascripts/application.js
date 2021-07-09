@@ -52,12 +52,12 @@ document.addEventListener("turbolinks:load", function () {
       mode: 'cors',
       body: JSON.stringify(data),
     })
-    .then(data => data.json())
-    .then(json => {
-      console.log(json);
-      document.getElementById("h_url").innerHTML = json.title;
-      document.getElementById("img_url").src = json.image
-      document.getElementById("a_url").href = json.url
+    .then(res => res.json())
+    .then(response => {
+      console.log(response)
+      document.getElementById("h_url").innerHTML = response.title;
+      document.getElementById("img_url").src = response.image;
+      document.getElementById("a_url").href = response.url;
     })
   }
   })
