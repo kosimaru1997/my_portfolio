@@ -72,7 +72,7 @@ https://docs.google.com/spreadsheets/d/1_HPNzhP4DSkcBaBIqMjc8MeEn3_E1-fHyP7tUgCb
 
 - AWS (EC2、RDS、Route53)
 - Nginx、 Puma
-- Github actionを用いた自動デプロイ
+- Github actionを用いた自動デプロイ 
 
 <!--## 使用素材-->
 <!--- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。-->
