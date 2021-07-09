@@ -13,7 +13,7 @@ module ApplicationHelper
   def show_contents_with_link_preview(post)
     texts = safe_join(post.content.split("\n"), tag(:br))
     texts.gsub(URI.regexp(%w[http https])) do |text|
-      "<object><a id='url_#{post.id}' href='#{text}'>#{text}</a></object>"
+      "<object><a id='url' href='#{text}'>#{text}</a></object>"
     end
   end
 
