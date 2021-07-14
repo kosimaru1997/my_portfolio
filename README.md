@@ -5,8 +5,10 @@
 <div>
 <img src="https://user-images.githubusercontent.com/79825084/124790110-da3ce380-df85-11eb-8dc0-af734e8fdf2a.png" width="80%">　　
 </div>
+<div>
 <img src="https://user-images.githubusercontent.com/79825084/124790143-e3c64b80-df85-11eb-98ec-c4fa60c4a047.png" width="20%">
-<img src="https://user-images.githubusercontent.com/79825084/124790143-e3c64b80-df85-11eb-98ec-c4fa60c4a047.png" width="20%">
+<img src="https://user-images.githubusercontent.com/79825084/125648586-6251dd96-a222-4d6f-b704-9eb1399b44d7.png" width="20%">
+</div>
 
 ## サイト概要
 エンジニア初学者が情報を共有するためのアプリです。
