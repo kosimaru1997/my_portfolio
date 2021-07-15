@@ -9,7 +9,7 @@
 <img src="https://user-images.githubusercontent.com/79825084/125649390-99e6bb12-6e19-4147-aba2-c10171b7905c.png" width="20%">　
 <img src="https://user-images.githubusercontent.com/79825084/125648586-6251dd96-a222-4d6f-b704-9eb1399b44d7.png" width="20%">　
 <img src="https://user-images.githubusercontent.com/79825084/125650029-d7ca33ef-08cf-4c07-98a6-b9d1076e6d60.png" width="20%">　　
-<img src="https://user-images.githubusercontent.com/79825084/125827778-46055e91-268a-4bba-8755-b91b6a1a079c.png" width="20%" height="420px" >　
+<img src="https://user-images.githubusercontent.com/79825084/125827778-46055e91-268a-4bba-8755-b91b6a1a079c.png" width="23%">　
 </div>
 
 ## サイト概要
