@@ -29,7 +29,7 @@ class Public::RoomsController < ApplicationController
     room = Room.find(params[:id])
     room.check_chats_notification(current_user)
     user_id = room.user_rooms.where.not(user_id: current_user.id).select(:user_id)
-    @user = User.where(id: user_id).first
+    @user = User.find_by(id: user_id)
     @chats = room.chats.includes(:user)
     @chat = Chat.new(room_id: room.id)
   end
