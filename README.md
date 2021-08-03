@@ -1,9 +1,8 @@
 サイトURL：　https://xn--n9jfc1f0c1grbyi7gxp.com/ (エンジニアになるまで.com)  
 
-
 # エンジニアになるまで
 <div>
-<img src="https://user-images.githubusercontent.com/79825084/124790110-da3ce380-df85-11eb-8dc0-af734e8fdf2a.png" width="90%">　　
+<img src="https://user-images.githubusercontent.com/79825084/128097357-b31f0997-941f-4a3c-92d8-107edb12f588.png" width="90%">　　
 </div>
 <div>
 <img src="https://user-images.githubusercontent.com/79825084/125649390-99e6bb12-6e19-4147-aba2-c10171b7905c.png" width="20%">　
