@@ -57,7 +57,7 @@ html {
     width: 30px;
     height: 30px;
     animation: animate 25s linear infinite;
-    bottom: -100vh;
+    bottom: -800px;
 }
 
 .circles li:nth-child(1){
@@ -129,10 +129,10 @@ html {
 }
 
 .circles li:nth-child(10){
-    left: 85%;
-    width: 150px;
-    height: 150px;
-    animation-delay: 0s;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    animation-delay: 8s;
     animation-duration: 25s;
 }
 
@@ -158,7 +158,7 @@ html {
 
     0%{
         transform: translateY(0) rotate(0deg);
-        opacity: 1;
+        opacity: 0.8;
         border-radius: 150px;
         background-color: #a8cfff;
     }
@@ -564,6 +564,30 @@ footer {
 
   .linkpreview_img {
   max-width: 70%;
+  }
+
+  .circles li:nth-child(9){
+    left: 15%;
+    width: 100px;
+    height: 100px;
+    animation-delay: 4s;
+    animation-duration: 21s;
+}
+
+  .circles li:nth-child(8){
+    left: 50%;
+    width: 125px;
+    height: 125px;
+    animation-delay: 14s;
+    animation-duration: 45s;
+  }
+
+  .circles li:nth-child(10){
+    left: 75%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 25s;
   }
 
 }
