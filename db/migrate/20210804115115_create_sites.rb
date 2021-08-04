@@ -4,7 +4,7 @@ class CreateSites < ActiveRecord::Migration[5.2]
       t.references :user, foreign_key: true, null: false
       t.string :url, null: false
       t.string :title
-      t.string :image_id
+      t.text :image_id
       t.string :note
 
       t.timestamps

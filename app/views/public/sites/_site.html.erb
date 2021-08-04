@@ -1,0 +1,10 @@
+<li class="media-wide">
+  <a href="<%= site.url %>" class="card">
+      <img src="<%= site.image_id %>" class="media-height">
+      <div class="card-body">
+        <h5 class="card-title"><%= site.title %></h5>
+        <p class="card-text text-dark"><%= safe_join(site.note.split("\n"), tag(:br)) %></p>
+      </div>
+    </a>
+  <!--</div>-->
+</li>

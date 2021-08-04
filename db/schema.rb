@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_115115) do
     t.bigint "user_id", null: false
     t.string "url", null: false
     t.string "title"
-    t.string "image_id"
+    t.text "image_id"
     t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

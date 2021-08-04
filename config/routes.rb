@@ -48,6 +48,7 @@ Rails.application.routes.draw do
       get :following, on: :member
       get :followers, on: :member
       get :favorites, on: :member
+      get :site, on: :member
     end
     resources :posts, except: %i[edit new] do
       resource :favorites, only: %i[create destroy]

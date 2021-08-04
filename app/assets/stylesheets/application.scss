@@ -48,6 +48,10 @@ html {
   margin-right: 0;
 }
 
+#flash_messages {
+  width: 80%;
+}
+
 // ーーートップ背景ーーー
 .circles{
     top: 0;
@@ -595,5 +599,26 @@ footer {
     animation-duration: 25s;
   }
 
+}
+
+@media (min-width: 1023px) {
+
+  .media-wide {
+    width: 50%;
+  }
+
+  .card {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .media-flex {
+    display:flex;
+    flex-wrap: wrap;
+  }
+
+  .media-height {
+    height: 280px;
+  }
 }
 // ーーーーーーーーーーーーーーー
