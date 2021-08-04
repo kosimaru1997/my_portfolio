@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-4 ml-2 mt-5">
+  <div class="col-lg-4 mt-5">
       <div class="userーimage d-flex align-items-center">
         <%= link_to user_path(@user) do%>
         <%= attachment_image_tag @user, :image, :fill, 80, 80, format: 'jpg', fallback: "no_image.jpg", size:'80x80', class: "rounded-circle" %>
