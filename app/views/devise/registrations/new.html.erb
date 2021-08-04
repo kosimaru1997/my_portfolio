@@ -1,20 +1,20 @@
-<div class="row">
-  <div class="col-lg-12">
-<ul class="circles">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</ul>
+<div class="row mx-0">
+  <div class="col-12">
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
     <div class="introduction">
-      <h3 class="text-center pt-5">~ エンジニアになるまで ~</h3>
+      <h3 class="text-center pt-3">~ エンジニアになるまで ~</h3>
       <p class="w-75 mx-auto">エンジニア初学者に向けたサイトです。<br />
          オンライン上で様々な未経験エンジニアの方々と繋がれるコミュニティ
          として本サイトが使われることを願います。 <br />
@@ -23,8 +23,8 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-11 mx-auto">
+<div class="row mx-0">
+  <div class="col-12">
     <div class="d-flex-lg">
       <div id="login" class="pt-3 px-3 border">
         <%= render "devise/sessions/new" %>
@@ -38,7 +38,8 @@
   </div>
 </div>
 
-
+<div class="row mx-0">
+  <div class="col-12">
     <div class="border p-3">
       <h4 class="text-info border-bottom pb-2">~weekly post~</h4>
       <% @posts.each do |post| %>
@@ -51,7 +52,8 @@
       </div>
       <% end %>
     </div>
-
-  <p class="mt-2">ログインするとポストの投稿やコメント、ユーザーとのチャットの機能を使うことができます。</br>
-     興味がありましたら、ぜひ新規登録をお願いします。
-  </p>
+    <p class="mt-2">ログインするとポストの投稿やコメント、ユーザーとのチャットの機能を使うことができます。</br>
+       興味がありましたら、ぜひ新規登録をお願いします。
+    </p>
+  </div>
+</div>
