@@ -34,7 +34,7 @@
             <span>さんのコメントにリプライしました</span>
             <div><p class="text-muted mb-1"><%= notification.post_comment.comment %></p></div>
             <%= link_to post_path(notification.post) do %>
-              <div class="border text-muted p-1 ml-1">
+              <div class="border text-muted p-1 ml-1 text-break">
                 コメント内容: <%= parent_comment.comment %>
               </div>
             <% end %>
@@ -47,7 +47,7 @@
               <%= notification.post.user.name %><% end %>さんの投稿
           <% end %>
             <span>にコメントしました</span>
-            <div><p class="text-muted mb-1"><%= notification.post_comment.comment %></p></div>
+            <div><p class="text-muted mb-1 text-break"><%= notification.post_comment.comment %></p></div>
             <%= render "post_content", { notification: notification } %>
         <% end %>
     <% end %>
