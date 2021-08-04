@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+
   # ーーーーーーー管理者ーーーーーーーー
   devise_for :admins, controllers: {
     sessions: 'users/sessions'
@@ -55,6 +56,7 @@ Rails.application.routes.draw do
 
       get :favorited, on: :member
     end
+    resources :sites, only: %i[new index show edit create destroy update]
     resources :notifications, only: %i[index destroy]
     delete 'notifications_all' => 'notifications#destroy_all'
   end

@@ -36,6 +36,7 @@ class User < ApplicationRecord
                                    dependent: :destroy, inverse_of: :visited
   has_many :reposts, dependent: :destroy
   has_many :repost_posts, through: :reposts, source: :post
+  has_many :sites, dependent: :destroy
   attachment :image
 
   # 退会後のログインを禁止(deviseメソッド)
