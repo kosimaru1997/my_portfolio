@@ -1,4 +1,11 @@
 class Public::SitesController < ApplicationController
+
+  def site_top
+    @site = Site.new
+    @sites = current_user.sites.page(params[:page]).reverse_order
+    @login_user = current_user
+  end
+
   def new
     @site = Site.new
   end
@@ -6,20 +13,20 @@ class Public::SitesController < ApplicationController
   def create
     @site = current_user.sites.new(site_params)
     if @site.url.empty?
-      flash.now[:danger] = "URLを入力してください。"
-      return render :new 
+      return render 'shared/url_error'
     end
 
     begin
       @site.get_site_info
-    rescue OpenURI::HTTPError
-      flash.now[:danger] = "URLが間違っています。"
-      return render :new
+    rescue OpenURI::HTTPError, Errno::ENOENT => e
+      logger.error e
+      logger.error e.backtrace.join("\n")
+      return render 'shared/url_error'
     end
     if @site.save
-      redirect_to root_path
+      redirect_to redirect_back(fallback_location: root_path)
     else
-      render :new
+      render 'shared/validation_error'
     end
   end
 

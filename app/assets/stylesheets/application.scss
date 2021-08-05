@@ -50,6 +50,7 @@ html {
 
 #flash_messages {
   width: 80%;
+  margin: 0 auto;
 }
 
 // ーーートップ背景ーーー
@@ -597,6 +598,11 @@ footer {
     height: 150px;
     animation-delay: 0s;
     animation-duration: 25s;
+  }
+
+  .media-width {
+    width: 90%;
+    margin: 0 auto;
   }
 
 }

@@ -68,8 +68,8 @@ class Public::UsersController < ApplicationController
   end
 
   def site
-    user = User.find(params[:id])
-    @sites = user.sites.page(params[:page]).per(10).reverse_order
+    @user = User.find(params[:id])
+    @sites = @user.sites.page(params[:page]).per(10).reverse_order
   end
 
   private

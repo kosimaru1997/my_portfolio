@@ -21,6 +21,9 @@
         <span id="following-count"><%= @user.followers.count %> </span>
         <%= link_to "フォロワー", followers_user_path(@user) %>
       </div>
+      <%= link_to site_user_path(@user) do %>
+        <button class="btn btn-outline-success mr-3">サイトストック</button>
+      <% end %>
       <% if current_user == @user %>
         <div class="edit my-3">
           <%= link_to edit_user_path(current_user) do %>

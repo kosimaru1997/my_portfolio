@@ -1,9 +1,12 @@
 <li class="media-wide">
   <a href="<%= site.url %>" class="card">
-      <img src="<%= site.image_id %>" class="media-height">
-      <div class="card-body">
-        <h5 class="card-title"><%= site.title %></h5>
-        <p class="card-text text-dark"><%= safe_join(site.note.split("\n"), tag(:br)) %></p>
-      </div>
-    </a>
+    <img src="<%= site.image_id %>"  alt="画像がありません" class="media-height border-bottom">
+    <div class="card-body">
+      <h5 class="card-title"><%= site.title %></h5>
+      <p class="card-text text-dark"><%= safe_join(site.note.split("\n"), tag(:br)) %></p>
+      <% if current_user == site.user %>
+        <span class="post-delete ml-3"><%= link_to "削除", site_path(site), method: :delete, data: {confirm: "本当に削除しますか？"} %></span>
+      <% end %>
+    </div>
+  </a>
 </li>

@@ -1,21 +1,13 @@
 <div class="row mt-3">
-
-     <h5 class="mx-auto mb-3" style="font-family: Hiragino Maru Gothic Pro">サイトをストックする</h5>
-
   <div class="col-md-10 mx-auto">
-
-    <%= form_with(model: @site, local: true) do |f| %>
+     <h5 class="text-center mb-3" style="font-family: Hiragino Maru Gothic Pro">サイトをストックする</h5>
+    <%= form_with(model: @site) do |f| %>
       <%= render 'shared/errors', object: f.object %>
-
       <label for="url">URL</label>
       <%= f.text_field :url, class: 'form-control mb-3', placeholder: "URLを入力する。例：https://hogehoge" %>
-
       <%= f.label :"メモ" %>
       <%= f.text_area :note, :size=>"30x4", class: 'form-control', placeholder: "メモを記入する。例：RailsのCRUD処理の基本を学べるサイト" %>
-
       <%= f.submit :"保存", class: "btn btn-cool-blues btn-rounded d-block mt-3" %>
-
     <% end %>
   </div>
-
 </div>

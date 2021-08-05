@@ -1,5 +1,14 @@
 <div class="row mt-2">
   <div class="col-11 mx-auto">
+      <div class="user_info d-flex align-items-center my-2">
+        <%= attachment_image_tag @user, :image, :fill, 70, 70, format: 'jpg', fallback: "no_image.jpg", size:'70x70', class: "rounded-circle" %>
+        <div class="ml-3"><h5 class="text-dark" style="font-family: Hiragino Maru Gothic Pro"><%= @user.name %>さんのサイト</h5></div>
+      </div>
+      <div class="text-right mb-2">
+        <% if @user == current_user %>
+          <%= link_to "サイトをストック", new_site_path, class: "btn btn-cool-blues btn-rounded mb-2" %>
+        <% end %>
+      </div>
     <ol class="scroll-list jscroll">
       <div class="media-flex">
         <%= render @sites %>

@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     authenticated :user do
       root to: 'homes#top'
     end
+    get '/site_top' => 'sites#site_top'
     get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'
     resources :rooms, only: %i[create index show]
     resources :users, except: [:new] do

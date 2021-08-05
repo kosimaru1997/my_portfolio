@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <header>
     <div class="menu-bar">
-      <nav class="navbar navbar-light border-bottom border-light">
+      <nav class="navbar navbar-light border-bottom border-light px-1">
         <a class="navbar-brand text-center ml-2" href="/"><%= image_tag 'logo.jpg', size: "150x20" %></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -16,8 +16,13 @@
                 <%= link_to "マイページ", user_path(current_user), class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
+                <%= link_to posts_path, class: 'nav-link text-dark' do %>
+                  <span>ポスト一覧</span>
+                <% end %>
+              </li>
+                            <li class="nav-item">
                 <%= link_to users_path, class: 'nav-link text-dark' do %>
-                  <!--<i class="fas fa-users fa-lg fa-backcolor"></i>--><span>ユーザー一覧</span>
+                  <span>ユーザー一覧</span>
                 <% end %>
               </li>
               <li class="nav-item">
