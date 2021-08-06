@@ -2,13 +2,20 @@
 
 # エンジニアになるまで
 <div>
-<img src="https://user-images.githubusercontent.com/79825084/128097357-b31f0997-941f-4a3c-92d8-107edb12f588.png" width="90%">　　
+  <img src="https://user-images.githubusercontent.com/79825084/128097357-b31f0997-941f-4a3c-92d8-107edb12f588.png" width="90%">　　
 </div>
+<div style="margin-bottom 10px;">
+  <img src="https://user-images.githubusercontent.com/79825084/125649390-99e6bb12-6e19-4147-aba2-c10171b7905c.png" width="20%">　
+  <img src="https://user-images.githubusercontent.com/79825084/125648586-6251dd96-a222-4d6f-b704-9eb1399b44d7.png" width="20%">　
+  <img src="https://user-images.githubusercontent.com/79825084/125650029-d7ca33ef-08cf-4c07-98a6-b9d1076e6d60.png" width="20%">　　
+  <img src="https://user-images.githubusercontent.com/79825084/125827778-46055e91-268a-4bba-8755-b91b6a1a079c.png" width="23%">　
+</div>
+
 <div>
-<img src="https://user-images.githubusercontent.com/79825084/125649390-99e6bb12-6e19-4147-aba2-c10171b7905c.png" width="20%">　
-<img src="https://user-images.githubusercontent.com/79825084/125648586-6251dd96-a222-4d6f-b704-9eb1399b44d7.png" width="20%">　
-<img src="https://user-images.githubusercontent.com/79825084/125650029-d7ca33ef-08cf-4c07-98a6-b9d1076e6d60.png" width="20%">　　
-<img src="https://user-images.githubusercontent.com/79825084/125827778-46055e91-268a-4bba-8755-b91b6a1a079c.png" width="23%">　
+  <img src="https://user-images.githubusercontent.com/79825084/128459003-0c529997-e5d0-47e6-9bf4-780920fcc86d.png" width="90%">　  
+  
+  New Release!  
+  スクレイピングにより外部サイトの情報を取得し外部サイトを保存する機能を追加しました。
 </div>
 
 ## サイト概要
