@@ -9,11 +9,11 @@
             <span class="text-break"><%= current_user.name %></span>
           <% end %>
         </div>
-        <div class="border rounded media-width pt-3">
+        <div class="bg-site media-width pt-3">
           <%= form_with(model: @site, local: true) do |f| %>
-            <%= render 'shared/errors', object: f.object %>
             <%= f.text_field :url, class: 'form-control mb-3', placeholder: "URLを入力する。例：https://hogehoge" %>
-            <%= f.text_area :note, :size=>"30x3", class: 'form-control', placeholder: "メモを記入する。例：RailsのCRUD処理の基本を学べるサイト" %>
+            <%= f.text_area :note, :size=>"30x3", class: 'form-control',
+                            placeholder: "メモを記入する。例：RailsのCRUD処理の基本を学べるサイト(100字以下)" %>
             <div>
               <%= f.submit :"ストック", class: "btn btn-cool-blues btn-rounded d-block mt-2 ml-auto" %>
             </div>

@@ -69,6 +69,7 @@ class Public::UsersController < ApplicationController
 
   def site
     @user = User.find(params[:id])
+    @site = current_user.sites.build
     @sites = @user.sites.page(params[:page]).per(10).reverse_order
   end
 

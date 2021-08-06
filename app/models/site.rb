@@ -1,6 +1,7 @@
 class Site < ApplicationRecord
   belongs_to :user
   validates :url, uniqueness: { scope: :user_id }
+  validates :note, length: { maximum: 100 }
 
   def get_site_info
     require 'nokogiri'
@@ -11,8 +12,8 @@ class Site < ApplicationRecord
     html = URI.open(site_url).read
 
     doc = Nokogiri::HTML.parse(html)
-    ogp_image = doc.css('//meta[property="og:image"]/@content').to_s
-    ogp_title = doc.css('//meta[property="og:title"]/@content').to_s
+    ogp_image = doc.css('//meta[property="og:image"]/@content')
+    ogp_title = doc.css('title').text
     self.title = ogp_title
     self.image_id = ogp_image
   end

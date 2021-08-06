@@ -2,7 +2,7 @@ class Public::SitesController < ApplicationController
 
   def site_top
     @site = Site.new
-    @sites = current_user.sites.page(params[:page]).reverse_order
+    @sites = current_user.following_sites.includes(:user).page(params[:page]).reverse_order
     @login_user = current_user
   end
 
@@ -24,10 +24,15 @@ class Public::SitesController < ApplicationController
       return render 'shared/url_error'
     end
     if @site.save
-      redirect_to redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path)
     else
-      render 'shared/validation_error'
+      return render 'shared/validation_error'
     end
+  end
+
+  def destroy
+    Site.find(params[:id]).destroy
+    redirect_back(fallback_location: root_path)
   end
 
   def index

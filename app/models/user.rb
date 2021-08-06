@@ -132,7 +132,12 @@ class User < ApplicationRecord
   #                               follow_user_ids: follow_user_ids, user_id: self.id).select(:post_id)
   #     Post.where("id IN (:repost_ids) OR user_id IN (:follow_user_ids) OR user_id = :user_id",
   #                 repost_ids: repost_ids, follow_user_ids: follow_user_ids, user_id: self.id)
-
+  
+  # フォロー済みユーザー及び自身のストックしたサイトを表示
+  def following_sites
+    follow_user_ids = self.following.select(:id)
+    Site.where(user_id: follow_user_ids).or(Site.where(user_id: id))
+  end
   # フォロー時の通知を作成
   def create_notification_follow!(current_user)
     temp = Notification.where(visitor_id: current_user.id, visited_id: id, action: 'follow')
