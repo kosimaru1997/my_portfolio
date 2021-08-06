@@ -20,7 +20,8 @@ class Public::UsersController < ApplicationController
     @posts = @user.posts_with_reposts.page(params[:page]).reverse_order
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     if current_user.update(user_params)
@@ -64,6 +65,12 @@ class Public::UsersController < ApplicationController
     @login_user = User.includes(:favorites).find(current_user.id)
     @favorites_posts = true
     render 'show'
+  end
+
+  def site
+    @user = User.find(params[:id])
+    @site = current_user.sites.build
+    @sites = @user.sites.page(params[:page]).per(10).reverse_order
   end
 
   private

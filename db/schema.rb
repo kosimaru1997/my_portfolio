@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_17_160307) do
+ActiveRecord::Schema.define(version: 2021_08_04_115115) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -110,6 +110,17 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "url", null: false
+    t.string "title"
+    t.text "image_id"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sites_on_user_id"
+  end
+
   create_table "user_rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
@@ -153,6 +164,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_160307) do
   add_foreign_key "relationships", "users", column: "follower_id"
   add_foreign_key "reposts", "posts"
   add_foreign_key "reposts", "users"
+  add_foreign_key "sites", "users"
   add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"
 end

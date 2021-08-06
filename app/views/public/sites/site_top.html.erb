@@ -1,0 +1,31 @@
+<div class="row mt-2">
+  <div class="col-11 mx-auto">
+        <h3 class="text-center" style="font-family: Hiragino Maru Gothic Pro">ホーム(:サイト)  </h3>
+        <div class="text-right mt-3"><%= link_to "ポストに切り替え", root_path, class: "btn btn-outline-info" %></div>
+      <div class="site-form py-3">
+        <div crass="user_info", style="margin-bottom: 10px;">
+          <%= link_to user_path(current_user) do %>
+            <%= attachment_image_tag current_user, :image, :fill, 60, 60, format: 'jpg', fallback: "no_image.jpg", size:'60x60', class: "rounded-circle" %>
+            <span class="text-break"><%= current_user.name %></span>
+          <% end %>
+        </div>
+        <div class="bg-site media-width pt-4 mb-3">
+          <%= form_with(model: @site) do |f| %>
+            <%= render 'shared/errors', object: f.object %>
+            <%= f.text_field :url, class: 'form-control mb-3', placeholder: "URLを入力する。例：https://hogehoge" %>
+            <%= f.text_area :note, :size=>"30x3", class: 'form-control', placeholder: "メモを記入する。例：RailsのCRUD処理の基本を学べるサイト" %>
+            <div class="pb-1">
+              <%= f.submit :"ストック", class: "btn btn-cool-blues btn-rounded d-block mt-2 mr-2 mb-2 ml-auto" %>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+    <ol class="scroll-list jscroll">
+      <div class="media-flex">
+        <%= render @sites %>
+        <%= paginate @sites %>
+      </div>
+    </ol>
+  </div>
+</div>

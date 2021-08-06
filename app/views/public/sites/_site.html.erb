@@ -1,0 +1,15 @@
+<li class="media-wide">
+  <a href="<%= site.url %>" target="_blank" rel="noopener noreferrer" class="card">
+    <img src="<%= site.image_id %>"  alt="画像がありません" class="media-height border-bottom">
+    <div class="card-body">
+      <h5 class="card-title"><% if site.title.present? %><%= site.title %><% else %>No Title<% end %></h5>
+      <object>@<%= link_to site.user.name, user_path(site.user) %></object>
+      <p class="card-text text-dark"><%= safe_join(site.note.split("\n"), tag(:br)) %></p>
+      <% if current_user == site.user %>
+        <div class="text-right">
+          <object><%= link_to "削除", site_path(site), method: :delete, class: "text-danger", data: {confirm: "本当に削除しますか？"} %></object>
+        </div>
+      <% end %>
+    </div>
+  </a>
+</li>

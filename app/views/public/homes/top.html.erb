@@ -1,9 +1,10 @@
 <div class="top-page">
   <div class="row  my-3 mx-0">
     <div class="col-lg-10 mx-auto">
-      <h3 class="text-center" style="font-family: Hiragino Maru Gothic Pro">ホーム</h3>
-      <div class="post-form border-bottom py-4">
-        <div crass="user_info", style="margin-bottom: 20px;">
+        <h3 class="text-center" style="font-family: Hiragino Maru Gothic Pro">ホーム(:ポスト)  </h3>
+        <div class="text-right mt-3"><%= link_to "サイトに切り替え", site_top_path, class: "btn btn-outline-success" %></div>
+      <div class="post-form border-bottom py-3">
+        <div crass="user_info", style="margin-bottom: 10px;">
           <%= link_to user_path(current_user) do %>
             <%= attachment_image_tag current_user, :image, :fill, 60, 60, format: 'jpg', fallback: "no_image.jpg", size:'60x60', class: "rounded-circle" %>
             <span class="text-break"><%= current_user.name %></span>

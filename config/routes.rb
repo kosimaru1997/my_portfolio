@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+
   # ーーーーーーー管理者ーーーーーーーー
   devise_for :admins, controllers: {
     sessions: 'users/sessions'
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
     authenticated :user do
       root to: 'homes#top'
     end
+    get '/site_top' => 'sites#site_top'
     get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'
     resources :rooms, only: %i[create index show]
     resources :users, except: [:new] do
@@ -47,6 +49,7 @@ Rails.application.routes.draw do
       get :following, on: :member
       get :followers, on: :member
       get :favorites, on: :member
+      get :site, on: :member
     end
     resources :posts, except: %i[edit new] do
       resource :favorites, only: %i[create destroy]
@@ -55,6 +58,7 @@ Rails.application.routes.draw do
 
       get :favorited, on: :member
     end
+    resources :sites, only: %i[new index show edit create destroy update]
     resources :notifications, only: %i[index destroy]
     delete 'notifications_all' => 'notifications#destroy_all'
   end

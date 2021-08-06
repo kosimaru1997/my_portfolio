@@ -1,0 +1,36 @@
+<div class="row mt-2">
+  <div class="col-11 mx-auto">
+    <div class="user_info d-flex align-items-center my-2">
+      <%= attachment_image_tag @user, :image, :fill, 70, 70, format: 'jpg', fallback: "no_image.jpg", size:'70x70', class: "rounded-circle" %>
+      <div class="ml-3"><h5 class="text-dark" style="font-family: Hiragino Maru Gothic Pro"><%= @user.name %>さんのサイト</h5></div>
+    </div>
+
+    <% if @user == current_user %>
+    <div class="text-right">
+      <button class="btn btn-outline-secondary mb-4 mr-4" data-toggle="collapse" data-target="#collapseSite"
+       aria-controls="collapseSite">
+        <i class="fas fa-file-import fa-2x"></i>
+      </button>
+    </div>
+      <div class="collapse my-2" id="collapseSite">
+        <div class="media-width bg-site pt-4 mb-5">
+          <%= form_with(model: @site, url: sites_path) do |f| %>
+            <%= f.text_field :url, class: 'form-control mb-3', placeholder: "URLを入力する。例：https://hogehoge" %>
+            <%= f.text_area :note, :size=>"30x3", class: 'form-control', placeholder: "メモを記入する。例：RailsのCRUD処理の基本を学べるサイト(100字以下)" %>
+            <div class="pb-1">
+              <%= f.submit :"ストック", class: "btn btn-cool-blues btn-rounded d-block mt-2 mr-2 ml-auto" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    <% end %>
+
+    <ol class="scroll-list jscroll">
+      <div class="media-flex">
+        <%= render @sites %>
+        <%= paginate @sites %>
+      </div>
+    </ol>
+  </div>
+</div>
