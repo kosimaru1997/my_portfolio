@@ -613,6 +613,11 @@ footer {
     margin: 0 auto;
   }
 
+  .media-height {
+    height: 250px;
+    max-height: 250px;
+  }
+
 }
 
 @media (min-width: 1023px) {
@@ -633,6 +638,7 @@ footer {
 
   .media-height {
     height: 280px;
+    max-height: 280px;
   }
 }
 // ーーーーーーーーーーーーーーー
