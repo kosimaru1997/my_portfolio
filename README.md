@@ -65,6 +65,7 @@ https://docs.google.com/spreadsheets/d/1Qb4WOSmpRb9nLdiNKu54Ly3G1wDO0JN3PgWfEfZb
 　　1　フォローされた時、投稿に対してコメント、リプライを受けた時  
 　　2　DMを受けた時  
 ・リンクプレビュー機能（外部API　'link_preview'を使用）  
+・GitHub Actionsを用いた自動でデプロイ  
 
 ＊その他、機能・実装の詳細は下記URLをご確認願います  
 https://docs.google.com/spreadsheets/d/1_HPNzhP4DSkcBaBIqMjc8MeEn3_E1-fHyP7tUgCb5Tc/edit#gid=0
