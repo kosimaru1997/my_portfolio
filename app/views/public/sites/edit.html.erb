@@ -1,2 +1,33 @@
-<h1>Public::Sites#edit</h1>
-<p>Find me in app/views/public/sites/edit.html.erb</p>
+<div class="container-fluid">
+  <div class="row mt-3">
+    <div class="col-12 mx-auto">
+      <h3 class="mb-4">
+        <a href="<%= @site.url %>" target="_blank" rel="noopener noreferrer"><%= @site.title %></a>
+      </h3>
+      <h3>Edit Note</h3>
+      <div>
+        <div id="flash_messages">
+          <% flash.each do |message_type, message| %>
+          <% end %>
+        </div>
+        <%= form_with(model: @site, local: true) do |f| %>
+          <div class="bg-site py-3 px-4 mb-2">
+            <div class="file-header d-flex">
+              <div class="border-top border-left border-right events-none bg-white py-2 px-3" id="markdown"> Edit note </div>
+              <div class="events-auto border-top border-right bg-light-grey py-2 px-3", id="preview">
+                Preview
+              </div>
+            </div>
+            <div id="preview-area"></div>
+            <div id="note-form">
+              <%= f.text_area :note, size: "30x13", class: "form-control site-control p-3",
+              id: "md-textarea", placeholder:"メモ記入欄（マークダウン対応）"%>
+            </div>
+            <%= f.submit :"Update", class: "btn btn-outline-secondary d-block px-4 ms-2 my-3" %>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

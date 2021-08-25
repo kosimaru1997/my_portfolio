@@ -1,13 +1,45 @@
-<div class="row mt-3">
-  <div class="col-md-10 mx-auto">
-     <h5 class="text-center mb-3" style="font-family: Hiragino Maru Gothic Pro">サイトをストックする</h5>
-    <%= form_with(model: @site) do |f| %>
-      <%= render 'shared/errors', object: f.object %>
-      <label for="url">URL</label>
-      <%= f.text_field :url, class: 'form-control mb-3', placeholder: "URLを入力する。例：https://hogehoge" %>
-      <%= f.label :"メモ" %>
-      <%= f.text_area :note, :size=>"30x4", class: 'form-control', placeholder: "メモを記入する。例：RailsのCRUD処理の基本を学べるサイト" %>
-      <%= f.submit :"保存", class: "btn btn-cool-blues btn-rounded d-block mt-3" %>
-    <% end %>
+<!--<div class="row mt-3">-->
+<!--  <div class="col-md-10 mx-auto">-->
+<!--     <h5 class="text-center mb-3" style="font-family: Hiragino Maru Gothic Pro">サイトをストックする</h5>-->
+<!--    </%= form_with(model: @site) do |f| %>-->
+<!--      </%= render 'shared/errors', object: f.object %>-->
+<!--      <label for="url">URL</label>-->
+<!--      </%= f.text_field :url, class: 'form-control mb-3', placeholder: "URLを入力する。例：https://hogehoge" %>-->
+<!--      </%= f.label :"メモ" %>-->
+<!--      </%= f.text_area :note, :size=>"30x4", class: 'form-control', placeholder: "メモを記入する。例：RailsのCRUD処理の基本を学べるサイト" %>-->
+<!--      </%= f.submit :"保存", class: "btn btn-cool-blues btn-rounded d-block mt-3" %>-->
+<!--    </% end %>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="container-fluid">
+  <div class="row mt-3">
+    <div class="col-11 mx-auto">
+      <h3>Create Site Note</h3>
+      <div>
+        <div id="flash_messages">
+          <% flash.each do |message_type, message| %>
+          <% end %>
+        </div>
+        <%= form_with(model: @site, local: false) do |f| %>
+          <div class="bg-site py-3 px-4 mb-2">
+            <%= f.text_field :url, class: 'form-control site-control mb-3', placeholder: "例：https://hogehoge" %>
+            <div class="file-header d-flex">
+              <div class="border-top border-left border-right events-none bg-white py-2 px-3" id="markdown"> Edit note </div>
+              <div class="events-auto border-top border-right bg-light-grey py-2 px-3", id="preview">
+                Preview
+              </div>
+            </div>
+            <div id="preview-area"></div>
+            <div id="note-form">
+              <%= f.text_area :note, size: "30x13", class: "form-control site-control p-3",
+              id: "md-textarea", placeholder:"メモ記入欄（マークダウン対応）"%>
+            </div>
+            <%= f.submit :"Post", class: "btn btn-outline-secondary d-block px-4 ms-2 my-3" %>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
   </div>
 </div>
