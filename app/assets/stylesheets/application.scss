@@ -557,6 +557,7 @@ footer {
 // ーーーーーープレビュー ーーーーーー
 .site-show-image {
   max-height: 230px;
+  max-width: 100%;
 }
 
 .events-none {
@@ -588,22 +589,22 @@ pre {
 
 // ーーーーレスポンシブーーーーー
 
-  @media (max-width: 480px) { 
-  
+  @media (max-width: 480px) {
+
     .card-list {
-      width: 90%;
+      width: 100%;
       margin: 0 auto;
     }
-  
+
     .search {
       width: 95%;
       margin-top: 20px;
     }
-  
+
     .media-none {
       display: none;
     }
-  
+
   }
 
  @media (min-width: 768px) {

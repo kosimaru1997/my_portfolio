@@ -6,11 +6,14 @@
     </div>
 
     <% if @user == current_user %>
-    <div class="text-right">
+    <div class="d-flex mt-2">
       <button class="btn btn-outline-secondary mb-4 mr-4" data-toggle="collapse" data-target="#collapseSite"
        aria-controls="collapseSite">
         <i class="fas fa-file-import fa-2x"></i>
       </button>
+      <div class="text-right w-100">
+        <%= link_to "投稿画面へ", new_site_path, "data-turbolinks": false, class: "btn btn-outline-primary mr-3" %>
+      </div>
     </div>
       <div class="collapse my-2" id="collapseSite">
         <div class="media-width bg-site pt-4 mb-5">
@@ -23,14 +26,13 @@
           <% end %>
         </div>
       </div>
-
     <% end %>
-
-    <ol class="scroll-list jscroll">
-      <div class="media-flex">
-        <%= render @sites %>
-        <%= paginate @sites %>
-      </div>
-    </ol>
   </div>
 </div>
+
+  <ol class="scroll-list jscroll mx-3">
+    <div class="d-flex flex-wrap mb-5">
+      <%= render @sites %>
+      <%= paginate @sites %>
+    </div>
+  </ol>
