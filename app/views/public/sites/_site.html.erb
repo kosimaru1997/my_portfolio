@@ -9,15 +9,15 @@
       <p type="button" class="text-center mb-0" data-toggle="modal" data-target="#noteModal_<%= site.id %>">
         <i class="fas fa-sort-down fa-2x w-50"></i>
       </p>
-      
+
       <%= render '/public/sites/note_modal', site: site %>
-      
+
     <% end %>
       <div class="text-right mt-3">
         <object><%= link_to "詳細", site_path(site), class: "text-primary mr-2" %></object>
         <% if current_user == site.user %>
           <object><%= link_to "編集", edit_site_path(site), "data-turbolinks": false, class: "text-info mr-3" %></object>
-          <object><%= link_to "削除", site_path(site), method: :delete, class: "text-danger", data: {confirm: "本当に削除しますか？"} %></object>
+          <object><%= link_to "削除", site_path(site), method: :delete, class: "text-danger pr-2", data: {confirm: "本当に削除しますか？"} %></object>
         <% end %>
       </div>
   </div>
