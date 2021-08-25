@@ -1,0 +1,7 @@
+$("#preview-area").html("<%= j(render '/public/sites/note', text: @note) %>");
+$("#preview-area").removeClass('d-none');
+$("#md-textarea").addClass('d-none');
+$('#preview').addClass('bg-white events-none');
+$('#preview').removeClass('events-auto');
+$('#markdown').removeClass('bg-white events-none');
+$('#markdown').addClass('bg-light-grey events-auto');

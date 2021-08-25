@@ -372,6 +372,9 @@ footer {
   height: 30px;
   margin: 0 auto;
 }
+.site-control {
+  width: 100%;
+}
 
 
 .errors li {
@@ -531,6 +534,38 @@ footer {
 }
 // ーーーーーーーーーーーーーーーーー
 
+// プレビュー
+.site-show-image {
+  max-height: 230px;
+}
+
+.events-none {
+  pointer-events: none;
+}
+
+.events-auto {
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.note-link {
+  justify-content: space-between;
+
+  a {
+    color: #676767;
+    text-decoration: none;
+  }
+}
+
+pre {
+  background-color: #f1f3ff;
+}
+
+.min-height {
+  min-height: 300px;
+}
+
+
 // ーーーーレスポンシブーーーーー
 
  @media (min-width: 768px) {
@@ -574,6 +609,9 @@ footer {
 
   .form-control {
     width: 80%;
+  }
+  .site-control {
+  width: 100%;
   }
 
   textarea#chat_message {

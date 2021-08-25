@@ -43,6 +43,10 @@ class Public::SitesController < ApplicationController
 
   def edit
   end
+  
+  def preview
+    @note = view_context.markdown(params[:body])
+  end
 
   private
 
