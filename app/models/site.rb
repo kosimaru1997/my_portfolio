@@ -1,21 +1,14 @@
 class Site < ApplicationRecord
   belongs_to :user
   validates :url, uniqueness: { scope: :user_id }
-  validates :note, length: { maximum: 100 }
+  validates :note, length: { maximum: 14000 }
 
   def get_site_info
-    require 'nokogiri'
-    require 'open-uri'
-
     site_url = self.url
-
-    html = URI.open(site_url).read
-
-    doc = Nokogiri::HTML.parse(html)
-    ogp_image = doc.css('//meta[property="og:image"]/@content')
-    ogp_title = doc.css('title').text
-    self.title = ogp_title
-    self.image_id = ogp_image
+    page = MetaInspector.new(site_url)
+    self.title = page.best_title if page.best_title
+    self.description = page.best_description if page.best_description
+    self.image_id = page.images.best
   end
 
 end

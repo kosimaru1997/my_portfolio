@@ -534,7 +534,27 @@ footer {
 }
 // ーーーーーーーーーーーーーーーーー
 
-// プレビュー
+.card-list {
+  list-style: none;
+  width: 50%;
+}
+
+.card-image {
+  min-height: 200px;
+  max-height: 280px;
+}
+
+.card-title {
+  max-height: 50px;
+  overflow: hidden;
+}
+
+.card-text {
+  max-height: 50px;
+  overflow: hidden;
+}
+
+// ーーーーーープレビュー ーーーーーー
 .site-show-image {
   max-height: 230px;
 }
@@ -567,6 +587,24 @@ pre {
 
 
 // ーーーーレスポンシブーーーーー
+
+  @media (max-width: 480px) { 
+  
+    .card-list {
+      width: 90%;
+      margin: 0 auto;
+    }
+  
+    .search {
+      width: 95%;
+      margin-top: 20px;
+    }
+  
+    .media-none {
+      display: none;
+    }
+  
+  }
 
  @media (min-width: 768px) {
 
@@ -677,6 +715,15 @@ pre {
   .media-height {
     height: 280px;
     max-height: 280px;
+  }
+}
+// ーーーーーーーーーーーーーーー
+
+// ーーーーーモーダルーーーーーー
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 95%;
+    margin: 30px auto;
   }
 }
 // ーーーーーーーーーーーーーーー
