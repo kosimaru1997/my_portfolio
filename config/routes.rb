@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     end
     get '/site_top' => 'sites#site_top'
     get '/site/preview' => 'sites#preview'
+    get '/site/search' => 'sites#search'
     get 'users/:id/confirm' => 'users#confirm', as: 'user_confirm'
     resources :rooms, only: %i[create index show]
     resources :users, except: [:new] do

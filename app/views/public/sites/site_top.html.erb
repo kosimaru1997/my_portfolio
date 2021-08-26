@@ -1,9 +1,12 @@
 <div class="row mt-2">
   <div class="col-11 mx-auto">
     <h3 class="text-center" style="font-family: Hiragino Maru Gothic Pro">ホーム(:サイト)  </h3>
-    <div class="text-right mt-3 mr-3">
-      <%= link_to "投稿画面へ", new_site_path, "data-turbolinks": false, class: "btn btn-outline-primary mr-3" %>
-      <%= link_to "ポストに切り替え", root_path, class: "btn btn-outline-info" %>
+    <div class="text-right my-3 mr-3">
+    <%= link_to "投稿画面へ", new_site_path, "data-turbolinks": false, class: "btn btn-outline-primary mr-3" %>
+    <%= link_to "ポストに切り替え", root_path, class: "btn btn-outline-info" %>
+    </div>
+    <div class="ml-auto">
+      <%= render "shared/search_form" %>
     </div>
     <div class="site-form py-3">
       <div crass="user_info ml-3", style="margin-bottom: 10px;">

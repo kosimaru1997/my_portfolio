@@ -4,6 +4,7 @@
   <div class="card-body p-2">
     <a href="<%= site.url %>" target="_blank" rel="noopener noreferrer">
     <h5 class="card-title"><% if site.title.present? %><%= site.title %><% else %>No Title<% end %></h5></a>
+    <%= link_to "@#{site.user.name}", user_path(site.user), class: "text-small" %>
     <% if site.note.present? %>
       <p class="card-text text-dark text-break mb-1"><%= safe_join(site.note.split("\n"), tag(:br)) %></p>
       <p type="button" class="text-center mb-0" data-toggle="modal" data-target="#noteModal_<%= site.id %>">

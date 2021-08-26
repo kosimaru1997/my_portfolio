@@ -1,20 +1,24 @@
 <div class="row mt-2">
   <div class="col-11 mx-auto">
-    <div class="user_info d-flex align-items-center my-2">
-      <%= attachment_image_tag @user, :image, :fill, 70, 70, format: 'jpg', fallback: "no_image.jpg", size:'70x70', class: "rounded-circle" %>
+    <div class="user_info d-flex align-items-center mt-4">
+      <%= attachment_image_tag @user, :image, :fill, 60, 60, format: 'jpg', fallback: "no_image.jpg", size:'60x60', class: "rounded-circle" %>
       <div class="ml-3"><h5 class="text-dark" style="font-family: Hiragino Maru Gothic Pro"><%= @user.name %>さんのサイト</h5></div>
     </div>
 
     <% if @user == current_user %>
-    <div class="d-flex mt-2">
-      <button class="btn btn-outline-secondary mb-4 mr-4" data-toggle="collapse" data-target="#collapseSite"
-       aria-controls="collapseSite">
-        <i class="fas fa-file-import fa-2x"></i>
-      </button>
-      <div class="text-right w-100">
-        <%= link_to "投稿画面へ", new_site_path, "data-turbolinks": false, class: "btn btn-outline-primary mr-3" %>
-      </div>
+    <!--<div class="d-flex mt-2">-->
+    <!--  <button class="btn btn-outline-secondary mb-4 mr-4" data-toggle="collapse" data-target="#collapseSite"-->
+    <!--   aria-controls="collapseSite">-->
+    <!--    <i class="fas fa-file-import fa-2x"></i>-->
+    <!--  </button>-->
+    <div class="text-right w-100 mb-3">
+      <%= link_to "投稿画面へ", new_site_path, "data-turbolinks": false, class: "btn btn-outline-primary mr-3" %>
     </div>
+    <!--</div>-->
+    <div class="ml-auto">
+      <%= render "shared/search_form" %>
+    </div>
+      
       <div class="collapse my-2" id="collapseSite">
         <div class="media-width bg-site pt-4 mb-5">
           <%= form_with(model: @site, url: sites_path) do |f| %>

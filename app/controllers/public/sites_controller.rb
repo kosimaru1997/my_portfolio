@@ -58,6 +58,21 @@ class Public::SitesController < ApplicationController
   def preview
     @note = view_context.markdown(params[:body])
   end
+  
+  def search
+    if (params[:user_id]).empty?
+      @site = Site.new
+      @login_user = current_user
+      sites = current_user.following_sites
+      destination = "site_top"
+    else
+      @user = User.find(params[:user_id])
+      sites = @user.sites
+      destination = "/public/users/site"
+    end
+    @sites = sites.search(params[:word], params[:option], params[:sort]).page(params[:page])
+    render destination
+  end
 
   private
 

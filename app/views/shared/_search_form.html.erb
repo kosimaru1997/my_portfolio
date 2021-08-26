@@ -1,0 +1,11 @@
+<% if @user? user_id = @user.id : nil %><% end %>
+
+<div class="search ms-auto mr-2">
+  <%= form_with url: site_search_url, :method => 'get', local: true, class: "form-inline" do |f| %>
+    <%= f.select :option, [ :mix, :title, :note], { required: true }, class: "mr- mb-2 py-1" %>
+    <%= f.select :sort, [:new, :old], { required: true }, class: "mr-2 py-1" %>
+    <%= f.search_field :word, class: "form-control pr-3 mr-2", placeholder: "検索" %>
+    <%= f.hidden_field :user_id, :value => user_id %>
+    <%= f.submit '検索', name: nil, class: "media-none btn btn-outline-secondary py-1" %>
+  <% end %>
+</div>
