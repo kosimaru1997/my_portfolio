@@ -13,9 +13,6 @@
 
 <div>
   <img src="https://user-images.githubusercontent.com/79825084/130475443-5404f28d-fd1c-47c4-8ddb-3571bd4f2976.png" width="90%">　  
-  
-  New Release!  
-  スクレイピングによりURLから外部サイトの情報を取得し保存する機能を追加しました。(より使いやすくするために開発中です。）
 </div>
 
 ## サイト概要
