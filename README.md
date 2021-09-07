@@ -53,6 +53,7 @@ https://docs.google.com/spreadsheets/d/1Qb4WOSmpRb9nLdiNKu54Ly3G1wDO0JN3PgWfEfZb
 ## 機能・実装一覧
 ・ポストの投稿、ポストへのコメント、コメントへの返信（リプライ）機能  
 ・Webサイトの登録機能（スクレイピングにより外部サイトのOGP画像、タイトルを取得）  
+・Webサイトのメモにてマークダウン記法、コードハイライトの導入
 ・リポスト（リツイート）機能  
 ・RSpec(System Spec)を用いたE2Eテスト  
 ・お問い合わせ機能（Actionmailerを使用）  
